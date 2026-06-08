@@ -8,7 +8,7 @@ This document is for daily-use stability testing of the current MVP.
 2. Select the `JellyTranslate` scheme.
 3. Run the app.
 4. The app appears as a menu bar utility named `Jelly`.
-5. Default popup shortcut: `command+z`; default replace shortcut: `command+s`.
+5. Default popup shortcut: `control+option+t`; default replace shortcut: `control+option+r`.
 
 ## Enable permissions
 
@@ -103,7 +103,7 @@ Expected:
 1. Open JellyTranslate Settings from the menu bar.
 2. Select `Mock`.
 3. Leave API keys empty.
-4. Select any text and press `command+z`.
+4. Select any text and press `control+option+t`.
 
 Expected:
 
@@ -118,7 +118,7 @@ Use this when you want real translation during development without OpenAI billin
 1. Open JellyTranslate Settings from the menu bar.
 2. Select `MyMemory`.
 3. Leave API key fields empty.
-4. Select a short text snippet and press `command+z`.
+4. Select a short text snippet and press `control+option+t`.
 
 Expected:
 
@@ -140,7 +140,7 @@ Known limits:
 3. Paste an OpenAI API key into the API key field.
 4. Click `Save Key`.
 5. Choose a target language.
-6. Select text in another app and press `command+z`.
+6. Select text in another app and press `control+option+t`.
 
 Expected:
 
@@ -161,7 +161,7 @@ Use this path when you want real translation without OpenAI billing.
    - Default: `https://libretranslate.com`
    - Self-hosted example: `http://localhost:5000` in DEBUG builds.
 6. Choose a target language.
-7. Select text and press `command+z`.
+7. Select text and press `control+option+t`.
 
 Expected:
 
@@ -187,7 +187,7 @@ Known limits:
 6. Keep the default path `/v1/chat/completions`, or set the provider-specific path.
 7. Enter the model name required by the provider.
 8. Click `Save Key`.
-9. Select text and press `command+z`.
+9. Select text and press `control+option+t`.
 
 Expected:
 
@@ -219,7 +219,7 @@ DeepL is still a placeholder. It is visible in Settings to keep the provider arc
 
 ### Selected text capture
 
-For each app, select short text, long text, and an empty selection, then press `command+z`.
+For each app, select short text, long text, and an empty selection, then press `control+option+t`.
 
 - Safari editable fields.
 - Safari non-editable webpage text.
@@ -272,8 +272,8 @@ Expected:
 ### Shortcut settings
 
 1. Open Settings > Hotkeys.
-2. Click `Show translation` and press a shortcut, such as `command + Z`.
-3. Click `Translate and replace` and press another shortcut, such as `command + S`.
+2. Click `Show translation` and press a shortcut, such as `control + option + T`.
+3. Click `Translate and replace` and press another shortcut, such as `control + option + R`.
 4. Select text and test the popup shortcut.
 5. Select text again and test the replace shortcut in TextEdit or Notes.
 6. Clear the replace shortcut and test the popup shortcut again.
@@ -373,12 +373,12 @@ Manual test:
 
 1. Open `Settings`.
 2. Go to `Privacy`.
-3. Enable `Share anonymous usage analytics`.
+3. If the build has TelemetryDeck configured, enable `Share anonymous usage analytics`.
 4. Run a few translations with MyMemory.
 
 Expected:
 
-- If `JellyTranslateTelemetryDeckAppID` or `JellyTranslateTelemetryDeckNamespace` is empty in `Info.plist`, the app does not send analytics. DEBUG builds may print `analytics_skipped_missing_configuration`.
+- If `JellyTranslateTelemetryDeckAppID` or `JellyTranslateTelemetryDeckNamespace` is empty in `Info.plist`, the analytics toggle is hidden and the app does not send analytics. DEBUG builds may print `analytics_skipped_missing_configuration` if a signal is attempted.
 - If a valid TelemetryDeck App ID and namespace are configured, the app may send anonymous events through TelemetryDeck Ingest API v2 for launch, settings/history/quick-start open, translation requested, translation succeeded, translation failed, target-language change, and replacement used.
 - No selected text, translated text, clipboard content, API keys, authorization headers, or window titles should appear in logs or analytics payloads.
 

@@ -13,6 +13,7 @@ struct PopupView: View {
     let onClose: () -> Void
     let language: AppLanguage
     let targetLanguage: String
+    let actionFeedback: String?
 
     @State private var isVisible = false
 
@@ -174,6 +175,13 @@ struct PopupView: View {
                     onRecoveryAction(action)
                 }
                 .buttonStyle(PrimaryPopupButtonStyle(isEnabled: true))
+            }
+
+            if let actionFeedback {
+                Text(actionFeedback)
+                    .font(.caption.weight(.semibold))
+                    .foregroundStyle(.green)
+                    .transition(.opacity.combined(with: .move(edge: .trailing)))
             }
 
             Button(action: onSpeak) {

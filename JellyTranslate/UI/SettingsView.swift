@@ -14,6 +14,14 @@ struct SettingsView: View {
     @State private var isAdvancedExpanded: Bool = false
 
     private var language: AppLanguage { settingsStore.settings.appLanguage }
+    private var simpleProviderBinding: Binding<TranslationProviderKind> {
+        Binding(
+            get: {
+                settingsStore.settings.provider == .openAI ? .openAI : .myMemory
+            },
+            set: { settingsStore.settings.provider = $0 }
+        )
+    }
 
     var body: some View {
         ScrollView {
@@ -52,19 +60,19 @@ struct SettingsView: View {
     private var translationSection: some View {
         settingsSection(L10n.t("translationSettings", language)) {
             settingsRow(L10n.t("provider", language)) {
-                Picker(L10n.t("provider", language), selection: $settingsStore.settings.provider) {
+                Picker(L10n.t("provider", language), selection: simpleProviderBinding) {
                     Text(L10n.t("myMemory", language)).tag(TranslationProviderKind.myMemory)
-                    Text(L10n.t("mock", language)).tag(TranslationProviderKind.mock)
                     Text(L10n.t("openAI", language)).tag(TranslationProviderKind.openAI)
-                    Text(L10n.t("custom", language)).tag(TranslationProviderKind.customOpenAI)
-                    Text(L10n.t("libreTranslate", language)).tag(TranslationProviderKind.libreTranslate)
-                    Text(L10n.t("deepLComingSoon", language)).tag(TranslationProviderKind.deepL)
                 }
                 .labelsHidden()
                 .frame(maxWidth: 260)
             }
 
-            providerDetails
+            if ![TranslationProviderKind.myMemory, .openAI].contains(settingsStore.settings.provider) {
+                helperText("\(L10n.t("currentAdvancedProvider", language)) \(settingsStore.settings.provider.displayName)")
+            }
+
+            simpleProviderDetails
 
             settingsRow(L10n.t("targetLanguage", language)) {
                 Picker(L10n.t("targetLanguage", language), selection: $settingsStore.settings.targetLanguage) {
@@ -99,12 +107,27 @@ struct SettingsView: View {
     }
 
     @ViewBuilder
-    private var providerDetails: some View {
+    private var simpleProviderDetails: some View {
         switch settingsStore.settings.provider {
         case .openAI:
             apiKeyEditor(title: L10n.t("openAIKey", language), text: $openAIAPIKey) {
                 saveAPIKey(openAIAPIKey, for: .openAI)
             }
+        case .myMemory:
+            settingsRow(L10n.t("contactEmail", language)) {
+                TextField(L10n.t("optional", language), text: $settingsStore.settings.myMemoryContactEmail)
+                    .textFieldStyle(.roundedBorder)
+                    .frame(maxWidth: 260)
+            }
+            helperText(L10n.t("myMemoryHint", language))
+        case .customOpenAI, .libreTranslate, .mock, .deepL:
+            EmptyView()
+        }
+    }
+
+    @ViewBuilder
+    private var advancedProviderDetails: some View {
+        switch settingsStore.settings.provider {
         case .customOpenAI:
             apiKeyEditor(title: language == .russian ? "API-ключ Custom Provider" : "Custom API key", text: $customAPIKey) {
                 saveAPIKey(customAPIKey, for: .customOpenAI)
@@ -114,17 +137,12 @@ struct SettingsView: View {
                 saveAPIKey(libreTranslateAPIKey, for: .libreTranslate)
             }
             helperText(L10n.t("libreTranslateHint", language))
-        case .myMemory:
-            settingsRow(L10n.t("contactEmail", language)) {
-                TextField(L10n.t("optional", language), text: $settingsStore.settings.myMemoryContactEmail)
-                    .textFieldStyle(.roundedBorder)
-                    .frame(maxWidth: 260)
-            }
-            helperText(L10n.t("myMemoryHint", language))
         case .mock:
             helperText(L10n.t("testMode", language))
         case .deepL:
             helperText(language == .russian ? "DeepL пока не реализован." : "DeepL is not implemented yet.")
+        case .myMemory, .openAI:
+            EmptyView()
         }
     }
 
@@ -204,6 +222,23 @@ struct SettingsView: View {
 
                 Divider()
 
+                settingsRow(L10n.t("provider", language)) {
+                    Picker(L10n.t("provider", language), selection: $settingsStore.settings.provider) {
+                        Text(L10n.t("myMemory", language)).tag(TranslationProviderKind.myMemory)
+                        Text(L10n.t("mock", language)).tag(TranslationProviderKind.mock)
+                        Text(L10n.t("openAI", language)).tag(TranslationProviderKind.openAI)
+                        Text(L10n.t("custom", language)).tag(TranslationProviderKind.customOpenAI)
+                        Text(L10n.t("libreTranslate", language)).tag(TranslationProviderKind.libreTranslate)
+                        Text(L10n.t("deepLComingSoon", language)).tag(TranslationProviderKind.deepL)
+                    }
+                    .labelsHidden()
+                    .frame(maxWidth: 260)
+                }
+
+                advancedProviderDetails
+
+                Divider()
+
                 Text(L10n.t("customProvider", language))
                     .font(.subheadline.weight(.semibold))
 
@@ -255,11 +290,12 @@ struct SettingsView: View {
             .font(.callout)
             .foregroundStyle(.secondary)
 
-            Divider()
+            if AnalyticsService.isConfiguredForCurrentBuild {
+                Divider()
 
-            Toggle(L10n.t("shareAnalytics", language), isOn: $settingsStore.settings.shareAnonymousAnalytics)
-            helperText(L10n.t("analyticsPrivacy", language))
-            helperText(L10n.t("analyticsNeedsAppID", language))
+                Toggle(L10n.t("shareAnalytics", language), isOn: $settingsStore.settings.shareAnonymousAnalytics)
+                helperText(L10n.t("analyticsPrivacy", language))
+            }
         }
     }
 
@@ -318,22 +354,30 @@ struct SettingsView: View {
     }
 
     private func hotkeyField(_ text: Binding<String>) -> some View {
-        HStack(spacing: 8) {
-            HotKeyRecorderButton(value: text,
-                                 emptyTitle: language == .russian ? "Назначить" : "Set shortcut",
-                                 recordingTitle: L10n.t("recordHotkey", language)) {
-                onHotKeyChanged?()
-            }
-            .frame(width: 180, height: 30)
+        VStack(alignment: .leading, spacing: 5) {
+            HStack(spacing: 8) {
+                HotKeyRecorderButton(value: text,
+                                     emptyTitle: language == .russian ? "Назначить" : "Set shortcut",
+                                     recordingTitle: L10n.t("recordHotkey", language)) {
+                    onHotKeyChanged?()
+                }
+                .frame(width: 180, height: 30)
 
-            Button {
-                text.wrappedValue = ""
-                onHotKeyChanged?()
-            } label: {
-                Image(systemName: "xmark.circle")
+                Button {
+                    text.wrappedValue = ""
+                    onHotKeyChanged?()
+                } label: {
+                    Image(systemName: "xmark.circle")
+                }
+                .buttonStyle(.borderless)
+                .help(language == .russian ? "Очистить" : "Clear")
             }
-            .buttonStyle(.borderless)
-            .help(language == .russian ? "Очистить" : "Clear")
+
+            if HotKeyShortcut.isSystemReserved(text.wrappedValue) {
+                Text(L10n.t("reservedHotkeyWarning", language))
+                    .font(.caption)
+                    .foregroundStyle(.orange)
+            }
         }
     }
 

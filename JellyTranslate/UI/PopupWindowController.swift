@@ -14,6 +14,7 @@ final class PopupWindowController: NSWindowController {
     private let onClose: () -> Void
     private var state: PopupPresentationState
     private var targetLanguage: String
+    private var actionFeedback: String?
     private var localKeyMonitor: Any?
     private var globalKeyMonitor: Any?
     private var globalMouseMonitor: Any?
@@ -51,7 +52,8 @@ final class PopupWindowController: NSWindowController {
                              onRecoveryAction: { _ in },
                              onClose: {},
                              language: language,
-                             targetLanguage: targetLanguage)
+                             targetLanguage: targetLanguage,
+                             actionFeedback: nil)
         hostingView = NSHostingView(rootView: view)
         let window = NSPanel(contentRect: NSRect(x: 0,
                                                  y: 0,
@@ -132,13 +134,15 @@ final class PopupWindowController: NSWindowController {
             onRecoveryAction: { [weak self] action in self?.onRecoveryAction(action) },
             onClose: { [weak self] in self?.closeAnimated() },
             language: language,
-            targetLanguage: self.targetLanguage
+            targetLanguage: self.targetLanguage,
+            actionFeedback: actionFeedback
         )
     }
 
     private func copyTranslation() {
         guard case .success(let item) = state else { return }
         clipboardService.copy(item.translatedText)
+        showActionFeedback(L10n.t("copied", language))
         if closeAfterCopy {
             closeAnimated()
         }
@@ -147,6 +151,21 @@ final class PopupWindowController: NSWindowController {
     private func replaceSelection() {
         guard case .success(let item) = state else { return }
         replacementService.replaceSelection(with: item.translatedText, clipboardService: clipboardService)
+        showActionFeedback(L10n.t("replaced", language))
+    }
+
+    private func showActionFeedback(_ message: String) {
+        actionFeedback = message
+        update(state: state)
+
+        Task { @MainActor [weak self] in
+            try? await Task.sleep(nanoseconds: 1_200_000_000)
+            guard self?.actionFeedback == message else { return }
+            self?.actionFeedback = nil
+            if let state = self?.state {
+                self?.update(state: state)
+            }
+        }
     }
 
     private func speakCurrentContent() {

@@ -59,6 +59,7 @@ enum L10n {
             "secondaryHotkey": "Translate and replace",
             "resetHotkeys": "Reset hotkeys",
             "recordHotkey": "Press shortcut...",
+            "reservedHotkeyWarning": "This is a common macOS shortcut. Choose another combination to avoid surprises.",
             "behavior": "Behavior",
             "saveHistory": "Save history",
             "showPopupNearCursor": "Show popup near cursor",
@@ -102,7 +103,10 @@ enum L10n {
             "deepLComingSoon": "DeepL - Coming soon",
             "appLanguage": "App Language",
             "keySaved": "Key saved",
-            "keyCleared": "Key cleared"
+            "keyCleared": "Key cleared",
+            "copied": "Copied",
+            "replaced": "Replaced",
+            "currentAdvancedProvider": "Current provider is set in Advanced."
         ],
         .russian: [
             "quickStart": "Быстрый старт",
@@ -157,6 +161,7 @@ enum L10n {
             "secondaryHotkey": "Перевести и заменить",
             "resetHotkeys": "Сбросить хоткеи",
             "recordHotkey": "Нажмите сочетание...",
+            "reservedHotkeyWarning": "Это привычное сочетание macOS. Лучше выбрать другое, чтобы избежать случайных действий.",
             "behavior": "Поведение",
             "saveHistory": "Сохранять историю",
             "showPopupNearCursor": "Показывать popup рядом с курсором",
@@ -200,7 +205,10 @@ enum L10n {
             "deepLComingSoon": "DeepL — скоро",
             "appLanguage": "Язык интерфейса",
             "keySaved": "Ключ сохранён",
-            "keyCleared": "Ключ удалён"
+            "keyCleared": "Ключ удалён",
+            "copied": "Скопировано",
+            "replaced": "Заменено",
+            "currentAdvancedProvider": "Текущий провайдер выбран в Advanced."
         ]
     ]
 }

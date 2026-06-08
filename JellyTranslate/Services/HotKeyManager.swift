@@ -132,6 +132,15 @@ enum HotKeyShortcut {
         return symbols + key
     }
 
+    static func isSystemReserved(_ value: String) -> Bool {
+        let parts = value.lowercased().split(separator: "+").map(String.init)
+        guard parts.contains("command") || parts.contains("cmd") else { return false }
+        let modifiers = Set(parts.dropLast())
+        let key = parts.last ?? ""
+        let commandOnly = modifiers.subtracting(["command", "cmd"]).isEmpty
+        return commandOnly && ["z", "x", "c", "v", "a", "s", "q", "w", "n", "o", "p"].contains(String(key))
+    }
+
     private static func keyCode(for key: String) -> UInt32? {
         keyCodeTable[key]
     }

@@ -15,8 +15,8 @@ JellyTranslate is currently an early MVP for local and private testing.
 - SwiftUI + AppKit menu bar app.
 - Configurable global shortcuts.
 - Default shortcuts for local testing:
-  - `Command+Z`: show translation popup.
-  - `Command+S`: translate and replace selected text.
+  - `Control+Option+T`: show translation popup.
+  - `Control+Option+R`: translate and replace selected text.
 - Reads selected text with Accessibility API when possible.
 - Falls back to simulated `Cmd+C`, reads clipboard, then restores prior clipboard content.
 - Floating always-on-top translation popup near cursor.

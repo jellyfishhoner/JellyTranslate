@@ -74,8 +74,8 @@ enum TranslationProviderKind: String, Codable, CaseIterable, Identifiable {
 struct AppSettings: Codable, Equatable {
     var sourceLanguage: String = "auto"
     var targetLanguage: String = Locale.current.language.languageCode?.identifier ?? "en"
-    var hotkey: String = "command+z"
-    var secondaryHotkey: String = "command+s"
+    var hotkey: String = "control+option+t"
+    var secondaryHotkey: String = "control+option+r"
     var provider: TranslationProviderKind = .myMemory
     var appLanguage: AppLanguage = .systemDefault
     var myMemoryContactEmail: String = ""

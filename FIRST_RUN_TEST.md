@@ -63,7 +63,7 @@ Expected:
 3. Select provider: `Mock`.
 4. Select text in TextEdit, Notes, Safari, or Chrome.
 5. Press:
-   `command + Z`
+   `control + option + T`
 
 Expected:
 
@@ -88,9 +88,9 @@ Expected:
 
 1. Open `Settings`.
 2. In `Hotkey`, click `Show translation`.
-3. Press the shortcut you want for the popup, for example `command + Z`.
+3. Press the shortcut you want for the popup, for example `control + option + T`.
 4. Click `Translate and replace` if you want a direct replacement shortcut.
-5. Press another shortcut, for example `command + S`.
+5. Press another shortcut, for example `control + option + R`.
 6. Select text in TextEdit.
 7. Press the popup shortcut and confirm the translation popup appears.
 8. Select the text again and press the replace shortcut.
@@ -126,7 +126,7 @@ Expected:
 4. Click `Save Key`.
 5. Select a target language.
 6. Select text in another app.
-7. Press `command + Z`.
+7. Press `control + option + T`.
 
 Expected:
 
@@ -143,7 +143,7 @@ Use this first if you do not want to pay for OpenAI while JellyTranslate is stil
 2. Select provider: `MyMemory`.
 3. Leave API key fields empty.
 4. Select a short text snippet.
-5. Press `command + Z`.
+5. Press `control + option + T`.
 
 Expected:
 
@@ -163,7 +163,7 @@ Use this if OpenAI billing/card setup is not available.
    - Default: `https://libretranslate.com`
    - Local/self-hosted DEBUG example: `http://localhost:5000`
 6. Select target language.
-7. Select text and press `command + Z`.
+7. Select text and press `control + option + T`.
 
 Expected:
 
@@ -182,7 +182,7 @@ Expected:
    - Base URL, for example `https://api.example.com`
    - Path, usually `/v1/chat/completions`
    - Model, for example the provider's model name
-6. Select text and press `command + Z`.
+6. Select text and press `control + option + T`.
 
 Expected:
 

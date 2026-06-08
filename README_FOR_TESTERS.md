@@ -48,7 +48,7 @@ Use TextEdit first.
 1. Open TextEdit.
 2. Type: `Hello world`.
 3. Select the text.
-4. Press `Command+Z`.
+4. Press `Control+Option+T`.
 
 Expected:
 
@@ -61,7 +61,7 @@ Expected:
 Direct replacement shortcut:
 
 1. Select text again.
-2. Press `Command+S`.
+2. Press `Control+Option+R`.
 3. JellyTranslate should translate and replace the selection directly.
 
 Note: these default shortcuts are for early testing and can be changed in Settings.
@@ -88,9 +88,8 @@ Useful settings:
 - Show translation shortcut
 - Translate and replace shortcut
 - Save history
-- Share anonymous usage analytics
 
-Anonymous analytics are off by default. If you enable them, JellyTranslate sends only technical events such as launch, translation success/failure, provider, target language, app version, and broad text-length bucket. It does not send selected text, translations, clipboard content, API keys, or window titles.
+Some builds may include an optional anonymous analytics toggle. It is off by default and sends only technical events such as launch, translation success/failure, provider, target language, app version, and broad text-length bucket. It does not send selected text, translations, clipboard content, API keys, or window titles.
 
 ## What To Report
 

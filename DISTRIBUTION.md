@@ -120,8 +120,8 @@ Core flow:
 
 Default shortcuts:
 
-- Command+Z: show translation popup.
-- Command+S: translate and replace selected text.
+- Control+Option+T: show translation popup.
+- Control+Option+R: translate and replace selected text.
 
 Recommended provider:
 
@@ -161,7 +161,7 @@ Start with TextEdit:
 1. Open JellyTranslate.
 2. Enable Accessibility permission if macOS asks.
 3. Type and select “Hello world”.
-4. Press Command+Z.
+4. Press Control+Option+T.
 5. Try changing the target language in the popup.
 
 Please send me your macOS version, what app you tested in, and screenshots of any errors.

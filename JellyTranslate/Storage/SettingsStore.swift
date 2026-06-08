@@ -41,6 +41,12 @@ final class SettingsStore: ObservableObject {
 
     private static func migrateSettings(_ settings: AppSettings) -> AppSettings {
         var migrated = settings
+        if migrated.hotkey == "command+z" {
+            migrated.hotkey = AppSettings().hotkey
+        }
+        if migrated.secondaryHotkey == "command+s" {
+            migrated.secondaryHotkey = AppSettings().secondaryHotkey
+        }
         if migrated.hotkey == "control+option+t", migrated.secondaryHotkey.isEmpty {
             migrated.hotkey = AppSettings().hotkey
             migrated.secondaryHotkey = AppSettings().secondaryHotkey

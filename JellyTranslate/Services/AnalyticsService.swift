@@ -15,6 +15,9 @@ enum AnalyticsEvent: String {
 
 final class AnalyticsService {
     static let shared = AnalyticsService()
+    static var isConfiguredForCurrentBuild: Bool {
+        shared.telemetryDeckAppID.isEmpty == false && shared.telemetryDeckNamespace.isEmpty == false
+    }
 
     private let endpointBase = "https://nom.telemetrydeck.com/v2/namespace/"
     private let userDefaultsKey = "JellyTranslate.analyticsClientID"

@@ -194,9 +194,9 @@ struct OnboardingView: View {
 
             VStack(alignment: .leading, spacing: 10) {
                 shortcutRow(title: language == .russian ? "Показать перевод" : "Show translation",
-                            shortcut: "Command + Z")
+                            shortcut: "Control + Option + T")
                 shortcutRow(title: language == .russian ? "Перевести и заменить" : "Translate and replace",
-                            shortcut: "Command + S")
+                            shortcut: "Control + Option + R")
             }
 
             Text(language == .russian
