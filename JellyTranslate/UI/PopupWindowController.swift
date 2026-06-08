@@ -54,7 +54,7 @@ final class PopupWindowController: NSWindowController {
                              language: language,
                              targetLanguage: targetLanguage,
                              actionFeedback: nil)
-        hostingView = NSHostingView(rootView: view)
+        hostingView = DraggableHostingView(rootView: view)
         let window = NSPanel(contentRect: NSRect(x: 0,
                                                  y: 0,
                                                  width: PopupView.preferredSize.width,
@@ -66,6 +66,8 @@ final class PopupWindowController: NSWindowController {
         window.level = .floating
         window.isReleasedWhenClosed = false
         window.hidesOnDeactivate = false
+        window.isMovable = true
+        window.isMovableByWindowBackground = true
         window.isOpaque = false
         window.backgroundColor = .clear
         window.hasShadow = true
@@ -239,5 +241,11 @@ final class PopupWindowController: NSWindowController {
             NSEvent.removeMonitor(globalMouseMonitor)
             self.globalMouseMonitor = nil
         }
+    }
+}
+
+private final class DraggableHostingView<Content: View>: NSHostingView<Content> {
+    override var mouseDownCanMoveWindow: Bool {
+        true
     }
 }
