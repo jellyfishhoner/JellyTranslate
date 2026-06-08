@@ -47,6 +47,14 @@ For real use, grant these in System Settings > Privacy & Security:
 - Input Monitoring: simulated copy/paste fallback.
 - Screen Recording: not used in MVP, reserved for future OCR.
 
+## Privacy And Analytics
+
+Anonymous analytics are optional and off by default. If enabled in Settings, JellyTranslate sends only technical usage events such as app launch, translation success/failure, selected provider, target language, app version, and broad text-length bucket.
+
+JellyTranslate does not send selected text, translated text, clipboard content, API keys, authorization headers, or window titles as analytics.
+
+GitHub Releases show download counts for uploaded builds. App usage analytics use TelemetryDeck Ingest API v2 and require both `JellyTranslateTelemetryDeckAppID` and `JellyTranslateTelemetryDeckNamespace` configured in `Info.plist` before building.
+
 ## Current Limitations
 
 - MyMemory is useful for free testing but has limits and variable quality.

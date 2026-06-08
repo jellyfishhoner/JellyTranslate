@@ -87,6 +87,7 @@ struct AppSettings: Codable, Equatable {
     var closePopupAfterCopy: Bool = false
     var launchAtLogin: Bool = false
     var saveTranslationHistory: Bool = true
+    var shareAnonymousAnalytics: Bool = false
 
     enum CodingKeys: String, CodingKey {
         case sourceLanguage
@@ -104,6 +105,7 @@ struct AppSettings: Codable, Equatable {
         case closePopupAfterCopy
         case launchAtLogin
         case saveTranslationHistory
+        case shareAnonymousAnalytics
     }
 
     init() {}
@@ -126,5 +128,6 @@ struct AppSettings: Codable, Equatable {
         closePopupAfterCopy = try container.decodeIfPresent(Bool.self, forKey: .closePopupAfterCopy) ?? defaults.closePopupAfterCopy
         launchAtLogin = try container.decodeIfPresent(Bool.self, forKey: .launchAtLogin) ?? defaults.launchAtLogin
         saveTranslationHistory = try container.decodeIfPresent(Bool.self, forKey: .saveTranslationHistory) ?? defaults.saveTranslationHistory
+        shareAnonymousAnalytics = try container.decodeIfPresent(Bool.self, forKey: .shareAnonymousAnalytics) ?? defaults.shareAnonymousAnalytics
     }
 }

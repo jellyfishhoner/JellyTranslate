@@ -254,6 +254,12 @@ struct SettingsView: View {
             }
             .font(.callout)
             .foregroundStyle(.secondary)
+
+            Divider()
+
+            Toggle(L10n.t("shareAnalytics", language), isOn: $settingsStore.settings.shareAnonymousAnalytics)
+            helperText(L10n.t("analyticsPrivacy", language))
+            helperText(L10n.t("analyticsNeedsAppID", language))
         }
     }
 

@@ -91,6 +91,19 @@ For the first unsigned alpha:
 7. Add release notes from the template below.
 8. Publish release or keep it as draft until ready.
 
+## Download And Usage Metrics
+
+GitHub Releases show download counts for each uploaded `.zip` or `.dmg` asset. Use those counts to estimate installs during alpha testing.
+
+For in-app usage, JellyTranslate includes optional anonymous analytics through TelemetryDeck Ingest API v2. Before making a build that should report usage:
+
+1. Create a TelemetryDeck app.
+2. Copy its App ID and namespace.
+3. Paste them into `JellyTranslateTelemetryDeckAppID` and `JellyTranslateTelemetryDeckNamespace` in `JellyTranslate/Resources/Info.plist`.
+4. Build and distribute a fresh app.
+
+Users still need to enable `Share anonymous usage analytics` in JellyTranslate Settings. Do not enable analytics by default for private test builds.
+
 ## Release Notes Template
 
 ```md
@@ -173,4 +186,3 @@ Future steps:
 4. Notarize with Apple.
 5. Package into `.dmg`.
 6. Upload `.dmg` to GitHub Releases.
-

@@ -20,6 +20,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     private let selectionReader = SelectionReader()
     private let replacementService = ReplacementService()
     private let speechService = SpeechService()
+    private let analyticsService = AnalyticsService.shared
 
     private var statusItem: NSStatusItem?
     private var hotKeyManager: HotKeyManager?
@@ -34,6 +35,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         configureMenuBar()
         configureHotKey()
         showOnboardingIfNeeded()
+        analyticsService.signal(.appLaunched, settings: settingsStore.settings)
     }
 
     func applicationWillTerminate(_ notification: Notification) {
@@ -93,14 +95,23 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
                 return
             }
 
+            analyticsService.signal(.translationRequested,
+                                    settings: settingsStore.settings,
+                                    metadata: analyticsMetadata(characterCount: trimmed.count, mode: "popup"))
             showPopup(state: .loading(message: L10n.t("translating", settingsStore.settings.appLanguage)))
 
             let item = try await translate(trimmed)
             if settingsStore.settings.saveTranslationHistory {
                 historyStore.add(item)
             }
+            analyticsService.signal(.translationSucceeded,
+                                    settings: settingsStore.settings,
+                                    metadata: analyticsMetadata(for: item, mode: "popup"))
             showPopup(state: .success(item))
         } catch {
+            analyticsService.signal(.translationFailed,
+                                    settings: settingsStore.settings,
+                                    metadata: ["mode": "popup", "error_kind": analyticsErrorKind(error)])
             showPopup(state: errorState(for: error))
         }
     }
@@ -117,6 +128,9 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
                 return
             }
 
+            analyticsService.signal(.translationRequested,
+                                    settings: settingsStore.settings,
+                                    metadata: analyticsMetadata(characterCount: trimmed.count, mode: "replace"))
             let item = try await translate(trimmed)
             try ensureFrontmostApplicationDidNotChange(from: sourceApplication)
             replacementService.replaceSelection(with: item.translatedText, clipboardService: clipboardService)
@@ -124,7 +138,16 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
             if settingsStore.settings.saveTranslationHistory {
                 historyStore.add(item)
             }
+            analyticsService.signal(.translationSucceeded,
+                                    settings: settingsStore.settings,
+                                    metadata: analyticsMetadata(for: item, mode: "replace"))
+            analyticsService.signal(.replacementUsed,
+                                    settings: settingsStore.settings,
+                                    metadata: analyticsMetadata(for: item, mode: "replace"))
         } catch {
+            analyticsService.signal(.translationFailed,
+                                    settings: settingsStore.settings,
+                                    metadata: ["mode": "replace", "error_kind": analyticsErrorKind(error)])
             showPopup(state: errorState(for: error))
         }
     }
@@ -323,6 +346,9 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     private func changeTargetLanguageFromPopup(_ targetLanguage: String) async {
         guard settingsStore.settings.targetLanguage != targetLanguage else { return }
         settingsStore.settings.targetLanguage = targetLanguage
+        analyticsService.signal(.targetLanguageChanged,
+                                settings: settingsStore.settings,
+                                metadata: ["target_language": targetLanguage])
 
         guard case .success(let currentItem) = currentPopupState else {
             popupController?.update(state: currentPopupState ?? .loading(message: L10n.t("translating", settingsStore.settings.appLanguage)),
@@ -361,7 +387,57 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         }
     }
 
+    private func analyticsMetadata(for item: TranslationHistoryItem, mode: String) -> [String: String] {
+        var metadata = analyticsMetadata(characterCount: item.characterCount, mode: mode)
+        metadata["source_language"] = item.sourceLanguage
+        metadata["target_language"] = item.targetLanguage
+        metadata["provider"] = item.providerName
+        if let modelName = item.modelName, !modelName.isEmpty {
+            metadata["model"] = modelName
+        }
+        return metadata
+    }
+
+    private func analyticsMetadata(characterCount: Int, mode: String) -> [String: String] {
+        [
+            "mode": mode,
+            "character_bucket": characterBucket(for: characterCount)
+        ]
+    }
+
+    private func characterBucket(for count: Int) -> String {
+        switch count {
+        case 0:
+            return "empty"
+        case 1...80:
+            return "1-80"
+        case 81...240:
+            return "81-240"
+        case 241...1000:
+            return "241-1000"
+        default:
+            return "1000+"
+        }
+    }
+
+    private func analyticsErrorKind(_ error: Error) -> String {
+        if error is TranslationRuntimeError {
+            return "timeout"
+        }
+        if error is TranslationProviderError {
+            return "provider"
+        }
+        if error is SelectionReaderError {
+            return "selection"
+        }
+        if error is DirectReplacementError {
+            return "replacement"
+        }
+        return "unknown"
+    }
+
     @objc private func openSettings() {
+        analyticsService.signal(.settingsOpened, settings: settingsStore.settings)
         let view = SettingsView(settingsStore: settingsStore) { [weak self] in
             self?.hotKeyManager?.reregister()
         } onLanguageChanged: { [weak self] in
@@ -387,6 +463,9 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     }
 
     private func openOnboarding(markAsManual: Bool) {
+        analyticsService.signal(.quickStartOpened,
+                                settings: settingsStore.settings,
+                                metadata: ["manual": markAsManual ? "true" : "false"])
         if let onboardingWindowController {
             onboardingWindowController.showWindow(nil)
             NSApp.activate(ignoringOtherApps: true)
@@ -418,6 +497,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     }
 
     @objc private func openHistory() {
+        analyticsService.signal(.historyOpened, settings: settingsStore.settings)
         let view = HistoryView(historyStore: historyStore,
                                clipboardService: clipboardService,
                                isHistoryEnabled: settingsStore.settings.saveTranslationHistory,

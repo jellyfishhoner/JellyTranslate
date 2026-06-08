@@ -88,6 +88,9 @@ Useful settings:
 - Show translation shortcut
 - Translate and replace shortcut
 - Save history
+- Share anonymous usage analytics
+
+Anonymous analytics are off by default. If you enable them, JellyTranslate sends only technical events such as launch, translation success/failure, provider, target language, app version, and broad text-length bucket. It does not send selected text, translations, clipboard content, API keys, or window titles.
 
 ## What To Report
 
@@ -114,4 +117,3 @@ Please do not send:
 - Clipboard fallback can fail in some apps.
 - Direct replacement can fail if the active app changes or blocks paste.
 - DeepL, OCR, subscriptions, billing, and cloud sync are not implemented.
-

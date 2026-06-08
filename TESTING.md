@@ -365,6 +365,23 @@ Expected:
 - OCR is intentionally not implemented yet.
 - History is intentionally minimal: no filters, tags, analytics, cloud sync, or database layer.
 
+## Anonymous analytics
+
+Analytics are optional and off by default.
+
+Manual test:
+
+1. Open `Settings`.
+2. Go to `Privacy`.
+3. Enable `Share anonymous usage analytics`.
+4. Run a few translations with MyMemory.
+
+Expected:
+
+- If `JellyTranslateTelemetryDeckAppID` or `JellyTranslateTelemetryDeckNamespace` is empty in `Info.plist`, the app does not send analytics. DEBUG builds may print `analytics_skipped_missing_configuration`.
+- If a valid TelemetryDeck App ID and namespace are configured, the app may send anonymous events through TelemetryDeck Ingest API v2 for launch, settings/history/quick-start open, translation requested, translation succeeded, translation failed, target-language change, and replacement used.
+- No selected text, translated text, clipboard content, API keys, authorization headers, or window titles should appear in logs or analytics payloads.
+
 ## Next improvements
 
 - Implement real DeepL provider calls.
