@@ -42,32 +42,24 @@ a {
   bottom: 22px;
   display: inline-flex;
   align-items: center;
-  gap: 9px;
-  min-height: 38px;
-  padding: 0 13px;
-  color: var(--text);
-  background: rgba(20, 24, 34, 0.62);
-  border: 1px solid rgba(255, 255, 255, 0.16);
-  border-radius: 999px;
-  box-shadow: 0 18px 42px var(--shadow);
-  backdrop-filter: blur(18px);
+  gap: 7px;
+  color: rgba(245, 247, 251, 0.46);
   font-size: 13px;
-  font-weight: 760;
-  transition: transform 160ms ease, border-color 160ms ease, background 160ms ease;
+  font-weight: 680;
+  letter-spacing: 0;
+  transition: color 160ms ease, transform 160ms ease;
 }
 
 .maker-badge:hover {
   transform: translateY(-2px);
-  background: rgba(28, 34, 48, 0.78);
-  border-color: rgba(102, 217, 198, 0.38);
+  color: rgba(245, 247, 251, 0.82);
 }
 
-.maker-dot {
-  width: 9px;
-  height: 9px;
-  background: linear-gradient(135deg, var(--accent-strong), var(--accent));
-  border-radius: 50%;
-  box-shadow: 0 0 18px rgba(102, 217, 198, 0.72);
+.telegram-icon {
+  width: 15px;
+  height: 15px;
+  fill: currentColor;
+  opacity: 0.92;
 }
 
 .site-header {
@@ -421,11 +413,11 @@ h1 {
   }
 
   .maker-badge {
-    background: rgba(255, 255, 255, 0.72);
+    color: rgba(23, 25, 35, 0.46);
   }
 
   .maker-badge:hover {
-    background: rgba(255, 255, 255, 0.9);
+    color: rgba(23, 25, 35, 0.78);
   }
 
   .hero::after {
@@ -510,8 +502,6 @@ h1 {
   .maker-badge {
     right: 14px;
     bottom: 14px;
-    min-height: 34px;
-    padding: 0 11px;
     font-size: 12px;
   }
 
