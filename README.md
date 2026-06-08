@@ -35,6 +35,10 @@ For manual local testing, follow [FIRST_RUN_TEST.md](FIRST_RUN_TEST.md).
 
 For sharing a test build with other people, follow [DISTRIBUTION.md](DISTRIBUTION.md) and include [README_FOR_TESTERS.md](README_FOR_TESTERS.md) with the release.
 
+## Website
+
+The Netlify-ready landing page lives in [site](site). Netlify uses [netlify.toml](netlify.toml) to publish that folder.
+
 ## Permissions
 
 For real use, grant these in System Settings > Privacy & Security:

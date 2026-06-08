@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="JellyTranslate is a native macOS menu bar app for instant translation anywhere on Mac.">
+    <meta property="og:title" content="JellyTranslate">
+    <meta property="og:description" content="Select text, press a shortcut, and get an instant translation on macOS.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="/assets/jellytranslate-icon.webp">
+    <title>JellyTranslate</title>
+    <link rel="icon" href="/assets/jellytranslate-icon.webp">
+    <link rel="stylesheet" href="/styles.css">
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="#top" aria-label="JellyTranslate home">
+        <img src="/assets/jellytranslate-icon.webp" alt="" class="brand-icon">
+        <span>JellyTranslate</span>
+      </a>
+      <nav class="nav-links" aria-label="Primary navigation">
+        <a href="#how">How it works</a>
+        <a href="#testers">Testers</a>
+        <a href="https://github.com/jellyfishhoner/JellyTranslate">GitHub</a>
+      </nav>
+    </header>
+
+    <main id="top">
+      <section class="hero" aria-labelledby="hero-title">
+        <img src="/assets/jellytranslate-icon.webp" alt="" class="hero-backdrop">
+        <div class="hero-content">
+          <p class="eyebrow">Native macOS menu bar translator</p>
+          <h1 id="hero-title">Translate selected text anywhere on Mac.</h1>
+          <p class="hero-copy">
+            Select text, press a shortcut, and JellyTranslate shows a compact floating translation popup.
+            Built for quick daily use, not for getting in your way.
+          </p>
+          <div class="hero-actions">
+            <a class="primary-action" href="https://github.com/jellyfishhoner/JellyTranslate/releases">
+              Download alpha
+            </a>
+            <a class="secondary-action" href="https://github.com/jellyfishhoner/JellyTranslate">
+              View source
+            </a>
+          </div>
+          <p class="release-note">Early macOS test build. MyMemory works without an API key for MVP testing.</p>
+        </div>
+      </section>
+
+      <section class="flow-band" id="how" aria-label="Core flow">
+        <div class="flow">
+          <div class="flow-step">
+            <span class="step-number">1</span>
+            <h2>Select text</h2>
+            <p>Highlight text in TextEdit, Notes, Safari, Chrome, Telegram, or another Mac app.</p>
+          </div>
+          <div class="flow-step">
+            <span class="step-number">2</span>
+            <h2>Press shortcut</h2>
+            <p>Open the popup or translate and replace selected text directly with your chosen hotkeys.</p>
+          </div>
+          <div class="flow-step">
+            <span class="step-number">3</span>
+            <h2>Get translation</h2>
+            <p>Choose the target language in the popup, copy the result, or replace the original text.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="product-section">
+        <div class="section-copy">
+          <p class="eyebrow">Small by design</p>
+          <h2>A Mac utility that quietly does one thing well.</h2>
+          <p>
+            JellyTranslate lives in the menu bar, uses native SwiftUI and AppKit, and keeps the core experience simple:
+            selected text in, translation out.
+          </p>
+        </div>
+        <div class="popup-demo" aria-label="JellyTranslate popup preview">
+          <div class="popup-top">
+            <strong>JellyTranslate</strong>
+            <span>MyMemory · Auto → RU</span>
+          </div>
+          <div class="text-block">
+            <small>Original</small>
+            <p>Hello world</p>
+          </div>
+          <div class="translation-block">
+            <small>Translation</small>
+            <p>Привет, мир</p>
+          </div>
+          <div class="popup-actions">
+            <button type="button">Copy</button>
+            <button type="button">Replace</button>
+            <span>Speak</span>
+            <span>History</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="tester-section" id="testers">
+        <div class="tester-content">
+          <p class="eyebrow">For early testers</p>
+          <h2>Install, enable permissions, test in TextEdit first.</h2>
+          <p>
+            macOS may ask for Accessibility and Input Monitoring permissions so JellyTranslate can read selected text,
+            use clipboard fallback, and replace text where possible.
+          </p>
+          <div class="tester-actions">
+            <a class="primary-action" href="https://github.com/jellyfishhoner/JellyTranslate/releases">
+              Get latest build
+            </a>
+            <a class="secondary-action" href="https://github.com/jellyfishhoner/JellyTranslate/blob/main/README_FOR_TESTERS.md">
+              Tester guide
+            </a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <span>JellyTranslate</span>
+      <a href="https://github.com/jellyfishhoner/JellyTranslate">GitHub</a>
+    </footer>
+  </body>
+</html>
+
