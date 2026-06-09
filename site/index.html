@@ -281,6 +281,24 @@
             panel.style.setProperty("--glow-y", `${y}%`);
           });
         });
+
+        document.querySelectorAll(".popup-demo").forEach((panel) => {
+          panel.addEventListener("pointermove", (event) => {
+            const rect = panel.getBoundingClientRect();
+            const x = (event.clientX - rect.left) / rect.width - 0.5;
+            const y = (event.clientY - rect.top) / rect.height - 0.5;
+
+            panel.style.setProperty("--popup-rotate-x", `${(-y * 3).toFixed(2)}deg`);
+            panel.style.setProperty("--popup-rotate-y", `${(x * 4).toFixed(2)}deg`);
+            panel.style.setProperty("--popup-shift-x", `${(x * 3).toFixed(2)}px`);
+          });
+
+          panel.addEventListener("pointerleave", () => {
+            panel.style.setProperty("--popup-rotate-x", "0deg");
+            panel.style.setProperty("--popup-rotate-y", "0deg");
+            panel.style.setProperty("--popup-shift-x", "0px");
+          });
+        });
       }
 
       applyLanguage(localStorage.getItem("jellytranslate-site-language") || "en");

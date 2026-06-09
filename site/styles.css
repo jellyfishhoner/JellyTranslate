@@ -388,6 +388,10 @@ h1 {
 }
 
 .popup-demo {
+  --popup-lift: 0px;
+  --popup-rotate-x: 0deg;
+  --popup-rotate-y: 0deg;
+  --popup-shift-x: 0px;
   position: relative;
   overflow: hidden;
   padding: 22px;
@@ -396,11 +400,14 @@ h1 {
   border-radius: 30px;
   box-shadow: 0 26px 70px var(--shadow);
   backdrop-filter: blur(18px);
+  transform: perspective(900px) translate3d(var(--popup-shift-x), var(--popup-lift), 0) rotateX(var(--popup-rotate-x)) rotateY(var(--popup-rotate-y));
+  transform-style: preserve-3d;
   transition: transform 200ms ease, border-color 200ms ease, box-shadow 200ms ease;
+  will-change: transform;
 }
 
 .popup-demo:hover {
-  transform: translateY(-5px);
+  --popup-lift: -5px;
   border-color: rgba(102, 217, 198, 0.32);
   box-shadow: 0 34px 86px rgba(0, 0, 0, 0.38);
 }
