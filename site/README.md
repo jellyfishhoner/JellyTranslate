@@ -31,11 +31,10 @@ When connecting the GitHub repository to Netlify, Netlify can use this config au
 
 ## Download Link
 
-The `Download alpha` button points to GitHub Releases:
+The `Download on Mac` button points to the current alpha build:
 
 ```text
-https://github.com/jellyfishhoner/JellyTranslate/releases
+https://github.com/jellyfishhoner/JellyTranslate/releases/download/v0.1.0-alpha/JellyTranslate-0.1.0-alpha-mac.zip
 ```
 
-Create a GitHub Release with a zipped `.app` or later a notarized `.dmg`, and the site will already point users to the right place.
-
+When publishing a new release, update the download URL in `index.html` and this note.
