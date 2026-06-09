@@ -43,10 +43,14 @@ a {
   display: inline-flex;
   align-items: center;
   gap: 7px;
+  max-width: calc(100vw - 32px);
+  padding: 6px 0 6px 6px;
   color: rgba(245, 247, 251, 0.46);
   font-size: 13px;
   font-weight: 680;
   letter-spacing: 0;
+  line-height: 1;
+  white-space: nowrap;
   transition: color 160ms ease, transform 160ms ease;
 }
 
@@ -56,6 +60,7 @@ a {
 }
 
 .telegram-icon {
+  flex: 0 0 auto;
   width: 15px;
   height: 15px;
   fill: currentColor;
@@ -327,7 +332,6 @@ h1 {
 
 .brand span.text-enter,
 .nav-links a.text-enter,
-.maker-badge span.text-enter,
 .popup-top strong.text-enter,
 .popup-top span.text-enter,
 .text-block small.text-enter,

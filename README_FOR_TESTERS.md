@@ -12,27 +12,35 @@ This is an early test version, so a few macOS permission steps are expected.
 
 The current public test version is not signed yet. This means macOS may block the app after download even if the app itself is fine.
 
-If you received a future signed and notarized release, you should not need Terminal commands. Download, unzip, move the app to Applications, and open it.
+If you received a future signed and notarized release, you should not need Terminal commands. Download, unzip, drag the app into Applications, and open it.
 
 ## Quick Start
 
 1. Download the latest `JellyTranslate` file from the GitHub Release.
-2. If the file is a `.zip`, unzip it.
-3. Move `JellyTranslate.app` to `Applications`.
-4. Open `JellyTranslate.app`.
-5. If macOS blocks the app, follow the security warning step below.
-6. Enable Accessibility permission when macOS asks.
-7. Test in TextEdit first.
+2. Open your `Downloads` folder.
+3. If the file is a `.zip`, double-click it to unzip it.
+4. Drag `JellyTranslate.app` into the `Applications` folder.
+   On some Macs this folder is shown as `Applications`; on Russian macOS it may be shown as `Программы`.
+5. Open `JellyTranslate.app`.
+6. If macOS blocks the app, follow the security warning step below.
+7. Enable Accessibility permission when macOS asks.
+8. Test in TextEdit first.
 
 ## If macOS Says The App Is Damaged
 
 If macOS says `JellyTranslate is damaged and can't be opened`, macOS blocked the downloaded app because this test version is not signed yet. The download is not necessarily broken.
 
+Why Terminal is needed:
+
+- The current test version is not signed yet, so macOS may attach a safety label to the downloaded app.
+- The command below removes only that download safety label from `JellyTranslate.app`.
+- It does not change your system settings and does not disable macOS security globally.
+
 For testing:
 
-1. Move `JellyTranslate.app` to `Applications`.
+1. Make sure `JellyTranslate.app` is already in `Applications`.
 2. Open Terminal.
-3. Run:
+3. Copy and paste this command, then press Enter:
 
 ```sh
 xattr -dr com.apple.quarantine /Applications/JellyTranslate.app
@@ -166,7 +174,7 @@ Hey! Please test JellyTranslate for macOS.
 Download:
 https://github.com/jellyfishhoner/JellyTranslate/releases/latest
 
-Important: this test version is not signed yet. If macOS says the app is damaged, move JellyTranslate.app to Applications and run this once in Terminal:
+Important: this test version is not signed yet. If macOS says the app is damaged, drag JellyTranslate.app into Applications / Программы, then run this once in Terminal:
 
 xattr -dr com.apple.quarantine /Applications/JellyTranslate.app
 
