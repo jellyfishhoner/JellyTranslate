@@ -26,31 +26,35 @@
         <span>JellyTranslate</span>
       </a>
       <nav class="nav-links" aria-label="Primary navigation">
-        <a href="#how">How it works</a>
-        <a href="#testers">Testers</a>
+        <a href="#how" data-i18n="navHow">How it works</a>
+        <a href="#testers" data-i18n="navTesters">Testers</a>
         <a href="https://github.com/jellyfishhoner/JellyTranslate">GitHub</a>
       </nav>
+      <div class="language-toggle" aria-label="Language">
+        <button type="button" class="language-option is-active" data-lang-option="en">EN</button>
+        <button type="button" class="language-option" data-lang-option="ru">RU</button>
+      </div>
     </header>
 
     <main id="top">
       <section class="hero" aria-labelledby="hero-title">
         <img src="/assets/jellytranslate-icon.webp" alt="" class="hero-backdrop">
         <div class="hero-content">
-          <p class="eyebrow">Native macOS menu bar translator</p>
-          <h1 id="hero-title">Translate selected text anywhere on Mac.</h1>
-          <p class="hero-copy">
+          <p class="eyebrow" data-i18n="heroEyebrow">Native macOS menu bar translator</p>
+          <h1 id="hero-title" data-i18n="heroTitle">Translate selected text anywhere on Mac.</h1>
+          <p class="hero-copy" data-i18n="heroCopy">
             Select text, press a shortcut, and JellyTranslate shows a compact floating translation popup.
             Built for quick daily use, not for getting in your way.
           </p>
           <div class="hero-actions">
-            <a class="primary-action" href="https://github.com/jellyfishhoner/JellyTranslate/releases/download/v0.1.0-alpha/JellyTranslate-0.1.0-alpha-mac.zip">
+            <a class="primary-action" href="https://github.com/jellyfishhoner/JellyTranslate/releases/download/v0.1.0-alpha/JellyTranslate-0.1.0-alpha-mac.zip" data-i18n="download">
               Download on Mac
             </a>
-            <a class="secondary-action" href="https://github.com/jellyfishhoner/JellyTranslate">
+            <a class="secondary-action" href="https://github.com/jellyfishhoner/JellyTranslate" data-i18n="source">
               View source
             </a>
           </div>
-          <p class="release-note">Early macOS test build. MyMemory works without an API key for MVP testing.</p>
+          <p class="release-note" data-i18n="releaseNote">Early macOS test build. MyMemory works without an API key for MVP testing.</p>
         </div>
       </section>
 
@@ -58,27 +62,27 @@
         <div class="flow">
           <div class="flow-step">
             <span class="step-number">1</span>
-            <h2>Select text</h2>
-            <p>Highlight text in TextEdit, Notes, Safari, Chrome, Telegram, or another Mac app.</p>
+            <h2 data-i18n="flowOneTitle">Select text</h2>
+            <p data-i18n="flowOneCopy">Highlight text in TextEdit, Notes, Safari, Chrome, Telegram, or another Mac app.</p>
           </div>
           <div class="flow-step">
             <span class="step-number">2</span>
-            <h2>Press shortcut</h2>
-            <p>Open the popup or translate and replace selected text directly with your chosen hotkeys.</p>
+            <h2 data-i18n="flowTwoTitle">Press shortcut</h2>
+            <p data-i18n="flowTwoCopy">Open the popup or translate and replace selected text directly with your chosen hotkeys.</p>
           </div>
           <div class="flow-step">
             <span class="step-number">3</span>
-            <h2>Get translation</h2>
-            <p>Choose the target language in the popup, copy the result, or replace the original text.</p>
+            <h2 data-i18n="flowThreeTitle">Get translation</h2>
+            <p data-i18n="flowThreeCopy">Choose the target language in the popup, copy the result, or replace the original text.</p>
           </div>
         </div>
       </section>
 
       <section class="product-section">
         <div class="section-copy">
-          <p class="eyebrow">Small by design</p>
-          <h2>A Mac utility that quietly does one thing well.</h2>
-          <p>
+          <p class="eyebrow" data-i18n="productEyebrow">Small by design</p>
+          <h2 data-i18n="productTitle">A Mac utility that quietly does one thing well.</h2>
+          <p data-i18n="productCopy">
             JellyTranslate lives in the menu bar, uses native SwiftUI and AppKit, and keeps the core experience simple:
             selected text in, translation out.
           </p>
@@ -107,39 +111,39 @@
 
       <section class="tester-section" id="testers">
         <div class="tester-content">
-          <p class="eyebrow">For early testers</p>
-          <h2>Install, enable permissions, test in TextEdit first.</h2>
-          <p>
+          <p class="eyebrow" data-i18n="testersEyebrow">For early testers</p>
+          <h2 data-i18n="testersTitle">Install, enable permissions, test in TextEdit first.</h2>
+          <p data-i18n="testersCopy">
             macOS may ask for Accessibility and Input Monitoring permissions so JellyTranslate can read selected text,
             use clipboard fallback, and replace text where possible.
           </p>
-          <p class="install-note">
+          <p class="install-note" data-i18n="installNote">
             This is an unsigned alpha build. If macOS says the app is damaged, the app is being blocked by Gatekeeper
             quarantine, not by a broken download.
           </p>
           <div class="alpha-install" aria-label="Unsigned alpha install steps">
             <div>
               <span class="alpha-step">1</span>
-              <strong>Download</strong>
-              <p>Unzip JellyTranslate and move the app to Applications.</p>
+              <strong data-i18n="alphaOneTitle">Download</strong>
+              <p data-i18n="alphaOneCopy">Unzip JellyTranslate and move the app to Applications.</p>
             </div>
             <div>
               <span class="alpha-step">2</span>
-              <strong>Allow alpha</strong>
-              <p>For this private test build, remove quarantine once.</p>
+              <strong data-i18n="alphaTwoTitle">Allow alpha</strong>
+              <p data-i18n="alphaTwoCopy">For this private test build, remove quarantine once.</p>
             </div>
             <div>
               <span class="alpha-step">3</span>
-              <strong>Start testing</strong>
-              <p>Open JellyTranslate, grant permissions, then test in TextEdit.</p>
+              <strong data-i18n="alphaThreeTitle">Start testing</strong>
+              <p data-i18n="alphaThreeCopy">Open JellyTranslate, grant permissions, then test in TextEdit.</p>
             </div>
           </div>
           <code class="install-command">xattr -dr com.apple.quarantine /Applications/JellyTranslate.app</code>
           <div class="tester-actions">
-            <a class="primary-action" href="https://github.com/jellyfishhoner/JellyTranslate/releases/download/v0.1.0-alpha/JellyTranslate-0.1.0-alpha-mac.zip">
+            <a class="primary-action" href="https://github.com/jellyfishhoner/JellyTranslate/releases/download/v0.1.0-alpha/JellyTranslate-0.1.0-alpha-mac.zip" data-i18n="download">
               Download on Mac
             </a>
-            <a class="secondary-action" href="https://github.com/jellyfishhoner/JellyTranslate/blob/main/README_FOR_TESTERS.md">
+            <a class="secondary-action" href="https://github.com/jellyfishhoner/JellyTranslate/blob/main/README_FOR_TESTERS.md" data-i18n="testerGuide">
               Tester guide
             </a>
           </div>
@@ -151,5 +155,91 @@
       <span>JellyTranslate</span>
       <a href="https://github.com/jellyfishhoner/JellyTranslate">GitHub</a>
     </footer>
+    <script>
+      const translations = {
+        en: {
+          navHow: "How it works",
+          navTesters: "Testers",
+          heroEyebrow: "Native macOS menu bar translator",
+          heroTitle: "Translate selected text anywhere on Mac.",
+          heroCopy: "Select text, press a shortcut, and JellyTranslate shows a compact floating translation popup. Built for quick daily use, not for getting in your way.",
+          download: "Download on Mac",
+          source: "View source",
+          releaseNote: "Early macOS test build. MyMemory works without an API key for MVP testing.",
+          flowOneTitle: "Select text",
+          flowOneCopy: "Highlight text in TextEdit, Notes, Safari, Chrome, Telegram, or another Mac app.",
+          flowTwoTitle: "Press shortcut",
+          flowTwoCopy: "Open the popup or translate and replace selected text directly with your chosen hotkeys.",
+          flowThreeTitle: "Get translation",
+          flowThreeCopy: "Choose the target language in the popup, copy the result, or replace the original text.",
+          productEyebrow: "Small by design",
+          productTitle: "A Mac utility that quietly does one thing well.",
+          productCopy: "JellyTranslate lives in the menu bar, uses native SwiftUI and AppKit, and keeps the core experience simple: selected text in, translation out.",
+          testersEyebrow: "For early testers",
+          testersTitle: "Install, enable permissions, test in TextEdit first.",
+          testersCopy: "macOS may ask for Accessibility and Input Monitoring permissions so JellyTranslate can read selected text, use clipboard fallback, and replace text where possible.",
+          installNote: "This is an unsigned alpha build. If macOS says the app is damaged, the app is being blocked by Gatekeeper quarantine, not by a broken download.",
+          alphaOneTitle: "Download",
+          alphaOneCopy: "Unzip JellyTranslate and move the app to Applications.",
+          alphaTwoTitle: "Allow alpha",
+          alphaTwoCopy: "For this private test build, remove quarantine once.",
+          alphaThreeTitle: "Start testing",
+          alphaThreeCopy: "Open JellyTranslate, grant permissions, then test in TextEdit.",
+          testerGuide: "Tester guide"
+        },
+        ru: {
+          navHow: "Как работает",
+          navTesters: "Тестировщикам",
+          heroEyebrow: "Нативный переводчик для строки меню macOS",
+          heroTitle: "Переводите выделенный текст в любом приложении на Mac.",
+          heroCopy: "Выделите текст, нажмите хоткей, и JellyTranslate покажет компактное всплывающее окно с переводом. Быстро, спокойно и без лишних действий.",
+          download: "Скачать для Mac",
+          source: "Исходный код",
+          releaseNote: "Ранняя тестовая сборка для macOS. MyMemory работает без API-ключа для MVP-тестирования.",
+          flowOneTitle: "Выделите текст",
+          flowOneCopy: "Выделите текст в TextEdit, Notes, Safari, Chrome, Telegram или другом приложении на Mac.",
+          flowTwoTitle: "Нажмите хоткей",
+          flowTwoCopy: "Откройте попап с переводом или сразу замените выделенный текст переводом.",
+          flowThreeTitle: "Получите перевод",
+          flowThreeCopy: "Выберите язык перевода в попапе, скопируйте результат или замените исходный текст.",
+          productEyebrow: "Маленькое по задумке",
+          productTitle: "Mac-утилита, которая тихо делает одну вещь хорошо.",
+          productCopy: "JellyTranslate живет в строке меню, использует нативные SwiftUI и AppKit и держит главный сценарий простым: выделенный текст на входе, перевод на выходе.",
+          testersEyebrow: "Для ранних тестировщиков",
+          testersTitle: "Установите, выдайте разрешения и сначала проверьте в TextEdit.",
+          testersCopy: "macOS может попросить Accessibility и Input Monitoring, чтобы JellyTranslate мог читать выделенный текст, использовать резервный вариант через буфер обмена и заменять текст там, где это возможно.",
+          installNote: "Это неподписанная alpha-сборка. Если macOS пишет, что приложение повреждено, это блокировка Gatekeeper quarantine, а не сломанная загрузка.",
+          alphaOneTitle: "Скачайте",
+          alphaOneCopy: "Распакуйте JellyTranslate и перенесите приложение в Applications.",
+          alphaTwoTitle: "Разрешите alpha",
+          alphaTwoCopy: "Для этой тестовой сборки один раз снимите quarantine.",
+          alphaThreeTitle: "Начните тест",
+          alphaThreeCopy: "Откройте JellyTranslate, выдайте разрешения и проверьте перевод в TextEdit.",
+          testerGuide: "Инструкция"
+        }
+      };
+
+      const applyLanguage = (language) => {
+        const selected = translations[language] ? language : "en";
+        document.documentElement.lang = selected;
+        document.querySelectorAll("[data-i18n]").forEach((node) => {
+          const value = translations[selected][node.dataset.i18n];
+          if (value) {
+            node.textContent = value;
+          }
+        });
+        document.querySelectorAll("[data-lang-option]").forEach((button) => {
+          button.classList.toggle("is-active", button.dataset.langOption === selected);
+          button.setAttribute("aria-pressed", button.dataset.langOption === selected ? "true" : "false");
+        });
+        localStorage.setItem("jellytranslate-site-language", selected);
+      };
+
+      document.querySelectorAll("[data-lang-option]").forEach((button) => {
+        button.addEventListener("click", () => applyLanguage(button.dataset.langOption));
+      });
+
+      applyLanguage(localStorage.getItem("jellytranslate-site-language") || "en");
+    </script>
   </body>
 </html>

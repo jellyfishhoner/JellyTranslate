@@ -105,6 +105,39 @@ a {
   color: var(--text);
 }
 
+.language-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  padding: 3px;
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+}
+
+.language-option {
+  min-width: 36px;
+  min-height: 30px;
+  padding: 0 10px;
+  color: var(--muted);
+  background: transparent;
+  border: 0;
+  border-radius: 999px;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.language-option:hover {
+  color: var(--text);
+}
+
+.language-option.is-active {
+  color: #07110f;
+  background: var(--accent);
+}
+
 .hero {
   position: relative;
   display: grid;
@@ -516,6 +549,10 @@ h1 {
 
   .nav-links {
     display: none;
+  }
+
+  .language-toggle {
+    margin-left: auto;
   }
 
   .hero {
