@@ -121,24 +121,46 @@
             This is an unsigned alpha build. If macOS says the app is damaged, the app is being blocked by Gatekeeper
             quarantine, not by a broken download.
           </p>
-          <div class="alpha-install" aria-label="Unsigned alpha install steps">
-            <div>
-              <span class="alpha-step">1</span>
-              <strong data-i18n="alphaOneTitle">Download</strong>
-              <p data-i18n="alphaOneCopy">Unzip JellyTranslate and move the app to Applications.</p>
+          <details class="setup-widget">
+            <summary>
+              <span class="setup-icon">1</span>
+              <span>
+                <strong data-i18n="setupTitle">1 minute to first translation</strong>
+                <small data-i18n="setupSubtitle">Open the alpha safely, grant permission, test in TextEdit.</small>
+              </span>
+              <span class="setup-chevron" aria-hidden="true">⌄</span>
+            </summary>
+            <div class="setup-panel">
+              <ol class="setup-steps">
+                <li>
+                  <strong data-i18n="setupStepOneTitle">Move the app</strong>
+                  <p data-i18n="setupStepOneCopy">Unzip JellyTranslate and move it to Applications.</p>
+                </li>
+                <li>
+                  <strong data-i18n="setupStepTwoTitle">If macOS blocks it</strong>
+                  <p data-i18n="setupStepTwoCopy">Run this once for the unsigned alpha build.</p>
+                  <code>xattr -dr com.apple.quarantine /Applications/JellyTranslate.app</code>
+                </li>
+                <li>
+                  <strong data-i18n="setupStepThreeTitle">Grant permission</strong>
+                  <p data-i18n="setupStepThreeCopy">Enable Accessibility for JellyTranslate, then test “Hello world” in TextEdit.</p>
+                </li>
+              </ol>
+              <div class="permission-preview" aria-label="macOS Accessibility permission preview">
+                <div class="preview-top">
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                </div>
+                <div class="preview-title" data-i18n="permissionTitle">Privacy & Security</div>
+                <div class="preview-row">
+                  <span class="preview-app">JellyTranslate</span>
+                  <span class="preview-toggle">ON</span>
+                </div>
+                <p data-i18n="permissionHint">Accessibility must be enabled for selected-text reading.</p>
+              </div>
             </div>
-            <div>
-              <span class="alpha-step">2</span>
-              <strong data-i18n="alphaTwoTitle">Allow alpha</strong>
-              <p data-i18n="alphaTwoCopy">For this private test build, remove quarantine once.</p>
-            </div>
-            <div>
-              <span class="alpha-step">3</span>
-              <strong data-i18n="alphaThreeTitle">Start testing</strong>
-              <p data-i18n="alphaThreeCopy">Open JellyTranslate, grant permissions, then test in TextEdit.</p>
-            </div>
-          </div>
-          <code class="install-command">xattr -dr com.apple.quarantine /Applications/JellyTranslate.app</code>
+          </details>
           <div class="tester-actions">
             <a class="primary-action" href="https://github.com/jellyfishhoner/JellyTranslate/releases/download/v0.1.0-alpha/JellyTranslate-0.1.0-alpha-mac.zip" data-i18n="download">
               Download on Mac
@@ -179,12 +201,16 @@
           testersTitle: "Install, enable permissions, test in TextEdit first.",
           testersCopy: "macOS may ask for Accessibility and Input Monitoring permissions so JellyTranslate can read selected text, use clipboard fallback, and replace text where possible.",
           installNote: "This is an unsigned alpha build. If macOS says the app is damaged, the app is being blocked by Gatekeeper quarantine, not by a broken download.",
-          alphaOneTitle: "Download",
-          alphaOneCopy: "Unzip JellyTranslate and move the app to Applications.",
-          alphaTwoTitle: "Allow alpha",
-          alphaTwoCopy: "For this private test build, remove quarantine once.",
-          alphaThreeTitle: "Start testing",
-          alphaThreeCopy: "Open JellyTranslate, grant permissions, then test in TextEdit.",
+          setupTitle: "1 minute to first translation",
+          setupSubtitle: "Open the alpha safely, grant permission, test in TextEdit.",
+          setupStepOneTitle: "Move the app",
+          setupStepOneCopy: "Unzip JellyTranslate and move it to Applications.",
+          setupStepTwoTitle: "If macOS blocks it",
+          setupStepTwoCopy: "Run this once for the unsigned alpha build.",
+          setupStepThreeTitle: "Grant permission",
+          setupStepThreeCopy: "Enable Accessibility for JellyTranslate, then test “Hello world” in TextEdit.",
+          permissionTitle: "Privacy & Security",
+          permissionHint: "Accessibility must be enabled for selected-text reading.",
           testerGuide: "Tester guide"
         },
         ru: {
@@ -209,12 +235,16 @@
           testersTitle: "Установите, выдайте разрешения и сначала проверьте в TextEdit.",
           testersCopy: "macOS может попросить Accessibility и Input Monitoring, чтобы JellyTranslate мог читать выделенный текст, использовать резервный вариант через буфер обмена и заменять текст там, где это возможно.",
           installNote: "Это неподписанная alpha-сборка. Если macOS пишет, что приложение повреждено, это блокировка Gatekeeper quarantine, а не сломанная загрузка.",
-          alphaOneTitle: "Скачайте",
-          alphaOneCopy: "Распакуйте JellyTranslate и перенесите приложение в Applications.",
-          alphaTwoTitle: "Разрешите alpha",
-          alphaTwoCopy: "Для этой тестовой сборки один раз снимите quarantine.",
-          alphaThreeTitle: "Начните тест",
-          alphaThreeCopy: "Откройте JellyTranslate, выдайте разрешения и проверьте перевод в TextEdit.",
+          setupTitle: "1 минута до первого перевода",
+          setupSubtitle: "Откройте alpha-сборку, выдайте разрешение и проверьте в TextEdit.",
+          setupStepOneTitle: "Перенесите приложение",
+          setupStepOneCopy: "Распакуйте JellyTranslate и перенесите его в Applications.",
+          setupStepTwoTitle: "Если macOS блокирует",
+          setupStepTwoCopy: "Выполните эту команду один раз для неподписанной alpha-сборки.",
+          setupStepThreeTitle: "Выдайте разрешение",
+          setupStepThreeCopy: "Включите Accessibility для JellyTranslate и проверьте “Hello world” в TextEdit.",
+          permissionTitle: "Конфиденциальность и безопасность",
+          permissionHint: "Accessibility нужен для чтения выделенного текста.",
           testerGuide: "Инструкция"
         }
       };
