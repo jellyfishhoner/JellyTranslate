@@ -14,6 +14,7 @@ struct OnboardingView: View {
     @State private var isPlayingWelcomeAnimation = false
     @State private var didManuallySelectLanguage = false
 
+    private let permissionRefreshTimer = Timer.publish(every: 0.5, on: .main, in: .common).autoconnect()
     private var language: AppLanguage { settingsStore.settings.appLanguage }
     private var visibleWelcome: AnimatedWelcomeCopy {
         if didManuallySelectLanguage || !isPlayingWelcomeAnimation {
@@ -53,6 +54,10 @@ struct OnboardingView: View {
             await playWelcomeAnimationIfNeeded()
         }
         .onChange(of: step) { _, _ in
+            refreshPermissionStatus()
+        }
+        .onReceive(permissionRefreshTimer) { _ in
+            guard step == 1 else { return }
             refreshPermissionStatus()
         }
     }
@@ -263,7 +268,11 @@ struct OnboardingView: View {
     }
 
     private func refreshPermissionStatus() {
-        isAccessibilityTrusted = PermissionService.isAccessibilityTrusted
+        let trusted = PermissionService.currentAccessibilityTrust
+        guard trusted != isAccessibilityTrusted else { return }
+        withAnimation(.easeInOut(duration: 0.18)) {
+            isAccessibilityTrusted = trusted
+        }
     }
 
     private func playWelcomeAnimationIfNeeded() async {

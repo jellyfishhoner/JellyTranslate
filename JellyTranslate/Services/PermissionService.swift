@@ -15,6 +15,10 @@ enum PermissionService {
         return trusted
     }
 
+    static var currentAccessibilityTrust: Bool {
+        AXIsProcessTrusted()
+    }
+
     static func promptForAccessibilityIfNeeded() {
         if AXIsProcessTrusted() {
             logger.debug("accessibility_prompt_skipped")
