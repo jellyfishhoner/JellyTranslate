@@ -269,9 +269,68 @@
         button.addEventListener("click", () => applyLanguage(button.dataset.langOption));
       });
 
-      document.documentElement.classList.add("has-reveal");
+      applyLanguage(localStorage.getItem("jellytranslate-site-language") || "en");
+
       const canUsePointerGlow = !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      document.documentElement.classList.add("has-reveal");
       if (canUsePointerGlow) {
+        const textEnterSelectors = [
+          ".brand span",
+          ".nav-links a",
+          ".maker-badge span",
+          ".eyebrow",
+          "h1",
+          "h2",
+          "p",
+          ".hero-actions a",
+          ".step-number",
+          ".popup-top strong",
+          ".popup-top span",
+          ".text-block small",
+          ".translation-block small",
+          ".popup-actions button",
+          ".popup-actions span",
+          ".setup-widget summary strong",
+          ".setup-widget summary small",
+          ".setup-steps strong",
+          ".setup-steps code",
+          ".preview-title",
+          ".tester-actions a",
+          ".site-footer span",
+          ".site-footer a"
+        ];
+
+        const textEnterItems = Array.from(document.querySelectorAll(textEnterSelectors.join(",")))
+          .filter((node) => node.textContent.trim().length > 0);
+
+        document.documentElement.classList.add("has-text-enter");
+        textEnterItems.forEach((node, index) => {
+          node.classList.add("text-enter");
+          node.style.setProperty("--text-delay", `${Math.min(index * 32, 420)}ms`);
+        });
+
+        const textEnterObserver = "IntersectionObserver" in window
+          ? new IntersectionObserver((entries, observer) => {
+            entries.forEach((entry) => {
+              if (!entry.isIntersecting) {
+                return;
+              }
+
+              entry.target.classList.add("is-text-visible");
+              observer.unobserve(entry.target);
+            });
+          }, { rootMargin: "0px 0px -6% 0px", threshold: 0.08 })
+          : null;
+
+        textEnterItems.forEach((node) => {
+          if (!textEnterObserver) {
+            node.classList.add("is-text-visible");
+            return;
+          }
+
+          textEnterObserver.observe(node);
+        });
+
         const revealObserver = "IntersectionObserver" in window
           ? new IntersectionObserver((entries, observer) => {
             entries.forEach((entry) => {
@@ -328,8 +387,6 @@
           block.classList.add("is-visible");
         });
       }
-
-      applyLanguage(localStorage.getItem("jellytranslate-site-language") || "en");
     </script>
   </body>
 </html>
