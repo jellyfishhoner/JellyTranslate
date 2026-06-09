@@ -139,7 +139,15 @@
                 <li>
                   <strong data-i18n="setupStepTwoTitle">If macOS blocks it</strong>
                   <p data-i18n="setupStepTwoCopy">Open Terminal and paste this command once. It only removes the download safety label from JellyTranslate.</p>
-                  <code>xattr -dr com.apple.quarantine /Applications/JellyTranslate.app</code>
+                  <button
+                    class="copy-command"
+                    type="button"
+                    data-copy-command="xattr -dr com.apple.quarantine /Applications/JellyTranslate.app"
+                    aria-label="Copy Terminal command"
+                  >
+                    <code>xattr -dr com.apple.quarantine /Applications/JellyTranslate.app</code>
+                    <span data-i18n="copyCommand">Copy</span>
+                  </button>
                 </li>
                 <li>
                   <strong data-i18n="setupStepThreeTitle">Grant permission</strong>
@@ -206,6 +214,8 @@
           setupStepOneCopy: "Open the ZIP, then drag JellyTranslate.app into the Applications folder.",
           setupStepTwoTitle: "If macOS blocks it",
           setupStepTwoCopy: "Open Terminal and paste this command once. It only removes the download safety label from JellyTranslate.",
+          copyCommand: "Copy",
+          copiedCommand: "Copied",
           setupStepThreeTitle: "Grant permission",
           setupStepThreeCopy: "Enable Accessibility for JellyTranslate, then test “Hello world” in TextEdit.",
           permissionTitle: "Privacy & Security",
@@ -240,6 +250,8 @@
           setupStepOneCopy: "Откройте ZIP и перетащите JellyTranslate.app в папку Applications / “Программы”.",
           setupStepTwoTitle: "Если macOS блокирует",
           setupStepTwoCopy: "Откройте Терминал и вставьте эту команду один раз. Она только снимает защитную метку скачанного файла с JellyTranslate.",
+          copyCommand: "Скопировать",
+          copiedCommand: "Скопировано",
           setupStepThreeTitle: "Выдайте разрешение",
           setupStepThreeCopy: "Включите Accessibility для JellyTranslate и проверьте “Hello world” в TextEdit.",
           permissionTitle: "Конфиденциальность и безопасность",
@@ -248,8 +260,11 @@
         }
       };
 
+      let currentLanguage = "en";
+
       const applyLanguage = (language) => {
         const selected = translations[language] ? language : "en";
+        currentLanguage = selected;
         document.documentElement.lang = selected;
         document.querySelectorAll("[data-i18n]").forEach((node) => {
           const value = translations[selected][node.dataset.i18n];
@@ -272,6 +287,49 @@
       applyLanguage(localStorage.getItem("jellytranslate-site-language") || "en");
 
       const firstTranslationGuide = document.querySelector("#first-translation-guide");
+      const copyToClipboard = async (text) => {
+        if (navigator.clipboard && window.isSecureContext) {
+          try {
+            await navigator.clipboard.writeText(text);
+            return;
+          } catch {
+            // Fall through to the textarea fallback below.
+          }
+        }
+
+        const textArea = document.createElement("textarea");
+        textArea.value = text;
+        textArea.setAttribute("readonly", "");
+        textArea.style.position = "fixed";
+        textArea.style.opacity = "0";
+        document.body.appendChild(textArea);
+        textArea.select();
+        const copied = document.execCommand("copy");
+        textArea.remove();
+        if (!copied) {
+          throw new Error("Copy command was blocked");
+        }
+      };
+
+      document.querySelectorAll("[data-copy-command]").forEach((button) => {
+        const label = button.querySelector("span");
+        const resetLabel = () => {
+          button.classList.remove("is-copied");
+          label.textContent = translations[currentLanguage].copyCommand;
+        };
+
+        button.addEventListener("click", async () => {
+          try {
+            await copyToClipboard(button.dataset.copyCommand);
+            button.classList.add("is-copied");
+            label.textContent = translations[currentLanguage].copiedCommand;
+            window.setTimeout(resetLabel, 1700);
+          } catch {
+            resetLabel();
+          }
+        });
+      });
+
       document.querySelectorAll("[data-download-link]").forEach((link) => {
         link.addEventListener("click", () => {
           window.setTimeout(() => {

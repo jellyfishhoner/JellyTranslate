@@ -706,17 +706,65 @@ h1 {
   line-height: 1.45;
 }
 
-.setup-steps code {
-  display: block;
+.copy-command {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
   margin-top: 10px;
-  padding: 12px;
-  overflow-x: auto;
+  padding: 11px 12px;
   color: rgba(245, 247, 251, 0.88);
+  text-align: left;
   background: rgba(0, 0, 0, 0.28);
   border: 1px solid var(--line);
   border-radius: 10px;
+  cursor: pointer;
+  transition: border-color 180ms ease, background 180ms ease, transform 180ms ease;
+}
+
+.copy-command:hover {
+  background: rgba(0, 0, 0, 0.36);
+  border-color: rgba(102, 217, 198, 0.42);
+  transform: translateY(-1px);
+}
+
+.copy-command:focus-visible {
+  outline: 2px solid rgba(102, 217, 198, 0.72);
+  outline-offset: 3px;
+}
+
+.copy-command code {
+  overflow-x: auto;
   font-family: "SF Mono", Menlo, Consolas, monospace;
   font-size: 12px;
+  line-height: 1.35;
+  white-space: normal;
+}
+
+.copy-command span {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 72px;
+  padding: 6px 9px;
+  color: rgba(245, 247, 251, 0.72);
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0;
+}
+
+.copy-command.is-copied {
+  border-color: rgba(100, 224, 130, 0.52);
+}
+
+.copy-command.is-copied span {
+  color: #07100b;
+  background: #64e082;
+  border-color: transparent;
 }
 
 .permission-preview {
@@ -914,6 +962,14 @@ h1 {
   .tester-actions {
     align-items: stretch;
     flex-direction: column;
+  }
+
+  .copy-command {
+    grid-template-columns: 1fr;
+  }
+
+  .copy-command span {
+    justify-self: start;
   }
 
   .maker-badge {
