@@ -137,6 +137,7 @@ Known limitations:
 
 - This build may not be signed/notarized yet.
 - macOS may show a security warning on first launch.
+- If macOS says the app is damaged, testers can remove quarantine with `xattr -dr com.apple.quarantine /Applications/JellyTranslate.app`.
 - Some apps block selected-text capture or paste replacement.
 - MyMemory is free but limited.
 ```

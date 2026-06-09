@@ -373,6 +373,17 @@ h1 {
   margin-right: auto;
 }
 
+.install-note {
+  max-width: 680px;
+  margin: 18px auto 0;
+  padding: 14px 16px;
+  color: var(--muted);
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  font-size: 14px;
+}
+
 .tester-actions {
   justify-content: center;
   margin-top: 28px;

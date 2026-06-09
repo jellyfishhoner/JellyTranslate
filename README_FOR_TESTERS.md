@@ -24,7 +24,14 @@ If macOS says the app cannot be opened because the developer cannot be verified:
 3. Scroll down and click `Open Anyway` for JellyTranslate.
 4. Confirm that you want to open it.
 
-This warning appears on early unsigned or non-notarized test builds.
+If macOS says `JellyTranslate is damaged and can't be opened`, the alpha build was blocked by Gatekeeper quarantine. For private testing only, run:
+
+```sh
+xattr -dr com.apple.quarantine /Applications/JellyTranslate.app
+open /Applications/JellyTranslate.app
+```
+
+This warning appears on early unsigned or non-notarized test builds. A future signed and notarized build should not need this step.
 
 ## Permissions
 
