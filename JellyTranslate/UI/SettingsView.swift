@@ -7,22 +7,9 @@ struct SettingsView: View {
     var onLanguageChanged: (() -> Void)?
     var onClearHistory: (() -> Void)?
 
-    @State private var openAIAPIKey: String = ""
-    @State private var customAPIKey: String = ""
-    @State private var libreTranslateAPIKey: String = ""
-    @State private var keyStatusMessage: String = ""
     @State private var isAdvancedExpanded: Bool = false
 
     private var language: AppLanguage { settingsStore.settings.appLanguage }
-    private var simpleProviderBinding: Binding<TranslationProviderKind> {
-        Binding(
-            get: {
-                settingsStore.settings.provider == .openAI ? .openAI : .myMemory
-            },
-            set: { settingsStore.settings.provider = $0 }
-        )
-    }
-
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 18) {
@@ -39,11 +26,6 @@ struct SettingsView: View {
         }
         .background(Color(nsColor: .windowBackgroundColor))
         .frame(minWidth: 620, minHeight: 620)
-        .onAppear {
-            openAIAPIKey = settingsStore.apiKey(for: .openAI)
-            customAPIKey = settingsStore.apiKey(for: .customOpenAI)
-            libreTranslateAPIKey = settingsStore.apiKey(for: .libreTranslate)
-        }
     }
 
     private var header: some View {
@@ -59,17 +41,18 @@ struct SettingsView: View {
 
     private var translationSection: some View {
         settingsSection(L10n.t("translationSettings", language)) {
-            settingsRow(L10n.t("provider", language)) {
-                Picker(L10n.t("provider", language), selection: simpleProviderBinding) {
-                    Text(L10n.t("myMemory", language)).tag(TranslationProviderKind.myMemory)
-                    Text(L10n.t("openAI", language)).tag(TranslationProviderKind.openAI)
-                }
-                .labelsHidden()
-                .frame(maxWidth: 260)
-            }
+            VStack(alignment: .leading, spacing: 10) {
+                Text(L10n.t("providerText", language))
+                    .font(.callout)
+                    .foregroundStyle(.secondary)
 
-            if ![TranslationProviderKind.myMemory, .openAI].contains(settingsStore.settings.provider) {
-                helperText("\(L10n.t("currentAdvancedProvider", language)) \(settingsStore.settings.provider.displayName)")
+                ForEach(ProviderDisplayItem.translationProviders(language: language)) { item in
+                    ProviderOptionCard(item: item,
+                                       isSelected: item.id == TranslationProviderKind.myMemory.rawValue,
+                                       action: {
+                                           settingsStore.settings.provider = .myMemory
+                                       })
+                }
             }
 
             simpleProviderDetails
@@ -85,8 +68,8 @@ struct SettingsView: View {
             }
 
             helperText(language == .russian
-                       ? "MyMemory работает без ключей. Если цель Русский, русский текст автоматически переводится на английский."
-                       : "MyMemory works without keys. If the target is Russian, Russian text automatically translates to English.")
+                       ? "MyMemory работает без аккаунта. Если выбран русский язык, русский текст автоматически переводится на английский."
+                       : "MyMemory works without an account. If the target is Russian, Russian text automatically translates to English.")
 
             settingsRow(L10n.t("appLanguage", language)) {
                 Picker(L10n.t("appLanguage", language), selection: Binding(
@@ -109,10 +92,6 @@ struct SettingsView: View {
     @ViewBuilder
     private var simpleProviderDetails: some View {
         switch settingsStore.settings.provider {
-        case .openAI:
-            apiKeyEditor(title: L10n.t("openAIKey", language), text: $openAIAPIKey) {
-                saveAPIKey(openAIAPIKey, for: .openAI)
-            }
         case .myMemory:
             settingsRow(L10n.t("contactEmail", language)) {
                 TextField(L10n.t("optional", language), text: $settingsStore.settings.myMemoryContactEmail)
@@ -120,28 +99,7 @@ struct SettingsView: View {
                     .frame(maxWidth: 260)
             }
             helperText(L10n.t("myMemoryHint", language))
-        case .customOpenAI, .libreTranslate, .mock, .deepL:
-            EmptyView()
-        }
-    }
-
-    @ViewBuilder
-    private var advancedProviderDetails: some View {
-        switch settingsStore.settings.provider {
-        case .customOpenAI:
-            apiKeyEditor(title: language == .russian ? "API-ключ Custom Provider" : "Custom API key", text: $customAPIKey) {
-                saveAPIKey(customAPIKey, for: .customOpenAI)
-            }
-        case .libreTranslate:
-            apiKeyEditor(title: L10n.t("libreTranslateKey", language), text: $libreTranslateAPIKey) {
-                saveAPIKey(libreTranslateAPIKey, for: .libreTranslate)
-            }
-            helperText(L10n.t("libreTranslateHint", language))
-        case .mock:
-            helperText(L10n.t("testMode", language))
-        case .deepL:
-            helperText(language == .russian ? "DeepL пока не реализован." : "DeepL is not implemented yet.")
-        case .myMemory, .openAI:
+        case .openAI, .customOpenAI, .libreTranslate, .mock, .deepL:
             EmptyView()
         }
     }
@@ -179,8 +137,8 @@ struct SettingsView: View {
             }
 
             helperText(language == .russian
-                       ? "Первый хоткей показывает попап с переводом. Второй сразу заменяет выделенный текст переводом и может оставаться пустым."
-                       : "The first hotkey shows the translation popup. The second one immediately replaces the selected text and can stay empty.")
+                       ? "Первый хоткей показывает окно перевода. Второй сразу заменяет выделенный текст переводом и может оставаться пустым."
+                       : "The first shortcut shows the translation window. The second one immediately replaces the selected text and can stay empty.")
         }
     }
 
@@ -219,59 +177,6 @@ struct SettingsView: View {
 
                 Toggle(L10n.t("launchAtLogin", language), isOn: $settingsStore.settings.launchAtLogin)
                     .disabled(true)
-
-                Divider()
-
-                settingsRow(L10n.t("provider", language)) {
-                    Picker(L10n.t("provider", language), selection: $settingsStore.settings.provider) {
-                        Text(L10n.t("myMemory", language)).tag(TranslationProviderKind.myMemory)
-                        Text(L10n.t("mock", language)).tag(TranslationProviderKind.mock)
-                        Text(L10n.t("openAI", language)).tag(TranslationProviderKind.openAI)
-                        Text(L10n.t("custom", language)).tag(TranslationProviderKind.customOpenAI)
-                        Text(L10n.t("libreTranslate", language)).tag(TranslationProviderKind.libreTranslate)
-                        Text(L10n.t("deepLComingSoon", language)).tag(TranslationProviderKind.deepL)
-                    }
-                    .labelsHidden()
-                    .frame(maxWidth: 260)
-                }
-
-                advancedProviderDetails
-
-                Divider()
-
-                Text(L10n.t("customProvider", language))
-                    .font(.subheadline.weight(.semibold))
-
-                settingsRow(L10n.t("baseURL", language)) {
-                    TextField(L10n.t("baseURL", language), text: $settingsStore.settings.customProviderBaseURL)
-                        .textFieldStyle(.roundedBorder)
-                }
-                settingsRow(L10n.t("path", language)) {
-                    TextField(L10n.t("path", language), text: $settingsStore.settings.customProviderPath)
-                        .textFieldStyle(.roundedBorder)
-                }
-                settingsRow(L10n.t("model", language)) {
-                    TextField(L10n.t("model", language), text: $settingsStore.settings.customProviderModel)
-                        .textFieldStyle(.roundedBorder)
-                }
-
-                Text(customBaseURLValidationMessage)
-                    .font(.caption)
-                    .foregroundStyle(isCustomBaseURLValid ? AnyShapeStyle(.secondary) : AnyShapeStyle(Color.red))
-
-                helperText(language == .russian ? "Настройки Custom Provider нужны для OpenAI-compatible сервисов. API-ключи остаются в Keychain." : "Custom provider settings are for OpenAI-compatible services. API keys stay in Keychain.")
-
-                Divider()
-
-                Text(L10n.t("libreTranslateProvider", language))
-                    .font(.subheadline.weight(.semibold))
-
-                settingsRow(L10n.t("baseURL", language)) {
-                    TextField(L10n.t("baseURL", language), text: $settingsStore.settings.libreTranslateBaseURL)
-                        .textFieldStyle(.roundedBorder)
-                }
-
-                helperText(L10n.t("libreTranslateHint", language))
             }
             .padding(.top, 8)
         }
@@ -282,8 +187,7 @@ struct SettingsView: View {
     private var privacySection: some View {
         settingsSection(L10n.t("privacy", language)) {
             VStack(alignment: .leading, spacing: 7) {
-                Text(language == .russian ? "Выделенный текст отправляется только когда вы запускаете перевод." : "Selected text is sent only when you trigger translation.")
-                Text(L10n.t("apiKeysKeychain", language))
+                Text(language == .russian ? "Выделенный текст отправляется только когда вы сами запускаете перевод." : "Selected text is sent only when you ask JellyTranslate to translate it.")
                 Text(L10n.t("historyLocal", language))
                 Text(L10n.t("clipboardFallback", language))
             }
@@ -297,28 +201,6 @@ struct SettingsView: View {
                 helperText(L10n.t("analyticsPrivacy", language))
             }
         }
-    }
-
-    private func apiKeyEditor(title: String, text: Binding<String>, onSave: @escaping () -> Void) -> some View {
-        VStack(alignment: .leading, spacing: 8) {
-            SecureField(title, text: text)
-                .textFieldStyle(.roundedBorder)
-            HStack {
-                Button(L10n.t("saveKey", language), action: onSave)
-                Button(language == .russian ? "Очистить" : "Clear", role: .destructive) {
-                    text.wrappedValue = ""
-                    onSave()
-                }
-                Spacer()
-                if !keyStatusMessage.isEmpty {
-                    Text(keyStatusMessage)
-                        .font(.caption)
-                        .foregroundStyle(.secondary)
-                }
-            }
-            helperText(L10n.t("keyStored", language))
-        }
-        .padding(.vertical, 2)
     }
 
     private func settingsSection<Content: View>(_ title: String, @ViewBuilder content: () -> Content) -> some View {
@@ -381,36 +263,6 @@ struct SettingsView: View {
         }
     }
 
-    private var isCustomBaseURLValid: Bool {
-        customBaseURLValidationMessage == (language == .russian ? "Base URL выглядит корректно" : "Base URL looks valid")
-    }
-
-    private var customBaseURLValidationMessage: String {
-        let value = settingsStore.settings.customProviderBaseURL.trimmingCharacters(in: .whitespacesAndNewlines)
-        guard !value.isEmpty else { return language == .russian ? "Base URL нужен для Custom Provider" : "Base URL is required for Custom provider" }
-        guard let components = URLComponents(string: value),
-              let scheme = components.scheme?.lowercased(),
-              components.host != nil else {
-            return language == .russian ? "Введите корректный URL" : "Enter a valid URL"
-        }
-
-        #if DEBUG
-        guard scheme == "https" || scheme == "http" else { return language == .russian ? "Используйте https:// или http:// в DEBUG" : "Use https://, or http:// in DEBUG" }
-        #else
-        guard scheme == "https" else { return language == .russian ? "Используйте https://" : "Use https://" }
-        #endif
-
-        return language == .russian ? "Base URL выглядит корректно" : "Base URL looks valid"
-    }
-
-    private func saveAPIKey(_ apiKey: String, for provider: TranslationProviderKind) {
-        do {
-            try settingsStore.saveAPIKey(apiKey, for: provider)
-            keyStatusMessage = apiKey.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty ? L10n.t("keyCleared", language) : L10n.t("keySaved", language)
-        } catch {
-            keyStatusMessage = error.localizedDescription
-        }
-    }
 }
 
 private struct HotKeyRecorderButton: NSViewRepresentable {

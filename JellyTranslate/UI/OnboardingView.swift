@@ -8,8 +8,6 @@ struct OnboardingView: View {
 
     @State private var step = 0
     @State private var selectedProvider: TranslationProviderKind
-    @State private var openAIAPIKey: String
-    @State private var keyStatusMessage: String = ""
     @State private var isAccessibilityTrusted: Bool = PermissionService.isAccessibilityTrusted
     @State private var animatedWelcomeIndex = 0
     @State private var hasPlayedWelcomeAnimation = false
@@ -33,7 +31,6 @@ struct OnboardingView: View {
         self.onFinish = onFinish
         self.onLanguageChanged = onLanguageChanged
         _selectedProvider = State(initialValue: settingsStore.settings.provider)
-        _openAIAPIKey = State(initialValue: settingsStore.apiKey(for: .openAI))
     }
 
     var body: some View {
@@ -146,42 +143,20 @@ struct OnboardingView: View {
             Text(L10n.t("providerText", language))
                 .foregroundStyle(.secondary)
 
-            Picker("Provider", selection: $selectedProvider) {
-                Text(L10n.t("myMemory", language)).tag(TranslationProviderKind.myMemory)
-                Text(L10n.t("mock", language)).tag(TranslationProviderKind.mock)
-                Text(L10n.t("openAI", language)).tag(TranslationProviderKind.openAI)
-            }
-            .pickerStyle(.segmented)
-
-            if selectedProvider == .openAI {
-                SecureField(L10n.t("openAIKey", language), text: $openAIAPIKey)
-                    .textFieldStyle(.roundedBorder)
-                HStack {
-                    Button(L10n.t("saveKey", language)) {
-                        saveOpenAIKey()
-                    }
-                    if !keyStatusMessage.isEmpty {
-                        Text(keyStatusMessage)
-                            .font(.caption)
-                            .foregroundStyle(.secondary)
-                    }
+            LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 10) {
+                ForEach(ProviderDisplayItem.translationProviders(language: language)) { item in
+                    ProviderOptionCard(item: item,
+                                       isSelected: item.id == TranslationProviderKind.myMemory.rawValue,
+                                       action: {
+                                           selectedProvider = .myMemory
+                                           settingsStore.settings.provider = .myMemory
+                                       })
                 }
-                Text(L10n.t("keyStored", language))
-                    .font(.caption)
-                    .foregroundStyle(.secondary)
-            } else if selectedProvider == .customOpenAI {
-                Text(L10n.t("customInSettings", language))
-                    .font(.caption)
-                    .foregroundStyle(.secondary)
-            } else if selectedProvider == .libreTranslate {
-                Text(L10n.t("libreTranslateHint", language))
-                    .font(.caption)
-                    .foregroundStyle(.secondary)
-            } else if selectedProvider == .myMemory {
-                Text(L10n.t("myMemoryHint", language))
-                    .font(.caption)
-                    .foregroundStyle(.secondary)
             }
+
+            Text(L10n.t("myMemoryHint", language))
+                .font(.caption)
+                .foregroundStyle(.secondary)
         }
     }
 
@@ -280,15 +255,6 @@ struct OnboardingView: View {
         .pickerStyle(.segmented)
         .frame(width: 170)
         .help(L10n.t("appLanguage", language))
-    }
-
-    private func saveOpenAIKey() {
-        do {
-            try settingsStore.saveAPIKey(openAIAPIKey, for: .openAI)
-            keyStatusMessage = openAIAPIKey.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty ? L10n.t("keyCleared", language) : L10n.t("keySaved", language)
-        } catch {
-            keyStatusMessage = error.localizedDescription
-        }
     }
 
     private func refreshPermissionStatus() {

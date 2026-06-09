@@ -51,7 +51,7 @@ final class SettingsStore: ObservableObject {
             migrated.hotkey = AppSettings().hotkey
             migrated.secondaryHotkey = AppSettings().secondaryHotkey
         }
-        if migrated.provider == .mock {
+        if migrated.provider != .myMemory {
             migrated.provider = .myMemory
         }
         return migrated

@@ -48,6 +48,7 @@
 		100000000000000000000027 /* MyMemoryTranslationProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20000000000000000000002F /* MyMemoryTranslationProvider.swift */; };
 		100000000000000000000028 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 200000000000000000000030 /* Assets.xcassets */; };
 		100000000000000000000029 /* AnalyticsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200000000000000000000031 /* AnalyticsService.swift */; };
+		10000000000000000000002A /* ProviderOptionCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200000000000000000000032 /* ProviderOptionCard.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -94,6 +95,7 @@
 		20000000000000000000002F /* MyMemoryTranslationProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyMemoryTranslationProvider.swift; sourceTree = "<group>"; };
 		200000000000000000000030 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		200000000000000000000031 /* AnalyticsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsService.swift; sourceTree = "<group>"; };
+		200000000000000000000032 /* ProviderOptionCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProviderOptionCard.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -206,6 +208,7 @@
 				200000000000000000000013 /* SettingsView.swift */,
 				200000000000000000000014 /* HistoryView.swift */,
 				20000000000000000000002B /* OnboardingView.swift */,
+				200000000000000000000032 /* ProviderOptionCard.swift */,
 				200000000000000000000016 /* VisualEffectView.swift */,
 				200000000000000000000022 /* PopupPresentationState.swift */,
 			);
@@ -353,6 +356,7 @@
 				100000000000000000000026 /* LibreTranslateProvider.swift in Sources */,
 				100000000000000000000027 /* MyMemoryTranslationProvider.swift in Sources */,
 				100000000000000000000029 /* AnalyticsService.swift in Sources */,
+				10000000000000000000002A /* ProviderOptionCard.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
