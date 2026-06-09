@@ -8,27 +8,27 @@ JellyTranslate is a small macOS menu bar utility:
 2. Press the shortcut.
 3. Get an instant translation.
 
-This is an early alpha build, so a few macOS permission steps are expected.
+This is an early test version, so a few macOS permission steps are expected.
 
-Current public alpha builds are unsigned. This means macOS may block the app after download even if the app itself is fine.
+The current public test version is not signed yet. This means macOS may block the app after download even if the app itself is fine.
 
 If you received a future signed and notarized release, you should not need Terminal commands. Download, unzip, move the app to Applications, and open it.
 
 ## Quick Start
 
-1. Download the latest `JellyTranslate` build from the GitHub Release.
+1. Download the latest `JellyTranslate` file from the GitHub Release.
 2. If the file is a `.zip`, unzip it.
 3. Move `JellyTranslate.app` to `Applications`.
 4. Open `JellyTranslate.app`.
-5. If macOS blocks the app, follow the unsigned alpha step below.
+5. If macOS blocks the app, follow the security warning step below.
 6. Enable Accessibility permission when macOS asks.
 7. Test in TextEdit first.
 
 ## If macOS Says The App Is Damaged
 
-If macOS says `JellyTranslate is damaged and can't be opened`, the unsigned alpha build was blocked by Gatekeeper quarantine. The download is not necessarily broken.
+If macOS says `JellyTranslate is damaged and can't be opened`, macOS blocked the downloaded app because this test version is not signed yet. The download is not necessarily broken.
 
-For alpha testing:
+For testing:
 
 1. Move `JellyTranslate.app` to `Applications`.
 2. Open Terminal.
@@ -39,7 +39,7 @@ xattr -dr com.apple.quarantine /Applications/JellyTranslate.app
 open /Applications/JellyTranslate.app
 ```
 
-This warning appears on unsigned or non-notarized test builds. A future signed and notarized build should not need this step.
+This warning appears on test versions that are not signed and notarized yet. A future signed version should not need this step.
 
 ## If macOS Says Developer Cannot Be Verified
 
@@ -108,7 +108,7 @@ Some apps do not expose selected text to macOS Accessibility or block simulated 
 For the first test, use `MyMemory`.
 
 - It does not require an API key.
-- It is free for MVP testing.
+- It is free for first tests.
 - It may have daily limits and variable translation quality.
 
 OpenAI and Custom Provider are optional for testers who already have their own API keys.
@@ -126,7 +126,7 @@ Useful settings:
 - Translate and replace shortcut
 - Save history
 
-Some builds may include an optional anonymous analytics toggle. It is off by default and sends only technical events such as launch, translation success/failure, provider, target language, app version, and broad text-length bucket. It does not send selected text, translations, clipboard content, API keys, or window titles.
+Some versions may include an optional anonymous analytics toggle. It is off by default and sends only technical events such as launch, translation success/failure, provider, target language, app version, and broad text-length bucket. It does not send selected text, translations, clipboard content, API keys, or window titles.
 
 ## What To Report
 
@@ -150,7 +150,7 @@ Please do not send:
 
 ## Known Issues
 
-- Unsigned test builds can trigger macOS security warnings.
+- Test versions that are not signed yet can trigger macOS security warnings.
 - Some apps block selected-text capture.
 - Clipboard fallback can fail in some apps.
 - Direct replacement can fail if the active app changes or blocks paste.
@@ -161,12 +161,12 @@ Please do not send:
 You can send this message with the download link:
 
 ```text
-Hey! Please test JellyTranslate alpha for macOS.
+Hey! Please test JellyTranslate for macOS.
 
 Download:
 https://github.com/jellyfishhoner/JellyTranslate/releases/latest
 
-Important: this is an unsigned alpha build. If macOS says the app is damaged, move JellyTranslate.app to Applications and run this once in Terminal:
+Important: this test version is not signed yet. If macOS says the app is damaged, move JellyTranslate.app to Applications and run this once in Terminal:
 
 xattr -dr com.apple.quarantine /Applications/JellyTranslate.app
 

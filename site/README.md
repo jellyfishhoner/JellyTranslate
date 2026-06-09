@@ -31,7 +31,7 @@ When connecting the GitHub repository to Netlify, Netlify can use this config au
 
 ## Download Link
 
-The `Download on Mac` button points to the current alpha build:
+The `Download on Mac` button points to the current public test version:
 
 ```text
 https://github.com/jellyfishhoner/JellyTranslate/releases/download/v0.1.0-alpha/JellyTranslate-0.1.0-alpha-mac.zip

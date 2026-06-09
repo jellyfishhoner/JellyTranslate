@@ -20,7 +20,7 @@ JellyTranslate is currently an early MVP for local and private testing.
 - Reads selected text with Accessibility API when possible.
 - Falls back to simulated `Cmd+C`, reads clipboard, then restores prior clipboard content.
 - Floating always-on-top translation popup near cursor.
-- Translation provider picker with MyMemory as the free default for MVP testing.
+- Translation provider picker with MyMemory as the free default for first tests.
 - Provider abstraction with MyMemory, Mock, real OpenAI support, LibreTranslate, Custom OpenAI-compatible API support, and DeepL placeholder.
 - Copy translation, replace selected text, speak original, speak translation.
 - Local JSON history in Application Support.
@@ -33,7 +33,7 @@ Open `JellyTranslate.xcodeproj` in Xcode and run the `JellyTranslate` scheme on 
 
 For manual local testing, follow [FIRST_RUN_TEST.md](FIRST_RUN_TEST.md).
 
-For sharing a test build with other people, follow [DISTRIBUTION.md](DISTRIBUTION.md) and include [README_FOR_TESTERS.md](README_FOR_TESTERS.md) with the release.
+For sharing a test version with other people, follow [DISTRIBUTION.md](DISTRIBUTION.md) and include [README_FOR_TESTERS.md](README_FOR_TESTERS.md) with the release.
 
 ## Website
 
@@ -53,12 +53,12 @@ Anonymous analytics are optional and off by default. If enabled in Settings, Jel
 
 JellyTranslate does not send selected text, translated text, clipboard content, API keys, authorization headers, or window titles as analytics.
 
-GitHub Releases show download counts for uploaded builds. App usage analytics use TelemetryDeck Ingest API v2 and require both `JellyTranslateTelemetryDeckAppID` and `JellyTranslateTelemetryDeckNamespace` configured in `Info.plist` before building.
+GitHub Releases show download counts for uploaded app files. App usage analytics use TelemetryDeck Ingest API v2 and require both `JellyTranslateTelemetryDeckAppID` and `JellyTranslateTelemetryDeckNamespace` configured in `Info.plist` before building.
 
 ## Current Limitations
 
 - MyMemory is useful for free testing but has limits and variable quality.
-- Unsigned or non-notarized builds may show macOS security warnings.
+- Test versions that are not signed/notarized yet may show macOS security warnings.
 - Some apps do not expose selected text through Accessibility.
 - Direct replacement depends on whether the current app accepts simulated paste.
 - OCR, billing, subscriptions, and cloud sync are intentionally out of scope.
