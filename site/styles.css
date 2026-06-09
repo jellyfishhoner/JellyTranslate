@@ -297,6 +297,17 @@ h1 {
   padding: 76px clamp(24px, 7vw, 96px);
 }
 
+.has-reveal .reveal-block {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 620ms ease, transform 620ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.has-reveal .reveal-block.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 .flow {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
