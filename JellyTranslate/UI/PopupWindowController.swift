@@ -94,7 +94,6 @@ final class PopupWindowController: NSWindowController {
         let y = min(max(cursor.y - frame.height - 12, screenFrame.minY), screenFrame.maxY - frame.height)
         window.setFrameOrigin(NSPoint(x: x, y: y))
         window.alphaValue = 0
-        showWindow(nil)
         window.orderFrontRegardless()
 
         NSAnimationContext.runAnimationGroup { context in
@@ -108,7 +107,6 @@ final class PopupWindowController: NSWindowController {
         guard let window else { return }
         window.center()
         window.alphaValue = 0
-        showWindow(nil)
         window.orderFrontRegardless()
 
         NSAnimationContext.runAnimationGroup { context in
