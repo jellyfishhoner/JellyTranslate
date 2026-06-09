@@ -47,7 +47,7 @@
             Built for quick daily use, not for getting in your way.
           </p>
           <div class="hero-actions">
-            <a class="primary-action" href="https://github.com/jellyfishhoner/JellyTranslate/releases/download/v0.1.0-alpha/JellyTranslate-0.1.0-alpha-mac.zip" data-i18n="download">
+            <a class="primary-action" href="https://github.com/jellyfishhoner/JellyTranslate/releases/download/v0.1.0-alpha/JellyTranslate-0.1.0-alpha-mac.zip" data-download-link data-i18n="download">
               Download on Mac
             </a>
             <a class="secondary-action" href="https://github.com/jellyfishhoner/JellyTranslate" data-i18n="source">
@@ -121,7 +121,7 @@
             This test version is not signed yet. If macOS says the app is damaged, macOS is blocking the downloaded file,
             not reporting a broken app.
           </p>
-          <details class="setup-widget">
+          <details class="setup-widget" id="first-translation-guide">
             <summary>
               <span class="setup-icon">1</span>
               <span>
@@ -270,6 +270,23 @@
       });
 
       applyLanguage(localStorage.getItem("jellytranslate-site-language") || "en");
+
+      const firstTranslationGuide = document.querySelector("#first-translation-guide");
+      document.querySelectorAll("[data-download-link]").forEach((link) => {
+        link.addEventListener("click", () => {
+          window.setTimeout(() => {
+            if (!firstTranslationGuide) {
+              return;
+            }
+
+            firstTranslationGuide.open = true;
+            firstTranslationGuide.scrollIntoView({ behavior: "smooth", block: "center" });
+            firstTranslationGuide.classList.remove("is-download-focus");
+            void firstTranslationGuide.offsetWidth;
+            firstTranslationGuide.classList.add("is-download-focus");
+          }, 80);
+        });
+      });
 
       const canUsePointerGlow = !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
       document.documentElement.classList.add("has-reveal");
