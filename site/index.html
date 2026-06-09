@@ -269,6 +269,19 @@
         button.addEventListener("click", () => applyLanguage(button.dataset.langOption));
       });
 
+      const canUsePointerGlow = !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      if (canUsePointerGlow) {
+        document.querySelectorAll(".flow-step, .popup-demo, .setup-widget").forEach((panel) => {
+          panel.addEventListener("pointermove", (event) => {
+            const rect = panel.getBoundingClientRect();
+            const x = ((event.clientX - rect.left) / rect.width) * 100;
+            const y = ((event.clientY - rect.top) / rect.height) * 100;
+            panel.style.setProperty("--glow-x", `${x}%`);
+            panel.style.setProperty("--glow-y", `${y}%`);
+          });
+        });
+      }
+
       applyLanguage(localStorage.getItem("jellytranslate-site-language") || "en");
     </script>
   </body>

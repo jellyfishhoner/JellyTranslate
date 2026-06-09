@@ -256,12 +256,32 @@ h1 {
 }
 
 .flow-step {
+  position: relative;
+  overflow: hidden;
   min-height: 190px;
   padding: 24px;
   background: var(--panel);
   border: 1px solid var(--line);
   border-radius: 18px;
   transition: transform 180ms ease, border-color 180ms ease, background 180ms ease, box-shadow 180ms ease;
+}
+
+.flow-step::before,
+.popup-demo::before,
+.setup-widget::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at var(--glow-x, 50%) var(--glow-y, 50%), rgba(102, 217, 198, 0.16), transparent 34%);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 180ms ease;
+}
+
+.flow-step:hover::before,
+.popup-demo:hover::before,
+.setup-widget:hover::before {
+  opacity: 1;
 }
 
 .flow-step:hover {
@@ -272,6 +292,7 @@ h1 {
 }
 
 .step-number {
+  position: relative;
   display: inline-grid;
   place-items: center;
   width: 34px;
@@ -284,8 +305,13 @@ h1 {
 }
 
 .flow-step h2 {
+  position: relative;
   margin-bottom: 10px;
   font-size: 24px;
+}
+
+.flow-step p {
+  position: relative;
 }
 
 .flow-step p,
@@ -312,6 +338,8 @@ h1 {
 }
 
 .popup-demo {
+  position: relative;
+  overflow: hidden;
   padding: 22px;
   background: linear-gradient(135deg, rgba(255, 255, 255, 0.16), rgba(102, 217, 198, 0.08), rgba(143, 124, 255, 0.12));
   border: 1px solid var(--line);
@@ -328,6 +356,7 @@ h1 {
 }
 
 .popup-top {
+  position: relative;
   display: flex;
   justify-content: space-between;
   gap: 12px;
@@ -347,6 +376,7 @@ h1 {
 
 .text-block,
 .translation-block {
+  position: relative;
   padding: 16px;
   border-radius: 18px;
 }
@@ -383,6 +413,7 @@ h1 {
 }
 
 .popup-actions {
+  position: relative;
   display: flex;
   align-items: center;
   gap: 10px;
@@ -433,6 +464,7 @@ h1 {
 }
 
 .setup-widget {
+  position: relative;
   max-width: 860px;
   margin: 26px auto 0;
   overflow: hidden;
@@ -451,6 +483,7 @@ h1 {
 }
 
 .setup-widget summary {
+  position: relative;
   display: grid;
   grid-template-columns: auto minmax(0, 1fr) auto;
   gap: 14px;
@@ -505,6 +538,7 @@ h1 {
 }
 
 .setup-panel {
+  position: relative;
   display: grid;
   grid-template-columns: minmax(0, 1fr) 260px;
   gap: 18px;
