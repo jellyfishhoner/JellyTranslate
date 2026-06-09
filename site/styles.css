@@ -384,6 +384,64 @@ h1 {
   font-size: 14px;
 }
 
+.alpha-install {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  margin: 26px auto 0;
+  max-width: 920px;
+  text-align: left;
+}
+
+.alpha-install > div {
+  min-height: 142px;
+  padding: 18px;
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+}
+
+.alpha-step {
+  display: inline-grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  margin-bottom: 14px;
+  color: #07110f;
+  background: var(--accent);
+  border-radius: 50%;
+  font-size: 13px;
+  font-weight: 850;
+}
+
+.alpha-install strong {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 16px;
+}
+
+.alpha-install p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.install-command {
+  display: block;
+  max-width: 680px;
+  margin: 18px auto 0;
+  padding: 14px 16px;
+  overflow-x: auto;
+  color: rgba(245, 247, 251, 0.86);
+  background: rgba(0, 0, 0, 0.28);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  font-family: "SF Mono", Menlo, Consolas, monospace;
+  font-size: 13px;
+  text-align: left;
+}
+
 .tester-actions {
   justify-content: center;
   margin-top: 28px;
@@ -486,6 +544,10 @@ h1 {
   }
 
   .flow {
+    grid-template-columns: 1fr;
+  }
+
+  .alpha-install {
     grid-template-columns: 1fr;
   }
 

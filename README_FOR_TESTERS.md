@@ -10,7 +10,9 @@ JellyTranslate is a small macOS menu bar utility:
 
 This is an early test build, so a few macOS permission steps are expected.
 
-If you received a signed and notarized release, you should not need Terminal commands. Download, unzip, move the app to Applications, and open it.
+Current public alpha builds are unsigned. This means macOS may block the app after download even if the app itself is fine.
+
+If you received a future signed and notarized release, you should not need Terminal commands. Download, unzip, move the app to Applications, and open it.
 
 ## Install
 
@@ -26,14 +28,14 @@ If macOS says the app cannot be opened because the developer cannot be verified:
 3. Scroll down and click `Open Anyway` for JellyTranslate.
 4. Confirm that you want to open it.
 
-If macOS says `JellyTranslate is damaged and can't be opened`, you received an unsigned private alpha build that was blocked by Gatekeeper quarantine. Ask for a signed/notarized build if you are not comfortable using Terminal. For private testing only, run:
+If macOS says `JellyTranslate is damaged and can't be opened`, the unsigned alpha build was blocked by Gatekeeper quarantine. For alpha testing, move the app to Applications, open Terminal, and run:
 
 ```sh
 xattr -dr com.apple.quarantine /Applications/JellyTranslate.app
 open /Applications/JellyTranslate.app
 ```
 
-This warning appears on early unsigned or non-notarized test builds. A future signed and notarized build should not need this step.
+This warning appears on unsigned or non-notarized test builds. A future signed and notarized build should not need this step.
 
 ## Permissions
 

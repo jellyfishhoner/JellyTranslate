@@ -114,9 +114,27 @@
             use clipboard fallback, and replace text where possible.
           </p>
           <p class="install-note">
-            Alpha builds are not signed or notarized yet. If macOS says the app is damaged, open the tester guide and
-            remove Gatekeeper quarantine for this private test build.
+            This is an unsigned alpha build. If macOS says the app is damaged, the app is being blocked by Gatekeeper
+            quarantine, not by a broken download.
           </p>
+          <div class="alpha-install" aria-label="Unsigned alpha install steps">
+            <div>
+              <span class="alpha-step">1</span>
+              <strong>Download</strong>
+              <p>Unzip JellyTranslate and move the app to Applications.</p>
+            </div>
+            <div>
+              <span class="alpha-step">2</span>
+              <strong>Allow alpha</strong>
+              <p>For this private test build, remove quarantine once.</p>
+            </div>
+            <div>
+              <span class="alpha-step">3</span>
+              <strong>Start testing</strong>
+              <p>Open JellyTranslate, grant permissions, then test in TextEdit.</p>
+            </div>
+          </div>
+          <code class="install-command">xattr -dr com.apple.quarantine /Applications/JellyTranslate.app</code>
           <div class="tester-actions">
             <a class="primary-action" href="https://github.com/jellyfishhoner/JellyTranslate/releases/download/v0.1.0-alpha/JellyTranslate-0.1.0-alpha-mac.zip">
               Download on Mac
