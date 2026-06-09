@@ -262,6 +262,7 @@
           button.classList.toggle("is-active", button.dataset.langOption === selected);
           button.setAttribute("aria-pressed", button.dataset.langOption === selected ? "true" : "false");
         });
+        document.querySelector(".language-toggle")?.setAttribute("data-active-lang", selected);
         localStorage.setItem("jellytranslate-site-language", selected);
       };
 
