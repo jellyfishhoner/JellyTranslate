@@ -288,9 +288,6 @@
             const x = (event.clientX - rect.left) / rect.width - 0.5;
             const y = (event.clientY - rect.top) / rect.height - 0.5;
 
-            panel.style.setProperty("--popup-layer-back", `${(x * 8).toFixed(2)}px`);
-            panel.style.setProperty("--popup-layer-front", `${(x * -10).toFixed(2)}px`);
-            panel.style.setProperty("--popup-layer-mid", `${(y * 8).toFixed(2)}px`);
             panel.style.setProperty("--popup-rotate-x", `${(-y * 4.5).toFixed(2)}deg`);
             panel.style.setProperty("--popup-rotate-y", `${(x * 6).toFixed(2)}deg`);
             panel.style.setProperty("--popup-shift-x", `${(x * 5).toFixed(2)}px`);
@@ -298,9 +295,6 @@
           });
 
           panel.addEventListener("pointerleave", () => {
-            panel.style.setProperty("--popup-layer-back", "0px");
-            panel.style.setProperty("--popup-layer-front", "0px");
-            panel.style.setProperty("--popup-layer-mid", "0px");
             panel.style.setProperty("--popup-rotate-x", "0deg");
             panel.style.setProperty("--popup-rotate-y", "0deg");
             panel.style.setProperty("--popup-shift-x", "0px");

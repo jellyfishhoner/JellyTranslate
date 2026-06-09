@@ -389,9 +389,6 @@ h1 {
 
 .popup-demo {
   --popup-lift: 0px;
-  --popup-layer-back: 0px;
-  --popup-layer-front: 0px;
-  --popup-layer-mid: 0px;
   --popup-rotate-x: 0deg;
   --popup-rotate-y: 0deg;
   --popup-shift-x: 0px;
@@ -424,8 +421,6 @@ h1 {
   margin-bottom: 18px;
   color: var(--muted);
   font-size: 14px;
-  transform: translate3d(var(--popup-layer-mid), calc(var(--popup-layer-back) * -0.5), 34px);
-  transition: transform 200ms ease;
 }
 
 .popup-top span {
@@ -442,13 +437,11 @@ h1 {
   position: relative;
   padding: 16px;
   border-radius: 18px;
-  transition: transform 200ms ease, border-color 200ms ease, background 200ms ease;
 }
 
 .text-block {
   margin-bottom: 14px;
   background: rgba(10, 12, 18, 0.26);
-  transform: translate3d(calc(var(--popup-layer-back) * -0.55), calc(var(--popup-layer-mid) * 0.35), 18px);
 }
 
 .translation-block {
@@ -456,7 +449,6 @@ h1 {
   margin-bottom: 16px;
   background: rgba(255, 255, 255, 0.08);
   border: 1px solid rgba(255, 255, 255, 0.12);
-  transform: translate3d(var(--popup-layer-front), calc(var(--popup-layer-back) * -0.22), 48px);
 }
 
 .text-block small,
@@ -485,8 +477,6 @@ h1 {
   gap: 10px;
   color: var(--muted);
   font-weight: 750;
-  transform: translate3d(calc(var(--popup-layer-front) * 0.62), calc(var(--popup-layer-mid) * -0.28), 28px);
-  transition: transform 200ms ease;
 }
 
 .popup-actions button {
