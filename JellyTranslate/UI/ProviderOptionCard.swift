@@ -63,6 +63,7 @@ extension ProviderDisplayItem {
 struct ProviderOptionCard: View {
     let item: ProviderDisplayItem
     let isSelected: Bool
+    var isCompact: Bool = false
     let action: () -> Void
 
     var body: some View {
@@ -81,22 +82,24 @@ struct ProviderOptionCard: View {
     }
 
     private var cardContent: some View {
-        HStack(spacing: 12) {
+        HStack(spacing: isCompact ? 9 : 12) {
             Image(systemName: item.isAvailable ? "checkmark.circle.fill" : "lock.fill")
-                .font(.title3.weight(.semibold))
+                .font((isCompact ? Font.callout : Font.title3).weight(.semibold))
                 .foregroundStyle(item.isAvailable ? Color.accentColor : Color.secondary)
-                .frame(width: 24)
+                .frame(width: isCompact ? 18 : 24)
 
             VStack(alignment: .leading, spacing: 4) {
                 HStack(spacing: 8) {
                     Text(item.title)
-                        .font(.callout.weight(.semibold))
+                        .font((isCompact ? Font.caption : Font.callout).weight(.semibold))
                         .foregroundStyle(.primary)
+                        .lineLimit(1)
+                        .minimumScaleFactor(0.82)
 
                     Text(item.badge)
-                        .font(.caption.weight(.semibold))
-                        .padding(.horizontal, 7)
-                        .padding(.vertical, 3)
+                        .font((isCompact ? Font.caption2 : Font.caption).weight(.semibold))
+                        .padding(.horizontal, isCompact ? 6 : 7)
+                        .padding(.vertical, isCompact ? 2 : 3)
                         .foregroundStyle(item.isAvailable ? Color.accentColor : Color.secondary)
                         .background(
                             Capsule()
@@ -104,15 +107,18 @@ struct ProviderOptionCard: View {
                         )
                 }
 
-                Text(item.subtitle)
-                    .font(.caption)
-                    .foregroundStyle(.secondary)
-                    .fixedSize(horizontal: false, vertical: true)
+                if !isCompact {
+                    Text(item.subtitle)
+                        .font(.caption)
+                        .foregroundStyle(.secondary)
+                        .fixedSize(horizontal: false, vertical: true)
+                }
             }
 
             Spacer(minLength: 0)
         }
-        .padding(12)
+        .padding(isCompact ? 10 : 12)
+        .frame(minHeight: isCompact ? 48 : nil)
         .frame(maxWidth: .infinity, alignment: .leading)
         .background(backgroundShape)
         .overlay {

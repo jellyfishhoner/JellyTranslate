@@ -137,16 +137,19 @@ struct OnboardingView: View {
     }
 
     private var providerStep: some View {
-        VStack(alignment: .leading, spacing: 14) {
+        VStack(alignment: .leading, spacing: 11) {
             Text(L10n.t("provider", language))
                 .font(.title.weight(.semibold))
             Text(L10n.t("providerText", language))
                 .foregroundStyle(.secondary)
+                .lineLimit(2)
+                .fixedSize(horizontal: false, vertical: true)
 
             LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 10) {
                 ForEach(ProviderDisplayItem.translationProviders(language: language)) { item in
                     ProviderOptionCard(item: item,
                                        isSelected: item.id == TranslationProviderKind.myMemory.rawValue,
+                                       isCompact: true,
                                        action: {
                                            selectedProvider = .myMemory
                                            settingsStore.settings.provider = .myMemory
@@ -157,6 +160,8 @@ struct OnboardingView: View {
             Text(L10n.t("myMemoryHint", language))
                 .font(.caption)
                 .foregroundStyle(.secondary)
+                .lineLimit(2)
+                .fixedSize(horizontal: false, vertical: true)
         }
     }
 
