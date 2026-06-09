@@ -609,7 +609,7 @@ h1 {
 .setup-panel {
   position: relative;
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 260px;
+  grid-template-columns: minmax(0, 1fr) minmax(320px, 360px);
   gap: 18px;
   padding: 0 18px 18px;
   animation: setupReveal 180ms ease-out;
@@ -662,6 +662,7 @@ h1 {
 }
 
 .permission-preview {
+  overflow: hidden;
   min-height: 100%;
   padding: 14px;
   background: rgba(12, 15, 22, 0.38);
@@ -689,29 +690,14 @@ h1 {
   font-weight: 800;
 }
 
-.preview-row {
-  display: flex;
-  justify-content: space-between;
-  gap: 10px;
-  align-items: center;
-  padding: 10px;
-  background: rgba(255, 255, 255, 0.08);
+.permission-screenshot {
+  display: block;
+  width: 112%;
+  max-width: none;
+  margin-left: -6%;
+  border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 12px;
-}
-
-.preview-app {
-  color: var(--text);
-  font-size: 13px;
-  font-weight: 750;
-}
-
-.preview-toggle {
-  padding: 4px 8px;
-  color: #07110f;
-  background: var(--green);
-  border-radius: 999px;
-  font-size: 11px;
-  font-weight: 850;
+  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.2);
 }
 
 .permission-preview p {
