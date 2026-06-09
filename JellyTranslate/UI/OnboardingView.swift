@@ -1,3 +1,4 @@
+import AppKit
 import SwiftUI
 
 struct OnboardingView: View {
@@ -57,6 +58,10 @@ struct OnboardingView: View {
             refreshPermissionStatus()
         }
         .onReceive(permissionRefreshTimer) { _ in
+            guard step == 1 else { return }
+            refreshPermissionStatus()
+        }
+        .onReceive(NotificationCenter.default.publisher(for: NSApplication.didBecomeActiveNotification)) { _ in
             guard step == 1 else { return }
             refreshPermissionStatus()
         }
@@ -133,11 +138,25 @@ struct OnboardingView: View {
                     .strokeBorder(.white.opacity(0.10), lineWidth: 1)
             }
 
-            Button(L10n.t("openPrivacy", language)) {
-                PermissionService.openAccessibilitySettings()
-                refreshPermissionStatus()
+            HStack(spacing: 10) {
+                Button(L10n.t("openPrivacy", language)) {
+                    PermissionService.openAccessibilitySettings()
+                    refreshPermissionStatus()
+                }
+                .buttonStyle(.bordered)
+
+                Button(L10n.t("checkAgain", language)) {
+                    refreshPermissionStatus()
+                }
+                .buttonStyle(.bordered)
             }
-            .buttonStyle(.bordered)
+
+            if !isAccessibilityTrusted {
+                Text(L10n.t("permissionRefreshHint", language))
+                    .font(.caption)
+                    .foregroundStyle(.tertiary)
+                    .fixedSize(horizontal: false, vertical: true)
+            }
         }
     }
 

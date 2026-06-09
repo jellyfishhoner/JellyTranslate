@@ -16,7 +16,8 @@ enum PermissionService {
     }
 
     static var currentAccessibilityTrust: Bool {
-        AXIsProcessTrusted()
+        let options = [kAXTrustedCheckOptionPrompt.takeUnretainedValue() as String: false] as CFDictionary
+        return AXIsProcessTrustedWithOptions(options)
     }
 
     static func promptForAccessibilityIfNeeded() {
