@@ -10,6 +10,8 @@ JellyTranslate is a small macOS menu bar utility:
 
 This is an early test build, so a few macOS permission steps are expected.
 
+If you received a signed and notarized release, you should not need Terminal commands. Download, unzip, move the app to Applications, and open it.
+
 ## Install
 
 1. Download the latest `JellyTranslate` build from the GitHub Release.
@@ -24,7 +26,7 @@ If macOS says the app cannot be opened because the developer cannot be verified:
 3. Scroll down and click `Open Anyway` for JellyTranslate.
 4. Confirm that you want to open it.
 
-If macOS says `JellyTranslate is damaged and can't be opened`, the alpha build was blocked by Gatekeeper quarantine. For private testing only, run:
+If macOS says `JellyTranslate is damaged and can't be opened`, you received an unsigned private alpha build that was blocked by Gatekeeper quarantine. Ask for a signed/notarized build if you are not comfortable using Terminal. For private testing only, run:
 
 ```sh
 xattr -dr com.apple.quarantine /Applications/JellyTranslate.app

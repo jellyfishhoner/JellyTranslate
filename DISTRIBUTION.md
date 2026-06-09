@@ -9,7 +9,9 @@ Use GitHub in two layers:
 1. GitHub repository for source code.
 2. GitHub Releases for test builds, uploaded as `.zip` or later `.dmg`.
 
-For the first small group of testers, a zipped `.app` is enough. For a wider audience, use a signed and notarized `.dmg`.
+For a small technical alpha group, a zipped `.app` is acceptable. For normal testers, use a signed and notarized build. Otherwise macOS may block the app before the tester can even reach the onboarding screen.
+
+For the tester-friendly path, follow [RELEASE_SIGNING.md](RELEASE_SIGNING.md).
 
 ## Step 1. Prepare The Repository
 
@@ -60,7 +62,7 @@ git push -u origin main
 
 If the parent folder is already a git repository, create the GitHub repository from that existing git root instead.
 
-## Step 4. Build For Testers
+## Step 4. Build For Technical Alpha Testers
 
 In Xcode:
 
@@ -79,6 +81,31 @@ For the first unsigned alpha:
 2. Choose `Compress "JellyTranslate.app"`.
 3. Rename the zip to something like:
    `JellyTranslate-0.1.0-alpha-mac.zip`
+
+This path can trigger Gatekeeper warnings. Do not use it as the main public tester download.
+
+## Step 4B. Build For Normal Testers
+
+Use this path when the goal is: download, open, grant permissions, use.
+
+1. Complete Apple Developer ID setup from [RELEASE_SIGNING.md](RELEASE_SIGNING.md).
+2. Archive in Xcode.
+3. Distribute as `Developer ID`.
+4. Upload for notarization through Xcode.
+5. Export the notarized app.
+6. Verify it:
+
+```sh
+scripts/verify-release-app.sh /path/to/JellyTranslate.app
+```
+
+7. Package it:
+
+```sh
+scripts/package-release-zip.sh /path/to/JellyTranslate.app JellyTranslate-0.1.0-alpha-mac.zip
+```
+
+8. Upload that verified artifact to GitHub Releases.
 
 ## Step 5. Create GitHub Release
 
@@ -169,9 +196,9 @@ Please send me your macOS version, what app you tested in, and screenshots of an
 Do not send private text or API keys.
 ```
 
-## Better Later: Signed DMG
+## Signed DMG Or Zip
 
-Before sharing more broadly, use an Apple Developer account and distribute a signed/notarized `.dmg`.
+Before sharing more broadly, use an Apple Developer account and distribute a signed/notarized `.dmg` or signed/notarized `.zip`.
 
 Benefits:
 

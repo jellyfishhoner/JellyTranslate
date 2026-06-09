@@ -7,6 +7,8 @@ Use this before giving JellyTranslate to testers.
 - [ ] Xcode opens `JellyTranslate.xcodeproj`.
 - [ ] Scheme is `JellyTranslate`.
 - [ ] Destination is `My Mac`.
+- [ ] For normal testers, Apple Developer team is selected in `Signing & Capabilities`.
+- [ ] For normal testers, this release will be Developer ID signed and notarized.
 - [ ] Provider default is suitable for testing, usually `MyMemory`.
 - [ ] No real API keys are stored in source files.
 - [ ] `README_FOR_TESTERS.md` is up to date.
@@ -25,9 +27,12 @@ Use this before giving JellyTranslate to testers.
 
 ## Package
 
-- [ ] Use `Product > Show Build Folder in Finder`.
-- [ ] Find `JellyTranslate.app` in `Products/Debug`.
-- [ ] Compress `JellyTranslate.app`.
+- [ ] For technical alpha only: use `Product > Show Build Folder in Finder`.
+- [ ] For technical alpha only: find `JellyTranslate.app` in `Products/Debug`.
+- [ ] For normal testers: use Xcode `Product > Archive`.
+- [ ] For normal testers: distribute with `Developer ID` and notarize through Xcode.
+- [ ] Verify the exported app with `scripts/verify-release-app.sh`.
+- [ ] Package with `scripts/package-release-zip.sh`.
 - [ ] Rename zip to `JellyTranslate-VERSION-alpha-mac.zip`.
 
 ## GitHub Release
