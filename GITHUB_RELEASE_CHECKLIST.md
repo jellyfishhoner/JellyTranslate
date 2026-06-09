@@ -19,8 +19,8 @@ Use this before giving JellyTranslate to testers.
 - [ ] Menu bar icon appears.
 - [ ] Quick Start opens.
 - [ ] Settings opens.
-- [ ] TextEdit test works with `Command+Z`.
-- [ ] Direct replace test works where possible with `Command+S`.
+- [ ] TextEdit test works with `Control+Option+T`.
+- [ ] Direct replace test works where possible with `Control+Option+R`.
 - [ ] Popup target language picker works and remembers the last selected language.
 
 ## Package
@@ -49,4 +49,3 @@ Ask testers for:
 - [ ] Whether copy worked.
 - [ ] Whether replace worked.
 - [ ] Whether target language picker behaved correctly.
-

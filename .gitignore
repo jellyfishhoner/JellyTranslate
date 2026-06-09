@@ -8,6 +8,7 @@ xcuserdata/
 # Build output
 .build/
 .derivedData/
+.releaseDerivedData/
 DerivedData/
 build/
 
@@ -24,4 +25,3 @@ build/
 *.key
 *.pem
 *.p12
-
