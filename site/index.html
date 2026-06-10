@@ -56,7 +56,10 @@
               View source
             </a>
           </div>
-          <p class="version-chip" data-release-version-label>Version 0.1.0 alpha</p>
+          <p class="version-line">
+            <span class="version-chip" data-release-version-label>Version 0.1.0 alpha</span>
+            <a class="changelog-link" href="#changelog" data-i18n="changelogLink">What’s new</a>
+          </p>
           <p class="release-note" data-i18n="releaseNote">Early macOS test version. MyMemory works without an API key.</p>
         </div>
       </section>
@@ -185,6 +188,27 @@
           </div>
         </div>
       </section>
+
+      <section class="changelog-section reveal-block" id="changelog" aria-labelledby="changelog-title">
+        <div class="changelog-content">
+          <div class="changelog-heading">
+            <p class="eyebrow" data-i18n="changelogEyebrow">Current build</p>
+            <h2 id="changelog-title" data-i18n="changelogTitle">What’s new in JellyTranslate</h2>
+          </div>
+          <div class="changelog-card">
+            <div class="changelog-version">
+              <span data-release-version-label>Version 0.1.0 alpha</span>
+              <a href="https://github.com/jellyfishhoner/JellyTranslate/releases/tag/v0.1.0-alpha" data-i18n="releaseNotesLink">Release notes</a>
+            </div>
+            <ul class="changelog-list">
+              <li data-i18n="changelogOne">Draggable translation popup that stays where you move it.</li>
+              <li data-i18n="changelogTwo">Cleaner first-run setup with human-friendly permissions guidance.</li>
+              <li data-i18n="changelogThree">Manual update check in the menu bar app.</li>
+              <li data-i18n="changelogFour">MyMemory is ready now; DeepL, Yandex, Google, and OpenAI are marked as coming later.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
     </main>
 
     <footer class="site-footer">
@@ -202,6 +226,7 @@
           download: "Download on Mac",
           source: "View source",
           releaseVersion: "Version {version}",
+          changelogLink: "What’s new",
           releaseNote: "Early macOS test version. MyMemory works without an API key.",
           flowOneTitle: "Select text",
           flowOneCopy: "Highlight text in TextEdit, Notes, Safari, Chrome, Telegram, or another Mac app.",
@@ -230,7 +255,14 @@
           updateNoteCopy: "Quit JellyTranslate, download the newest build, then replace the old app in Applications.",
           permissionTitle: "Privacy & Security",
           permissionHint: "Accessibility must be enabled for selected-text reading.",
-          testerGuide: "Tester guide"
+          testerGuide: "Tester guide",
+          changelogEyebrow: "Current build",
+          changelogTitle: "What’s new in JellyTranslate",
+          releaseNotesLink: "Release notes",
+          changelogOne: "Draggable translation popup that stays where you move it.",
+          changelogTwo: "Cleaner first-run setup with human-friendly permissions guidance.",
+          changelogThree: "Manual update check in the menu bar app.",
+          changelogFour: "MyMemory is ready now; DeepL, Yandex, Google, and OpenAI are marked as coming later."
         },
         ru: {
           navHow: "Как работает",
@@ -241,6 +273,7 @@
           download: "Скачать для Mac",
           source: "Исходный код",
           releaseVersion: "Версия {version}",
+          changelogLink: "Что нового",
           releaseNote: "Ранняя тестовая версия для macOS. MyMemory работает без API-ключа.",
           flowOneTitle: "Выделите текст",
           flowOneCopy: "Выделите текст в TextEdit, Notes, Safari, Chrome, Telegram или другом приложении на Mac.",
@@ -269,7 +302,14 @@
           updateNoteCopy: "Закройте JellyTranslate, скачайте новую версию и замените старое приложение в “Программах”.",
           permissionTitle: "Конфиденциальность и безопасность",
           permissionHint: "Accessibility нужен для чтения выделенного текста.",
-          testerGuide: "Инструкция"
+          testerGuide: "Инструкция",
+          changelogEyebrow: "Текущая сборка",
+          changelogTitle: "Что нового в JellyTranslate",
+          releaseNotesLink: "Заметки релиза",
+          changelogOne: "Попап перевода можно перетаскивать мышкой и оставлять в удобном месте.",
+          changelogTwo: "Первый запуск стал проще: разрешения объяснены обычным языком.",
+          changelogThree: "В меню приложения появилась ручная проверка обновлений.",
+          changelogFour: "MyMemory уже доступен; DeepL, Yandex, Google и OpenAI аккуратно отмечены как будущие сервисы."
         }
       };
 
@@ -374,6 +414,7 @@
           "h2",
           "p",
           ".hero-actions a",
+          ".version-line a",
           ".step-number",
           ".popup-top strong",
           ".popup-top span",
@@ -387,6 +428,9 @@
           ".setup-steps code",
           ".preview-title",
           ".tester-actions a",
+          ".changelog-version span",
+          ".changelog-version a",
+          ".changelog-list li",
           ".site-footer span",
           ".site-footer a"
         ];
