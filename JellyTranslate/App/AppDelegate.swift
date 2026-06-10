@@ -22,6 +22,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     private let speechService = SpeechService()
     private let analyticsService = AnalyticsService.shared
     private var availableUpdate: AppUpdate?
+    private var updateCheckTimer: Timer?
 
     private var statusItem: NSStatusItem?
     private var hotKeyManager: HotKeyManager?
@@ -37,10 +38,11 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         configureHotKey()
         showOnboardingIfNeeded()
         analyticsService.signal(.appLaunched, settings: settingsStore.settings)
-        checkForUpdates()
+        startUpdateChecks()
     }
 
     func applicationWillTerminate(_ notification: Notification) {
+        updateCheckTimer?.invalidate()
         hotKeyManager?.unregister()
     }
 
@@ -74,13 +76,20 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         statusItem = item
     }
 
+    private func startUpdateChecks() {
+        checkForUpdates()
+        updateCheckTimer?.invalidate()
+        updateCheckTimer = Timer.scheduledTimer(withTimeInterval: 6 * 60 * 60, repeats: true) { [weak self] _ in
+            self?.checkForUpdates()
+        }
+    }
+
     private func checkForUpdates() {
-        Task { [weak self] in
+        Task {
             let update = await UpdateService.checkForUpdate()
-            await MainActor.run {
-                guard let self else { return }
-                availableUpdate = update
-                configureMenuBar()
+            await MainActor.run { [weak self] in
+                self?.availableUpdate = update
+                self?.configureMenuBar()
             }
         }
     }
