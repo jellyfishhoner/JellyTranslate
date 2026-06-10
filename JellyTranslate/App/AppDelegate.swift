@@ -23,6 +23,10 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     private let analyticsService = AnalyticsService.shared
     private var availableUpdate: AppUpdate?
     private var updateCheckTimer: Timer?
+    private var updateStatusResetTimer: Timer?
+    private var isCheckingForUpdates = false
+    private var isShowingNoUpdateStatus = false
+    private var isShowingUpdateFailureStatus = false
 
     private var statusItem: NSStatusItem?
     private var hotKeyManager: HotKeyManager?
@@ -43,6 +47,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 
     func applicationWillTerminate(_ notification: Notification) {
         updateCheckTimer?.invalidate()
+        updateStatusResetTimer?.invalidate()
         hotKeyManager?.unregister()
     }
 
@@ -62,13 +67,31 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         menu.addItem(NSMenuItem(title: L10n.t("quickStart", language), action: #selector(openOnboardingFromMenu), keyEquivalent: ""))
         menu.addItem(NSMenuItem(title: L10n.t("settings", language), action: #selector(openSettings), keyEquivalent: ","))
         menu.addItem(NSMenuItem(title: L10n.t("history", language), action: #selector(openHistory), keyEquivalent: "h"))
+        menu.addItem(.separator())
         if let availableUpdate {
             let updateItem = NSMenuItem(title: "\(L10n.t("updateAvailable", language)) \(availableUpdate.version)",
                                         action: #selector(openAvailableUpdate),
                                         keyEquivalent: "")
             updateItem.target = self
-            menu.addItem(.separator())
             menu.addItem(updateItem)
+        } else if isCheckingForUpdates {
+            let checkingItem = NSMenuItem(title: L10n.t("checkingUpdates", language), action: nil, keyEquivalent: "")
+            checkingItem.isEnabled = false
+            menu.addItem(checkingItem)
+        } else if isShowingNoUpdateStatus {
+            let latestItem = NSMenuItem(title: L10n.t("noUpdatesFound", language), action: nil, keyEquivalent: "")
+            latestItem.isEnabled = false
+            menu.addItem(latestItem)
+        } else if isShowingUpdateFailureStatus {
+            let failedItem = NSMenuItem(title: L10n.t("updatesCheckFailed", language), action: nil, keyEquivalent: "")
+            failedItem.isEnabled = false
+            menu.addItem(failedItem)
+        } else {
+            let checkItem = NSMenuItem(title: L10n.t("checkForUpdates", language),
+                                       action: #selector(checkUpdatesFromMenu),
+                                       keyEquivalent: "")
+            checkItem.target = self
+            menu.addItem(checkItem)
         }
         menu.addItem(.separator())
         menu.addItem(NSMenuItem(title: L10n.t("quit", language), action: #selector(quit), keyEquivalent: "q"))
@@ -85,12 +108,49 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     }
 
     private func checkForUpdates() {
+        performUpdateCheck(showMenuProgress: false)
+    }
+
+    private func performUpdateCheck(showMenuProgress: Bool) {
+        if showMenuProgress {
+            updateStatusResetTimer?.invalidate()
+            isCheckingForUpdates = true
+            isShowingNoUpdateStatus = false
+            isShowingUpdateFailureStatus = false
+            configureMenuBar()
+        }
+
         Task {
-            let update = await UpdateService.checkForUpdate()
+            let result = await UpdateService.checkForUpdateResult()
             await MainActor.run { [weak self] in
-                self?.availableUpdate = update
-                self?.configureMenuBar()
+                guard let self else { return }
+                isCheckingForUpdates = false
+                isShowingNoUpdateStatus = showMenuProgress && result == .upToDate
+                isShowingUpdateFailureStatus = showMenuProgress && result == .failed
+
+                switch result {
+                case .available(let update):
+                    availableUpdate = update
+                case .upToDate:
+                    availableUpdate = nil
+                case .failed:
+                    break
+                }
+
+                configureMenuBar()
+                if showMenuProgress && (isShowingNoUpdateStatus || isShowingUpdateFailureStatus) {
+                    scheduleUpdateStatusReset()
+                }
             }
+        }
+    }
+
+    private func scheduleUpdateStatusReset() {
+        updateStatusResetTimer?.invalidate()
+        updateStatusResetTimer = Timer.scheduledTimer(withTimeInterval: 4, repeats: false) { [weak self] _ in
+            self?.isShowingNoUpdateStatus = false
+            self?.isShowingUpdateFailureStatus = false
+            self?.configureMenuBar()
         }
     }
 
@@ -548,6 +608,10 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     @objc private func openAvailableUpdate() {
         guard let availableUpdate else { return }
         NSWorkspace.shared.open(availableUpdate.url)
+    }
+
+    @objc private func checkUpdatesFromMenu() {
+        performUpdateCheck(showMenuProgress: true)
     }
 
     @objc private func quit() {

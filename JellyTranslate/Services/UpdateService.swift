@@ -5,6 +5,12 @@ struct AppUpdate: Equatable {
     let url: URL
 }
 
+enum UpdateCheckResult: Equatable {
+    case available(AppUpdate)
+    case upToDate
+    case failed
+}
+
 enum UpdateService {
     private struct GitHubRelease: Decodable {
         let tagName: String
@@ -17,8 +23,16 @@ enum UpdateService {
     }
 
     static func checkForUpdate() async -> AppUpdate? {
+        if case .available(let update) = await checkForUpdateResult() {
+            return update
+        }
+
+        return nil
+    }
+
+    static func checkForUpdateResult() async -> UpdateCheckResult {
         guard let url = URL(string: "https://api.github.com/repos/jellyfishhoner/JellyTranslate/releases/latest") else {
-            return nil
+            return .failed
         }
 
         do {
@@ -28,18 +42,18 @@ enum UpdateService {
             let (data, response) = try await URLSession.shared.data(for: request)
             guard let httpResponse = response as? HTTPURLResponse,
                   (200..<300).contains(httpResponse.statusCode) else {
-                return nil
+                return .failed
             }
 
             let release = try JSONDecoder().decode(GitHubRelease.self, from: data)
             let latestVersion = normalizedVersion(release.tagName)
             guard isVersion(latestVersion, newerThan: currentVersion) else {
-                return nil
+                return .upToDate
             }
 
-            return AppUpdate(version: latestVersion, url: release.htmlURL)
+            return .available(AppUpdate(version: latestVersion, url: release.htmlURL))
         } catch {
-            return nil
+            return .failed
         }
     }
 
