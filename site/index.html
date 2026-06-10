@@ -54,6 +54,7 @@
               View source
             </a>
           </div>
+          <p class="version-chip" data-release-version-label>Version 0.1.0 alpha</p>
           <p class="release-note" data-i18n="releaseNote">Early macOS test version. MyMemory works without an API key.</p>
         </div>
       </section>
@@ -198,6 +199,7 @@
           heroCopy: "Select text, press a shortcut, and JellyTranslate shows a compact floating translation popup. Built for quick daily use, not for getting in your way.",
           download: "Download on Mac",
           source: "View source",
+          releaseVersion: "Version {version}",
           releaseNote: "Early macOS test version. MyMemory works without an API key.",
           flowOneTitle: "Select text",
           flowOneCopy: "Highlight text in TextEdit, Notes, Safari, Chrome, Telegram, or another Mac app.",
@@ -236,6 +238,7 @@
           heroCopy: "Выделите текст, нажмите хоткей, и JellyTranslate покажет компактное всплывающее окно с переводом. Быстро, спокойно и без лишних действий.",
           download: "Скачать для Mac",
           source: "Исходный код",
+          releaseVersion: "Версия {version}",
           releaseNote: "Ранняя тестовая версия для macOS. MyMemory работает без API-ключа.",
           flowOneTitle: "Выделите текст",
           flowOneCopy: "Выделите текст в TextEdit, Notes, Safari, Chrome, Telegram или другом приложении на Mac.",
@@ -268,6 +271,7 @@
         }
       };
 
+      const releaseVersion = "0.1.0 alpha";
       let currentLanguage = "en";
 
       const applyLanguage = (language) => {
@@ -283,6 +287,9 @@
         document.querySelectorAll("[data-lang-option]").forEach((button) => {
           button.classList.toggle("is-active", button.dataset.langOption === selected);
           button.setAttribute("aria-pressed", button.dataset.langOption === selected ? "true" : "false");
+        });
+        document.querySelectorAll("[data-release-version-label]").forEach((node) => {
+          node.textContent = translations[selected].releaseVersion.replace("{version}", releaseVersion);
         });
         document.querySelector(".language-toggle")?.setAttribute("data-active-lang", selected);
         localStorage.setItem("jellytranslate-site-language", selected);

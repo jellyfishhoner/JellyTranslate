@@ -292,8 +292,23 @@ h1 {
   border: 1px solid var(--line);
 }
 
+.version-chip {
+  display: inline-flex;
+  align-items: center;
+  width: fit-content;
+  margin: 15px 0 0;
+  padding: 7px 10px;
+  color: rgba(245, 247, 251, 0.68);
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0;
+}
+
 .release-note {
-  margin: 18px 0 0;
+  margin: 12px 0 0;
   color: var(--muted);
   font-size: 14px;
 }

@@ -37,4 +37,8 @@ The `Download on Mac` button points to the current public test version:
 https://github.com/jellyfishhoner/JellyTranslate/releases/download/v0.1.0-alpha/JellyTranslate-0.1.0-alpha-mac.zip
 ```
 
-When publishing a new release, update the download URL in `index.html` and this note.
+When publishing a new release, update:
+
+- the download URL in `index.html`
+- the `releaseVersion` constant in `index.html`
+- this note
