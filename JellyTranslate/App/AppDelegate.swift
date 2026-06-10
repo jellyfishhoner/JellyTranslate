@@ -21,6 +21,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     private let replacementService = ReplacementService()
     private let speechService = SpeechService()
     private let analyticsService = AnalyticsService.shared
+    private var availableUpdate: AppUpdate?
 
     private var statusItem: NSStatusItem?
     private var hotKeyManager: HotKeyManager?
@@ -36,6 +37,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         configureHotKey()
         showOnboardingIfNeeded()
         analyticsService.signal(.appLaunched, settings: settingsStore.settings)
+        checkForUpdates()
     }
 
     func applicationWillTerminate(_ notification: Notification) {
@@ -58,10 +60,29 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         menu.addItem(NSMenuItem(title: L10n.t("quickStart", language), action: #selector(openOnboardingFromMenu), keyEquivalent: ""))
         menu.addItem(NSMenuItem(title: L10n.t("settings", language), action: #selector(openSettings), keyEquivalent: ","))
         menu.addItem(NSMenuItem(title: L10n.t("history", language), action: #selector(openHistory), keyEquivalent: "h"))
+        if let availableUpdate {
+            let updateItem = NSMenuItem(title: "\(L10n.t("updateAvailable", language)) \(availableUpdate.version)",
+                                        action: #selector(openAvailableUpdate),
+                                        keyEquivalent: "")
+            updateItem.target = self
+            menu.addItem(.separator())
+            menu.addItem(updateItem)
+        }
         menu.addItem(.separator())
         menu.addItem(NSMenuItem(title: L10n.t("quit", language), action: #selector(quit), keyEquivalent: "q"))
         item.menu = menu
         statusItem = item
+    }
+
+    private func checkForUpdates() {
+        Task { [weak self] in
+            let update = await UpdateService.checkForUpdate()
+            await MainActor.run {
+                guard let self else { return }
+                availableUpdate = update
+                configureMenuBar()
+            }
+        }
     }
 
     private func configureHotKey() {
@@ -513,6 +534,11 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         historyWindowController = controller
         controller.showWindow(nil)
         NSApp.activate(ignoringOtherApps: true)
+    }
+
+    @objc private func openAvailableUpdate() {
+        guard let availableUpdate else { return }
+        NSWorkspace.shared.open(availableUpdate.url)
     }
 
     @objc private func quit() {
