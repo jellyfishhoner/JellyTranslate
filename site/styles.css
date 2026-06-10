@@ -293,22 +293,17 @@ h1 {
 }
 
 .version-chip {
-  display: inline-flex;
-  align-items: center;
   width: fit-content;
-  margin: 15px 0 0;
-  padding: 7px 10px;
-  color: rgba(245, 247, 251, 0.68);
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 999px;
+  margin: 14px 0 0;
+  padding-left: 1px;
+  color: rgba(102, 217, 198, 0.78);
   font-size: 12px;
   font-weight: 800;
-  letter-spacing: 0;
+  letter-spacing: 0.02em;
 }
 
 .release-note {
-  margin: 12px 0 0;
+  margin: 8px 0 0;
   color: var(--muted);
   font-size: 14px;
 }
