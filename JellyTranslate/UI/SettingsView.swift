@@ -19,6 +19,7 @@ struct SettingsView: View {
                 behaviorSection
                 advancedSection
                 privacySection
+                updatesSection
             }
             .frame(maxWidth: 640)
             .padding(.horizontal, 28)
@@ -201,6 +202,36 @@ struct SettingsView: View {
                 helperText(L10n.t("analyticsPrivacy", language))
             }
         }
+    }
+
+    private var updatesSection: some View {
+        settingsSection(L10n.t("updates", language)) {
+            settingsRow(L10n.t("currentVersion", language)) {
+                Text(displayVersion)
+                    .font(.callout.weight(.medium))
+            }
+
+            helperText(L10n.t("updatesHint", language))
+
+            HStack {
+                Button(L10n.t("openLatestRelease", language)) {
+                    openLatestRelease()
+                }
+                .buttonStyle(.bordered)
+                Spacer()
+            }
+        }
+    }
+
+    private var displayVersion: String {
+        let version = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "0.1.0"
+        let build = Bundle.main.infoDictionary?["CFBundleVersion"] as? String ?? "1"
+        return "\(version) Alpha (\(L10n.t("build", language)) \(build))"
+    }
+
+    private func openLatestRelease() {
+        guard let url = URL(string: "https://github.com/jellyfishhoner/JellyTranslate/releases/latest") else { return }
+        NSWorkspace.shared.open(url)
     }
 
     private func settingsSection<Content: View>(_ title: String, @ViewBuilder content: () -> Content) -> some View {
