@@ -43,6 +43,12 @@ When publishing a new release, update:
 - the `releaseVersion` constant in `index.html`
 - this note
 
+The easiest way to update those together:
+
+```sh
+../scripts/bump-version.sh 0.1.1 alpha
+```
+
 Before publishing, run:
 
 ```sh

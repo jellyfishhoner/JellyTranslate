@@ -20,6 +20,12 @@ When the app version changes, update:
 - the download URL in `site/index.html`
 - the download URL note in `site/README.md`
 
+The easiest way is to run:
+
+```sh
+scripts/bump-version.sh 0.1.1 alpha
+```
+
 ## 2. Check The Release State
 
 Run this before building the public ZIP:

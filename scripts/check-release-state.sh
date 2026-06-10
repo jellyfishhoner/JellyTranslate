@@ -13,11 +13,24 @@ DOWNLOAD_URL=$(sed -n 's#.*href="\(https://github.com/jellyfishhoner/JellyTransl
 README_URL=$(sed -n 's#^\(https://github.com/jellyfishhoner/JellyTranslate/releases/download/.*JellyTranslate-.*-mac.zip\)$#\1#p' "$SITE_README" | head -n 1)
 
 SITE_VERSION_NORMALIZED=$(printf "%s" "$SITE_VERSION" | sed 's/[[:space:]]alpha$//;s/-alpha$//')
+SITE_VERSION_NORMALIZED=$(printf "%s" "$SITE_VERSION_NORMALIZED" | sed 's/[[:space:]]beta$//;s/-beta$//')
 DOWNLOAD_TAG=$(printf "%s" "$DOWNLOAD_URL" | sed -n 's#.*/releases/download/\([^/]*\)/.*#\1#p')
 DOWNLOAD_FILE=$(basename "$DOWNLOAD_URL")
 
-EXPECTED_TAG="v${APP_VERSION}-alpha"
-EXPECTED_FILE="JellyTranslate-${APP_VERSION}-alpha-mac.zip"
+case "$SITE_VERSION" in
+  *" alpha" | *"-alpha")
+    EXPECTED_TAG="v${APP_VERSION}-alpha"
+    EXPECTED_FILE="JellyTranslate-${APP_VERSION}-alpha-mac.zip"
+    ;;
+  *" beta" | *"-beta")
+    EXPECTED_TAG="v${APP_VERSION}-beta"
+    EXPECTED_FILE="JellyTranslate-${APP_VERSION}-beta-mac.zip"
+    ;;
+  *)
+    EXPECTED_TAG="v${APP_VERSION}"
+    EXPECTED_FILE="JellyTranslate-${APP_VERSION}-mac.zip"
+    ;;
+esac
 ERRORS=0
 
 fail() {
