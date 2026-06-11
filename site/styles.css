@@ -518,7 +518,7 @@ h1 {
 }
 
 .product-section {
-  --demo-duration: 13s;
+  --demo-duration: 16s;
   display: grid;
   grid-template-columns: minmax(0, 0.82fr) minmax(360px, 1fr);
   gap: 44px;
@@ -545,9 +545,14 @@ h1 {
   z-index: 1;
 }
 
+.product-title-translation,
 .product-title-selection {
   position: absolute;
   inset: 0 auto auto 0;
+  pointer-events: none;
+}
+
+.product-title-selection {
   z-index: 2;
   display: inline;
   max-width: 100%;
@@ -558,8 +563,24 @@ h1 {
   box-shadow: 0 0 0 1px rgba(102, 217, 198, 0.18), 0 12px 28px rgba(102, 217, 198, 0.08);
   clip-path: inset(0 100% 0 0 round 8px);
   opacity: 0;
-  pointer-events: none;
-  animation: titleSelectionSweep var(--demo-duration) ease-in-out infinite paused;
+  animation: titleSelectionSweep var(--demo-duration) ease-in-out 1 both paused;
+}
+
+.product-title-translation {
+  z-index: 3;
+  max-width: 580px;
+  color: var(--text);
+  opacity: 0;
+  transform: translateY(10px);
+  animation: titleTranslationPrimary var(--demo-duration) ease-in-out 1 both paused;
+}
+
+.title-translation-es {
+  animation-name: titleTranslationSpanish;
+}
+
+.title-translation-zh {
+  animation-name: titleTranslationChinese;
 }
 
 .translation-demo {
@@ -575,33 +596,86 @@ h1 {
   top: 50%;
   left: 50%;
   z-index: 0;
-  display: grid;
-  grid-template-columns: repeat(5, 28px);
-  gap: 8px;
-  padding: 15px;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.11), rgba(102, 217, 198, 0.05));
-  border: 1px solid rgba(255, 255, 255, 0.11);
-  border-radius: 20px;
-  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.28);
+  width: min(94%, 500px);
+  aspect-ratio: 503 / 151;
+  overflow: hidden;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(102, 217, 198, 0.03)),
+    url("/assets/mac-keyboard.webp") center / cover no-repeat;
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-radius: 12px;
+  box-shadow: 0 28px 72px rgba(0, 0, 0, 0.34), inset 0 1px 0 rgba(255, 255, 255, 0.07);
   opacity: 0;
   pointer-events: none;
   transform: translate(-50%, -50%) scale(0.96);
-  animation: keyboardCue var(--demo-duration) ease-in-out infinite paused;
+  filter: saturate(1.04) contrast(1.04);
+  animation: keyboardFirstCue var(--demo-duration) ease-in-out 1 both paused;
 }
 
-.demo-keyboard span {
-  width: 28px;
-  height: 22px;
-  background: rgba(255, 255, 255, 0.13);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: 7px;
+.keyboard-second {
+  animation-name: keyboardSecondCue;
 }
 
-.demo-keyboard .is-hotkey {
-  background: rgba(102, 217, 198, 0.86);
+.key-highlight {
+  position: absolute;
+  display: block;
+  width: var(--key-w, 6.6%);
+  height: var(--key-h, 18%);
+  left: var(--key-x);
+  top: var(--key-y);
+  background: rgba(102, 217, 198, 0.72);
   border-color: rgba(102, 217, 198, 0.96);
-  box-shadow: 0 0 0 0 rgba(102, 217, 198, 0.48);
-  animation: keyboardKeyPulse var(--demo-duration) ease-in-out infinite paused;
+  border-radius: 4px;
+  box-shadow: 0 0 0 1px rgba(102, 217, 198, 0.9), 0 0 0 0 rgba(102, 217, 198, 0);
+  opacity: 0;
+  mix-blend-mode: screen;
+  animation: firstHotkeyPulse var(--demo-duration) ease-in-out 1 both paused;
+}
+
+.keyboard-first .key-one {
+  --key-x: 13%;
+  --key-y: 78%;
+  --key-w: 6.3%;
+  --key-h: 19%;
+}
+
+.keyboard-first .key-two {
+  --key-x: 20.5%;
+  --key-y: 78%;
+  --key-w: 6.3%;
+  --key-h: 19%;
+}
+
+.keyboard-first .key-three {
+  --key-x: 78%;
+  --key-y: 21%;
+  --key-w: 6.2%;
+  --key-h: 19%;
+}
+
+.keyboard-second .key-highlight {
+  animation-name: secondHotkeyPulse;
+}
+
+.keyboard-second .key-one {
+  --key-x: 13%;
+  --key-y: 78%;
+  --key-w: 6.3%;
+  --key-h: 19%;
+}
+
+.keyboard-second .key-two {
+  --key-x: 20.5%;
+  --key-y: 78%;
+  --key-w: 6.3%;
+  --key-h: 19%;
+}
+
+.keyboard-second .key-three {
+  --key-x: 71%;
+  --key-y: 21%;
+  --key-w: 6.2%;
+  --key-h: 19%;
 }
 
 .popup-demo {
@@ -628,7 +702,7 @@ h1 {
   width: min(100%, 520px);
   opacity: 0;
   pointer-events: none;
-  animation: popupTranslationCycle var(--demo-duration) ease-in-out infinite paused;
+  animation: popupTranslationCycle var(--demo-duration) ease-in-out 1 both paused;
 }
 
 .popup-demo:hover {
@@ -702,12 +776,13 @@ h1 {
   max-width: 100%;
   opacity: 0;
   transform: translateY(12px);
-  animation: popupPrimary var(--demo-duration) ease-in-out infinite paused;
+  animation: popupPrimary var(--demo-duration) ease-in-out 1 both paused;
 }
 
 .product-section.is-demo-running .product-title-selection,
+.product-section.is-demo-running .product-title-translation,
 .translation-demo.is-demo-running .demo-keyboard,
-.translation-demo.is-demo-running .demo-keyboard .is-hotkey,
+.translation-demo.is-demo-running .key-highlight,
 .translation-demo.is-demo-running .demo-popup,
 .translation-demo.is-demo-running .demo-translation {
   animation-play-state: running;
@@ -750,16 +825,16 @@ h1 {
 
 @keyframes titleSelectionSweep {
   0%,
-  8% {
+  7% {
     opacity: 0;
     clip-path: inset(0 100% 0 0 round 8px);
   }
-  13%,
-  22% {
+  10%,
+  17% {
     opacity: 1;
     clip-path: inset(0 0 0 0 round 8px);
   }
-  28% {
+  21% {
     opacity: 0;
     clip-path: inset(0 0 0 0 round 8px);
   }
@@ -767,50 +842,104 @@ h1 {
     opacity: 0;
     clip-path: inset(0 100% 0 0 round 8px);
   }
-  72%,
-  82% {
+  69%,
+  75% {
     opacity: 1;
     clip-path: inset(0 0 0 0 round 8px);
   }
-  88%,
+  80%,
   100% {
     opacity: 0;
     clip-path: inset(0 0 0 0 round 8px);
   }
 }
 
-@keyframes keyboardCue {
+@keyframes keyboardFirstCue {
   0%,
-  21% {
+  18% {
     opacity: 0;
     transform: translate(-50%, -42%) scale(0.96);
   }
-  26%,
-  32% {
+  21%,
+  31% {
     opacity: 1;
     transform: translate(-50%, -50%) scale(1);
   }
-  38%,
+  35%,
   100% {
     opacity: 0;
     transform: translate(-50%, -56%) scale(0.98);
   }
 }
 
-@keyframes keyboardKeyPulse {
+@keyframes keyboardSecondCue {
   0%,
-  25% {
+  66% {
+    opacity: 0;
+    transform: translate(-50%, -42%) scale(0.96);
+  }
+  68%,
+  84% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  87%,
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -56%) scale(0.98);
+  }
+}
+
+@keyframes firstHotkeyPulse {
+  0%,
+  21% {
     box-shadow: 0 0 0 0 rgba(102, 217, 198, 0);
+    opacity: 0;
     transform: translateY(0);
   }
-  28%,
-  34% {
+  22%,
+  23.2%,
+  25.2%,
+  26.4%,
+  28.4%,
+  29.6% {
     box-shadow: 0 0 0 8px rgba(102, 217, 198, 0.13), 0 0 28px rgba(102, 217, 198, 0.34);
+    opacity: 1;
     transform: translateY(1px);
   }
-  38%,
+  24%,
+  27.2%,
+  30.4%,
   100% {
     box-shadow: 0 0 0 0 rgba(102, 217, 198, 0);
+    opacity: 0;
+    transform: translateY(0);
+  }
+}
+
+@keyframes secondHotkeyPulse {
+  0%,
+  72% {
+    box-shadow: 0 0 0 0 rgba(102, 217, 198, 0);
+    opacity: 0;
+    transform: translateY(0);
+  }
+  73%,
+  74.2%,
+  76.2%,
+  77.4%,
+  79.4%,
+  80.6% {
+    box-shadow: 0 0 0 8px rgba(102, 217, 198, 0.13), 0 0 28px rgba(102, 217, 198, 0.34);
+    opacity: 1;
+    transform: translateY(1px);
+  }
+  75%,
+  78.2%,
+  81.4%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(102, 217, 198, 0);
+    opacity: 0;
     transform: translateY(0);
   }
 }
@@ -821,42 +950,38 @@ h1 {
     opacity: 0;
     transform: perspective(900px) translate3d(var(--popup-shift-x), calc(18px + var(--popup-shift-y)), 0) rotateX(var(--popup-rotate-x)) rotateY(var(--popup-rotate-y));
   }
-  40%,
-  64% {
+  38%,
+  63% {
     opacity: 1;
     transform: perspective(900px) translate3d(var(--popup-shift-x), var(--popup-shift-y), 0) rotateX(var(--popup-rotate-x)) rotateY(var(--popup-rotate-y));
   }
-  69% {
+  67% {
     opacity: 0;
     transform: perspective(900px) translate3d(var(--popup-shift-x), calc(-10px + var(--popup-shift-y)), 0) rotateX(var(--popup-rotate-x)) rotateY(var(--popup-rotate-y));
   }
-  76% {
+  92% {
     opacity: 0;
     transform: perspective(900px) translate3d(var(--popup-shift-x), calc(16px + var(--popup-shift-y)), 0) rotateX(var(--popup-rotate-x)) rotateY(var(--popup-rotate-y));
   }
-  82%,
-  94% {
+  96%,
+  100% {
     opacity: 1;
     transform: perspective(900px) translate3d(var(--popup-shift-x), var(--popup-shift-y), 0) rotateX(var(--popup-rotate-x)) rotateY(var(--popup-rotate-y));
-  }
-  100% {
-    opacity: 0;
-    transform: perspective(900px) translate3d(var(--popup-shift-x), calc(-10px + var(--popup-shift-y)), 0) rotateX(var(--popup-rotate-x)) rotateY(var(--popup-rotate-y));
   }
 }
 
 @keyframes popupPrimary {
   0%,
-  39% {
+  38% {
     opacity: 0;
     transform: translateY(12px);
   }
-  44%,
-  49% {
+  41%,
+  47% {
     opacity: 1;
     transform: translateY(0);
   }
-  54%,
+  51%,
   100% {
     opacity: 0;
     transform: translateY(-10px);
@@ -865,16 +990,16 @@ h1 {
 
 @keyframes popupSpanish {
   0%,
-  50% {
+  48% {
     opacity: 0;
     transform: translateY(12px);
   }
-  55%,
-  59% {
+  52%,
+  56% {
     opacity: 1;
     transform: translateY(0);
   }
-  64%,
+  60%,
   100% {
     opacity: 0;
     transform: translateY(-10px);
@@ -883,16 +1008,16 @@ h1 {
 
 @keyframes popupChinese {
   0%,
-  60% {
+  57% {
     opacity: 0;
     transform: translateY(12px);
   }
-  65%,
-  68% {
+  61%,
+  64% {
     opacity: 1;
     transform: translateY(0);
   }
-  72%,
+  67%,
   100% {
     opacity: 0;
     transform: translateY(-10px);
@@ -901,18 +1026,67 @@ h1 {
 
 @keyframes popupFinal {
   0%,
-  80% {
+  95% {
     opacity: 0;
     transform: translateY(12px);
   }
-  85%,
+  98%,
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes titleTranslationPrimary {
+  0%,
+  87% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  89%,
+  91% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  93%,
+  100% {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes titleTranslationSpanish {
+  0%,
+  90.5% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  92.5%,
+  94.5% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  96%,
+  100% {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes titleTranslationChinese {
+  0%,
   94% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  96%,
+  98% {
     opacity: 1;
     transform: translateY(0);
   }
   100% {
     opacity: 0;
-    transform: translateY(-10px);
+    transform: translateY(-8px);
   }
 }
 
@@ -1389,6 +1563,7 @@ h1 {
   .demo-popup,
   .demo-keyboard,
   .product-title-selection,
+  .product-title-translation,
   .demo-translation {
     animation: none !important;
   }
@@ -1400,6 +1575,7 @@ h1 {
 
   .demo-keyboard,
   .product-title-selection,
+  .product-title-translation,
   .demo-translation-es,
   .demo-translation-zh,
   .demo-translation-final {
