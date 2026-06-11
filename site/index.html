@@ -64,6 +64,30 @@
         </div>
       </section>
 
+      <section class="signup-section reveal-block" aria-labelledby="signup-title">
+        <div class="signup-card">
+          <div class="signup-copy">
+            <p class="eyebrow" data-i18n="signupEyebrow">Early access list</p>
+            <h2 id="signup-title" data-i18n="signupTitle">Get build updates by email.</h2>
+            <p data-i18n="signupCopy">Leave your email and I’ll send only useful JellyTranslate updates: new builds, fixes, and tester notes.</p>
+          </div>
+          <form class="signup-form" name="jellytranslate-updates" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+            <input type="hidden" name="form-name" value="jellytranslate-updates">
+            <input type="hidden" name="subject" value="New JellyTranslate email signup">
+            <p class="hidden-field">
+              <label>Do not fill this out: <input name="bot-field"></label>
+            </p>
+            <label class="signup-label" for="signup-email" data-i18n="signupLabel">Email address</label>
+            <div class="signup-row">
+              <input id="signup-email" type="email" name="email" autocomplete="email" data-i18n-placeholder="signupPlaceholder" placeholder="you@example.com" required>
+              <button type="submit" data-i18n="signupButton">Join updates</button>
+            </div>
+            <p class="signup-note" data-i18n="signupNote">No spam. Just product updates while JellyTranslate grows.</p>
+            <p class="signup-status" role="status" aria-live="polite" data-signup-status></p>
+          </form>
+        </div>
+      </section>
+
       <section class="why-section reveal-block" aria-labelledby="why-title">
         <div class="why-copy">
           <p class="eyebrow" data-i18n="whyEyebrow">Why JellyTranslate?</p>
@@ -253,6 +277,15 @@
           testerCallout: "Looking for early testers. Free while in alpha.",
           releaseVersion: "Version {version}",
           changelogLink: "What’s new",
+          signupEyebrow: "Early access list",
+          signupTitle: "Get build updates by email.",
+          signupCopy: "Leave your email and I’ll send only useful JellyTranslate updates: new builds, fixes, and tester notes.",
+          signupLabel: "Email address",
+          signupPlaceholder: "you@example.com",
+          signupButton: "Join updates",
+          signupNote: "No spam. Just product updates while JellyTranslate grows.",
+          signupSuccess: "Done. I’ll send updates here.",
+          signupError: "Something didn’t send. Please try again.",
           whyEyebrow: "Why JellyTranslate?",
           whyTitle: "Because translating text on macOS is still slower than it should be.",
           whyCopy: "No browser tabs. No copy-paste loops. No switching context. Just select text, press a hotkey, translate or replace.",
@@ -305,6 +338,15 @@
           testerCallout: "Ищем ранних тестировщиков. Бесплатно на этапе alpha.",
           releaseVersion: "Версия {version}",
           changelogLink: "Что нового",
+          signupEyebrow: "Список раннего доступа",
+          signupTitle: "Получайте обновления на почту.",
+          signupCopy: "Оставьте email, и я буду присылать только полезные новости JellyTranslate: новые сборки, исправления и заметки для тестировщиков.",
+          signupLabel: "Email",
+          signupPlaceholder: "you@example.com",
+          signupButton: "Получать новости",
+          signupNote: "Без спама. Только обновления продукта, пока JellyTranslate растет.",
+          signupSuccess: "Готово. Буду присылать обновления сюда.",
+          signupError: "Не получилось отправить. Попробуйте еще раз.",
           whyEyebrow: "Почему JellyTranslate?",
           whyTitle: "Потому что перевод текста на macOS все еще медленнее, чем должен быть.",
           whyCopy: "Без вкладок браузера. Без постоянного копировать-вставить. Без переключения между окнами. Просто выделите текст, нажмите хоткей, переведите или замените.",
@@ -368,6 +410,12 @@
         document.querySelectorAll("[data-release-version-label]").forEach((node) => {
           node.textContent = translations[selected].releaseVersion.replace("{version}", releaseVersion);
         });
+        document.querySelectorAll("[data-i18n-placeholder]").forEach((node) => {
+          const value = translations[selected][node.dataset.i18nPlaceholder];
+          if (value) {
+            node.setAttribute("placeholder", value);
+          }
+        });
         document.querySelector(".language-toggle")?.setAttribute("data-active-lang", selected);
         localStorage.setItem("jellytranslate-site-language", selected);
       };
@@ -422,6 +470,41 @@
         });
       });
 
+      document.querySelectorAll(".signup-form").forEach((form) => {
+        const status = form.querySelector("[data-signup-status]");
+        const submitButton = form.querySelector("button[type='submit']");
+
+        form.addEventListener("submit", async (event) => {
+          event.preventDefault();
+
+          const formData = new FormData(form);
+          submitButton.disabled = true;
+          form.classList.remove("is-complete");
+          status.textContent = "";
+
+          try {
+            const response = await fetch("/", {
+              method: "POST",
+              headers: { "Content-Type": "application/x-www-form-urlencoded" },
+              body: new URLSearchParams(formData).toString()
+            });
+
+            if (!response.ok) {
+              throw new Error("Signup failed");
+            }
+
+            form.reset();
+            form.classList.add("is-complete");
+            status.textContent = translations[currentLanguage].signupSuccess;
+          } catch {
+            form.classList.remove("is-complete");
+            status.textContent = translations[currentLanguage].signupError;
+          } finally {
+            submitButton.disabled = false;
+          }
+        });
+      });
+
       document.querySelectorAll("[data-download-link]").forEach((link) => {
         link.addEventListener("click", () => {
           window.setTimeout(() => {
@@ -450,6 +533,10 @@
           "p",
           ".hero-actions a",
           ".version-line a",
+          ".signup-copy h2",
+          ".signup-form label",
+          ".signup-form button",
+          ".signup-note",
           ".step-number",
           ".popup-top strong",
           ".popup-top span",
