@@ -24,8 +24,8 @@ extension ProviderDisplayItem {
                 id: "DeepL",
                 title: "DeepL",
                 subtitle: language == .russian
-                    ? "Качественный перевод для будущих версий."
-                    : "High-quality translation for a future version.",
+                    ? "Добавим как более точный переводчик."
+                    : "Coming later as a more precise translator.",
                 isAvailable: false,
                 badge: "Soon..."
             ),
@@ -33,8 +33,8 @@ extension ProviderDisplayItem {
                 id: "YandexTranslate",
                 title: "Yandex Translate",
                 subtitle: language == .russian
-                    ? "Планируется как отдельный провайдер."
-                    : "Planned as a dedicated provider.",
+                    ? "Добавим отдельным вариантом перевода."
+                    : "Coming later as another translation option.",
                 isAvailable: false,
                 badge: "Soon..."
             ),
@@ -42,8 +42,8 @@ extension ProviderDisplayItem {
                 id: "GoogleTranslate",
                 title: "Google Translate",
                 subtitle: language == .russian
-                    ? "Добавим после стабильной базовой версии."
-                    : "Planned after the first stable base version.",
+                    ? "Добавим после базовой стабильной версии."
+                    : "Coming after the stable base version.",
                 isAvailable: false,
                 badge: "Soon..."
             ),
@@ -51,8 +51,8 @@ extension ProviderDisplayItem {
                 id: "OpenAI",
                 title: "OpenAI",
                 subtitle: language == .russian
-                    ? "Для AI-перевода и будущих умных режимов."
-                    : "For AI translation and future smart modes.",
+                    ? "Для умного перевода и будущих режимов."
+                    : "For smarter translation and future modes.",
                 isAvailable: false,
                 badge: "Soon..."
             )

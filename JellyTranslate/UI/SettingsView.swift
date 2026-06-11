@@ -226,7 +226,10 @@ struct SettingsView: View {
     private var displayVersion: String {
         let version = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "0.1.0"
         let build = Bundle.main.infoDictionary?["CFBundleVersion"] as? String ?? "1"
-        return "\(version) Alpha (\(L10n.t("build", language)) \(build))"
+        if language == .russian {
+            return "\(version), тестовая версия (\(L10n.t("build", language)) \(build))"
+        }
+        return "\(version), test version (\(L10n.t("build", language)) \(build))"
     }
 
     private func openLatestRelease() {
