@@ -918,8 +918,9 @@ h1 {
 
 .changelog-content {
   display: grid;
-  grid-template-columns: minmax(220px, 0.45fr) minmax(0, 1fr);
-  gap: 34px;
+  grid-template-columns: minmax(220px, 280px) minmax(0, 640px);
+  justify-content: center;
+  gap: 24px;
   align-items: start;
   max-width: 1080px;
   margin: 0 auto;
