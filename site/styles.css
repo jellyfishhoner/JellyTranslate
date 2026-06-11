@@ -806,16 +806,16 @@ h1 {
 
 @keyframes popupTranslationCycle {
   0%,
-  20% {
+  31% {
     opacity: 0;
     transform: perspective(900px) translate3d(var(--popup-shift-x), calc(18px + var(--popup-shift-y)), 0) rotateX(var(--popup-rotate-x)) rotateY(var(--popup-rotate-y));
   }
-  25%,
-  52% {
+  36%,
+  58% {
     opacity: 1;
     transform: perspective(900px) translate3d(var(--popup-shift-x), var(--popup-shift-y), 0) rotateX(var(--popup-rotate-x)) rotateY(var(--popup-rotate-y));
   }
-  60%,
+  64%,
   100% {
     opacity: 0;
     transform: perspective(900px) translate3d(var(--popup-shift-x), calc(-10px + var(--popup-shift-y)), 0) rotateX(var(--popup-rotate-x)) rotateY(var(--popup-rotate-y));
@@ -824,16 +824,16 @@ h1 {
 
 @keyframes popupRussian {
   0%,
-  24% {
+  34% {
     opacity: 0;
     transform: translateY(12px);
   }
-  28%,
-  33% {
+  38%,
+  43% {
     opacity: 1;
     transform: translateY(0);
   }
-  38%,
+  47%,
   100% {
     opacity: 0;
     transform: translateY(-10px);
@@ -842,16 +842,16 @@ h1 {
 
 @keyframes popupSpanish {
   0%,
-  35% {
+  44% {
     opacity: 0;
     transform: translateY(12px);
   }
-  39%,
-  44% {
+  48%,
+  52% {
     opacity: 1;
     transform: translateY(0);
   }
-  49%,
+  56%,
   100% {
     opacity: 0;
     transform: translateY(-10px);
@@ -860,16 +860,16 @@ h1 {
 
 @keyframes popupChinese {
   0%,
-  46% {
+  53% {
     opacity: 0;
     transform: translateY(12px);
   }
-  50%,
-  54% {
+  57%,
+  60% {
     opacity: 1;
     transform: translateY(0);
   }
-  58%,
+  63%,
   100% {
     opacity: 0;
     transform: translateY(-10px);
