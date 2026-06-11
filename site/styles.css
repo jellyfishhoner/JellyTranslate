@@ -940,8 +940,6 @@ h1 {
 
 .changelog-version {
   display: flex;
-  justify-content: space-between;
-  gap: 16px;
   align-items: center;
   padding-bottom: 16px;
   border-bottom: 1px solid var(--line);
@@ -951,12 +949,6 @@ h1 {
   color: var(--text);
   font-size: 14px;
   font-weight: 820;
-}
-
-.changelog-version a {
-  color: rgba(102, 217, 198, 0.84);
-  font-size: 13px;
-  font-weight: 780;
 }
 
 .changelog-list {
