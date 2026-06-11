@@ -95,42 +95,44 @@
       <section class="product-section reveal-block">
         <div class="section-copy">
           <p class="eyebrow" data-i18n="productEyebrow">Small by design</p>
-          <h2 data-i18n="productTitle">A Mac utility that quietly does one thing well.</h2>
+          <h2 class="product-title-demo">
+            <span class="product-title-text" data-i18n="productTitle">A Mac utility that quietly does one thing well.</span>
+            <span class="product-title-selection" data-i18n="productTitle" aria-hidden="true">A Mac utility that quietly does one thing well.</span>
+          </h2>
           <p data-i18n="productCopy">
             JellyTranslate lives in the menu bar, uses native SwiftUI and AppKit, and keeps the core experience simple:
             selected text in, translation out.
           </p>
         </div>
         <div class="translation-demo" aria-label="JellyTranslate animated translation preview">
-          <div class="demo-editor">
-            <div class="demo-window-dots" aria-hidden="true">
-              <span></span>
-              <span></span>
-              <span></span>
-            </div>
-            <div class="demo-line" aria-hidden="true">
-              <span class="demo-typed">Hello world</span>
-              <span class="demo-selection">Hello world</span>
-              <span class="demo-final demo-final-de">Hallo Welt</span>
-              <span class="demo-final demo-final-ar">مرحبا بالعالم</span>
-              <span class="demo-final demo-final-sr">Zdravo, svete</span>
-            </div>
+          <div class="demo-keyboard" aria-hidden="true">
+            <span></span>
+            <span></span>
+            <span class="is-hotkey"></span>
+            <span></span>
+            <span class="is-hotkey"></span>
+            <span></span>
+            <span></span>
+            <span class="is-hotkey"></span>
+            <span></span>
+            <span></span>
           </div>
           <div class="popup-demo demo-popup" aria-label="JellyTranslate popup preview">
             <div class="popup-top">
               <strong>JellyTranslate</strong>
-              <span>MyMemory · Auto → RU</span>
+              <span data-i18n="demoTarget">MyMemory · Auto → RU</span>
             </div>
             <div class="text-block">
               <small>Original</small>
-              <p>Hello world</p>
+              <p data-i18n="productTitle">A Mac utility that quietly does one thing well.</p>
             </div>
             <div class="translation-block">
               <small>Translation</small>
               <p>
-                <span class="demo-translation demo-translation-ru">Привет, мир</span>
-                <span class="demo-translation demo-translation-es">Hola, mundo</span>
-                <span class="demo-translation demo-translation-zh">你好，世界</span>
+                <span class="demo-translation demo-translation-primary" data-i18n="demoTranslationPrimary">Mac-утилита, которая тихо делает одну вещь хорошо.</span>
+                <span class="demo-translation demo-translation-es" data-i18n="demoTranslationSpanish">Una utilidad para Mac que hace una cosa bien.</span>
+                <span class="demo-translation demo-translation-zh" data-i18n="demoTranslationChinese">一个安静做好一件事的 Mac 工具。</span>
+                <span class="demo-translation demo-translation-final" data-i18n="demoTranslationPrimary">Mac-утилита, которая тихо делает одну вещь хорошо.</span>
               </p>
             </div>
             <div class="popup-actions">
@@ -262,6 +264,10 @@
           productEyebrow: "Small by design",
           productTitle: "A Mac utility that quietly does one thing well.",
           productCopy: "JellyTranslate lives in the menu bar, uses native SwiftUI and AppKit, and keeps the core experience simple: selected text in, translation out.",
+          demoTarget: "MyMemory · Auto → RU",
+          demoTranslationPrimary: "Mac-утилита, которая тихо делает одну вещь хорошо.",
+          demoTranslationSpanish: "Una utilidad para Mac que hace una cosa bien.",
+          demoTranslationChinese: "一个安静做好一件事的 Mac 工具。",
           testersEyebrow: "For early testers",
           testersTitle: "Install, enable permissions, test in TextEdit first.",
           testersCopy: "macOS may ask for Accessibility and Input Monitoring permissions so JellyTranslate can read selected text, use clipboard fallback, and replace text where possible.",
@@ -310,6 +316,10 @@
           productEyebrow: "Маленькое по задумке",
           productTitle: "Mac-утилита, которая тихо делает одну вещь хорошо.",
           productCopy: "JellyTranslate живет в строке меню, использует нативные SwiftUI и AppKit и держит главный сценарий простым: выделенный текст на входе, перевод на выходе.",
+          demoTarget: "MyMemory · Auto → EN",
+          demoTranslationPrimary: "A Mac utility that quietly does one thing well.",
+          demoTranslationSpanish: "Una utilidad para Mac que hace una cosa bien.",
+          demoTranslationChinese: "一个安静做好一件事的 Mac 工具。",
           testersEyebrow: "Для ранних тестировщиков",
           testersTitle: "Установите, выдайте разрешения и сначала проверьте в TextEdit.",
           testersCopy: "macOS может попросить Accessibility и Input Monitoring, чтобы JellyTranslate мог читать выделенный текст, использовать резервный вариант через буфер обмена и заменять текст там, где это возможно.",
@@ -499,8 +509,9 @@
               entry.target.classList.add("is-visible");
               entry.target.querySelectorAll(".translation-demo").forEach((demo) => {
                 window.setTimeout(() => {
+                  entry.target.classList.add("is-demo-running");
                   demo.classList.add("is-demo-running");
-                }, 520);
+                }, 3000);
               });
               observer.unobserve(entry.target);
             });
@@ -548,6 +559,9 @@
       } else {
         document.querySelectorAll(".reveal-block").forEach((block) => {
           block.classList.add("is-visible");
+        });
+        document.querySelectorAll(".product-section").forEach((section) => {
+          section.classList.add("is-demo-running");
         });
         document.querySelectorAll(".translation-demo").forEach((demo) => {
           demo.classList.add("is-demo-running");

@@ -518,6 +518,7 @@ h1 {
 }
 
 .product-section {
+  --demo-duration: 13s;
   display: grid;
   grid-template-columns: minmax(0, 0.82fr) minmax(360px, 1fr);
   gap: 44px;
@@ -533,8 +534,35 @@ h1 {
   line-height: 1.12;
 }
 
+.product-title-demo {
+  position: relative;
+  display: block;
+  max-width: 560px;
+}
+
+.product-title-text {
+  position: relative;
+  z-index: 1;
+}
+
+.product-title-selection {
+  position: absolute;
+  inset: 0 auto auto 0;
+  z-index: 2;
+  display: inline;
+  max-width: 100%;
+  padding: 0 0.08em 0.04em;
+  color: transparent;
+  background: rgba(102, 217, 198, 0.26);
+  border-radius: 8px;
+  box-shadow: 0 0 0 1px rgba(102, 217, 198, 0.18), 0 12px 28px rgba(102, 217, 198, 0.08);
+  clip-path: inset(0 100% 0 0 round 8px);
+  opacity: 0;
+  pointer-events: none;
+  animation: titleSelectionSweep var(--demo-duration) ease-in-out infinite paused;
+}
+
 .translation-demo {
-  --demo-duration: 10s;
   position: relative;
   display: grid;
   place-items: center;
@@ -542,92 +570,38 @@ h1 {
   perspective: 1000px;
 }
 
-.demo-editor {
+.demo-keyboard {
   position: absolute;
   top: 50%;
   left: 50%;
-  width: min(82%, 520px);
-  padding: 18px 20px 22px;
-  background: rgba(12, 15, 22, 0.72);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 22px;
-  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.28);
-  transform: translate(-50%, -50%);
-  animation: editorStage var(--demo-duration) ease-in-out infinite paused;
+  z-index: 0;
+  display: grid;
+  grid-template-columns: repeat(5, 28px);
+  gap: 8px;
+  padding: 15px;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.11), rgba(102, 217, 198, 0.05));
+  border: 1px solid rgba(255, 255, 255, 0.11);
+  border-radius: 20px;
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.28);
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(-50%, -50%) scale(0.96);
+  animation: keyboardCue var(--demo-duration) ease-in-out infinite paused;
 }
 
-.demo-window-dots {
-  display: flex;
-  gap: 7px;
-  margin-bottom: 20px;
-}
-
-.demo-window-dots span {
-  width: 9px;
-  height: 9px;
-  background: rgba(255, 255, 255, 0.34);
-  border-radius: 50%;
-}
-
-.demo-line {
-  position: relative;
-  min-height: 36px;
-  color: var(--text);
-  font-size: 26px;
-  font-weight: 780;
-  line-height: 1.35;
-}
-
-.demo-typed {
-  position: absolute;
-  inset: 0 auto auto 0;
-  display: inline-block;
-  max-width: 11ch;
-  overflow: hidden;
-  white-space: nowrap;
-  animation: typeSource var(--demo-duration) steps(11, end) infinite paused;
-}
-
-.demo-typed::after {
-  content: "";
-  display: inline-block;
-  width: 2px;
-  height: 0.92em;
-  margin-left: 3px;
-  background: var(--accent);
-  vertical-align: -0.12em;
-  animation: caretPulse 900ms steps(1, end) infinite paused;
-}
-
-.demo-selection {
-  position: absolute;
-  inset: 0 auto auto 0;
-  display: inline-block;
-  padding: 0 4px 2px;
-  color: transparent;
-  background: rgba(102, 217, 198, 0.28);
+.demo-keyboard span {
+  width: 28px;
+  height: 22px;
+  background: rgba(255, 255, 255, 0.13);
+  border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: 7px;
-  box-shadow: 0 0 0 1px rgba(102, 217, 198, 0.2);
-  opacity: 0;
-  animation: selectSource var(--demo-duration) ease-in-out infinite paused;
 }
 
-.demo-final {
-  position: absolute;
-  inset: 0 auto auto 0;
-  display: inline-block;
-  opacity: 0;
-  transform: translateY(8px);
-  animation: finalGerman var(--demo-duration) ease-in-out infinite paused;
-}
-
-.demo-final-ar {
-  direction: rtl;
-  animation-name: finalArabic;
-}
-
-.demo-final-sr {
-  animation-name: finalSerbian;
+.demo-keyboard .is-hotkey {
+  background: rgba(102, 217, 198, 0.86);
+  border-color: rgba(102, 217, 198, 0.96);
+  box-shadow: 0 0 0 0 rgba(102, 217, 198, 0.48);
+  animation: keyboardKeyPulse var(--demo-duration) ease-in-out infinite paused;
 }
 
 .popup-demo {
@@ -652,7 +626,6 @@ h1 {
 
 .demo-popup {
   width: min(100%, 520px);
-  margin-top: 90px;
   opacity: 0;
   pointer-events: none;
   animation: popupTranslationCycle var(--demo-duration) ease-in-out infinite paused;
@@ -696,7 +669,7 @@ h1 {
 }
 
 .translation-block {
-  min-height: 132px;
+  min-height: 142px;
   margin-bottom: 16px;
   background: rgba(255, 255, 255, 0.08);
   border: 1px solid rgba(255, 255, 255, 0.12);
@@ -717,8 +690,8 @@ h1 {
 
 .translation-block p {
   position: relative;
-  min-height: 38px;
-  font-size: 30px;
+  min-height: 88px;
+  font-size: 27px;
   line-height: 1.26;
   font-weight: 820;
 }
@@ -726,17 +699,15 @@ h1 {
 .demo-translation {
   position: absolute;
   inset: 0 auto auto 0;
+  max-width: 100%;
   opacity: 0;
   transform: translateY(12px);
-  white-space: nowrap;
-  animation: popupRussian var(--demo-duration) ease-in-out infinite paused;
+  animation: popupPrimary var(--demo-duration) ease-in-out infinite paused;
 }
 
-.translation-demo.is-demo-running .demo-editor,
-.translation-demo.is-demo-running .demo-typed,
-.translation-demo.is-demo-running .demo-typed::after,
-.translation-demo.is-demo-running .demo-selection,
-.translation-demo.is-demo-running .demo-final,
+.product-section.is-demo-running .product-title-selection,
+.translation-demo.is-demo-running .demo-keyboard,
+.translation-demo.is-demo-running .demo-keyboard .is-hotkey,
 .translation-demo.is-demo-running .demo-popup,
 .translation-demo.is-demo-running .demo-translation {
   animation-play-state: running;
@@ -748,6 +719,10 @@ h1 {
 
 .demo-translation-zh {
   animation-name: popupChinese;
+}
+
+.demo-translation-final {
+  animation-name: popupFinal;
 }
 
 .popup-actions {
@@ -773,107 +748,115 @@ h1 {
   margin-left: auto;
 }
 
-@keyframes editorStage {
+@keyframes titleSelectionSweep {
   0%,
-  20% {
-    top: 50%;
-    transform: translate(-50%, -50%);
-    border-color: rgba(255, 255, 255, 0.1);
+  8% {
+    opacity: 0;
+    clip-path: inset(0 100% 0 0 round 8px);
+  }
+  13%,
+  22% {
+    opacity: 1;
+    clip-path: inset(0 0 0 0 round 8px);
   }
   28% {
-    top: 18px;
-    transform: translate(-50%, 0);
-    border-color: rgba(102, 217, 198, 0.28);
-  }
-  52%,
-  72% {
-    top: 18px;
-    transform: translate(-50%, 2px);
-    border-color: rgba(143, 124, 255, 0.24);
-  }
-  100% {
-    top: 50%;
-    transform: translate(-50%, -50%);
-    border-color: rgba(255, 255, 255, 0.1);
-  }
-}
-
-@keyframes typeSource {
-  0% {
-    width: 0;
-    opacity: 1;
-  }
-  16%,
-  47% {
-    width: 11ch;
-    opacity: 1;
-  }
-  53%,
-  100% {
-    width: 11ch;
     opacity: 0;
+    clip-path: inset(0 0 0 0 round 8px);
+  }
+  66% {
+    opacity: 0;
+    clip-path: inset(0 100% 0 0 round 8px);
+  }
+  72%,
+  82% {
+    opacity: 1;
+    clip-path: inset(0 0 0 0 round 8px);
+  }
+  88%,
+  100% {
+    opacity: 0;
+    clip-path: inset(0 0 0 0 round 8px);
   }
 }
 
-@keyframes caretPulse {
+@keyframes keyboardCue {
   0%,
-  48% {
-    opacity: 1;
-  }
-  49%,
-  100% {
+  21% {
     opacity: 0;
+    transform: translate(-50%, -42%) scale(0.96);
   }
-}
-
-@keyframes selectSource {
-  0%,
-  16% {
-    opacity: 0;
-    transform: translateY(0);
-  }
-  20%,
+  26%,
   32% {
     opacity: 1;
-    transform: translateY(0);
+    transform: translate(-50%, -50%) scale(1);
   }
   38%,
   100% {
     opacity: 0;
-    transform: translateY(-3px);
+    transform: translate(-50%, -56%) scale(0.98);
+  }
+}
+
+@keyframes keyboardKeyPulse {
+  0%,
+  25% {
+    box-shadow: 0 0 0 0 rgba(102, 217, 198, 0);
+    transform: translateY(0);
+  }
+  28%,
+  34% {
+    box-shadow: 0 0 0 8px rgba(102, 217, 198, 0.13), 0 0 28px rgba(102, 217, 198, 0.34);
+    transform: translateY(1px);
+  }
+  38%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(102, 217, 198, 0);
+    transform: translateY(0);
   }
 }
 
 @keyframes popupTranslationCycle {
   0%,
-  31% {
+  34% {
     opacity: 0;
     transform: perspective(900px) translate3d(var(--popup-shift-x), calc(18px + var(--popup-shift-y)), 0) rotateX(var(--popup-rotate-x)) rotateY(var(--popup-rotate-y));
   }
-  36%,
-  58% {
+  40%,
+  64% {
     opacity: 1;
     transform: perspective(900px) translate3d(var(--popup-shift-x), var(--popup-shift-y), 0) rotateX(var(--popup-rotate-x)) rotateY(var(--popup-rotate-y));
   }
-  64%,
+  69% {
+    opacity: 0;
+    transform: perspective(900px) translate3d(var(--popup-shift-x), calc(-10px + var(--popup-shift-y)), 0) rotateX(var(--popup-rotate-x)) rotateY(var(--popup-rotate-y));
+  }
+  76% {
+    opacity: 0;
+    transform: perspective(900px) translate3d(var(--popup-shift-x), calc(16px + var(--popup-shift-y)), 0) rotateX(var(--popup-rotate-x)) rotateY(var(--popup-rotate-y));
+  }
+  82%,
+  94% {
+    opacity: 1;
+    transform: perspective(900px) translate3d(var(--popup-shift-x), var(--popup-shift-y), 0) rotateX(var(--popup-rotate-x)) rotateY(var(--popup-rotate-y));
+  }
   100% {
     opacity: 0;
     transform: perspective(900px) translate3d(var(--popup-shift-x), calc(-10px + var(--popup-shift-y)), 0) rotateX(var(--popup-rotate-x)) rotateY(var(--popup-rotate-y));
   }
 }
 
-@keyframes popupRussian {
+@keyframes popupPrimary {
   0%,
-  34% {
+  39% {
     opacity: 0;
     transform: translateY(12px);
   }
-  38%,
-  43% {
+  44%,
+  49% {
     opacity: 1;
     transform: translateY(0);
   }
-  47%,
+  54%,
   100% {
     opacity: 0;
     transform: translateY(-10px);
@@ -882,16 +865,16 @@ h1 {
 
 @keyframes popupSpanish {
   0%,
-  44% {
+  50% {
     opacity: 0;
     transform: translateY(12px);
   }
-  48%,
-  52% {
+  55%,
+  59% {
     opacity: 1;
     transform: translateY(0);
   }
-  56%,
+  64%,
   100% {
     opacity: 0;
     transform: translateY(-10px);
@@ -900,73 +883,36 @@ h1 {
 
 @keyframes popupChinese {
   0%,
-  53% {
+  60% {
     opacity: 0;
     transform: translateY(12px);
   }
-  57%,
-  60% {
+  65%,
+  68% {
     opacity: 1;
     transform: translateY(0);
   }
-  63%,
+  72%,
   100% {
     opacity: 0;
     transform: translateY(-10px);
   }
 }
 
-@keyframes finalGerman {
+@keyframes popupFinal {
   0%,
-  57% {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-  62%,
-  66% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-  69%,
-  100% {
-    opacity: 0;
-    transform: translateY(-8px);
-  }
-}
-
-@keyframes finalArabic {
-  0%,
-  72% {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-  76%,
   80% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-  83%,
-  100% {
     opacity: 0;
-    transform: translateY(-8px);
+    transform: translateY(12px);
   }
-}
-
-@keyframes finalSerbian {
-  0%,
-  86% {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-  90%,
+  85%,
   94% {
     opacity: 1;
     transform: translateY(0);
   }
-  97%,
   100% {
     opacity: 0;
-    transform: translateY(-8px);
+    transform: translateY(-10px);
   }
 }
 
@@ -1441,9 +1387,8 @@ h1 {
   }
 
   .demo-popup,
-  .demo-typed,
-  .demo-selection,
-  .demo-final,
+  .demo-keyboard,
+  .product-title-selection,
   .demo-translation {
     animation: none !important;
   }
@@ -1453,20 +1398,15 @@ h1 {
     pointer-events: auto;
   }
 
-  .demo-typed {
-    width: auto;
-    opacity: 1;
-  }
-
-  .demo-typed::after,
-  .demo-selection,
-  .demo-final,
+  .demo-keyboard,
+  .product-title-selection,
   .demo-translation-es,
-  .demo-translation-zh {
+  .demo-translation-zh,
+  .demo-translation-final {
     opacity: 0;
   }
 
-  .demo-translation-ru {
+  .demo-translation-primary {
     opacity: 1;
     transform: none;
   }
