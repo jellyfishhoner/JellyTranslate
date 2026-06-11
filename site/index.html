@@ -93,24 +93,44 @@
             selected text in, translation out.
           </p>
         </div>
-        <div class="popup-demo" aria-label="JellyTranslate popup preview">
-          <div class="popup-top">
-            <strong>JellyTranslate</strong>
-            <span>MyMemory · Auto → RU</span>
+        <div class="translation-demo" aria-label="JellyTranslate animated translation preview">
+          <div class="demo-editor">
+            <div class="demo-window-dots" aria-hidden="true">
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+            <div class="demo-line" aria-hidden="true">
+              <span class="demo-typed">Hello world</span>
+              <span class="demo-selection">Hello world</span>
+              <span class="demo-final demo-final-de">Hallo Welt</span>
+              <span class="demo-final demo-final-ar">مرحبا بالعالم</span>
+              <span class="demo-final demo-final-sr">Zdravo, svete</span>
+            </div>
           </div>
-          <div class="text-block">
-            <small>Original</small>
-            <p>Hello world</p>
-          </div>
-          <div class="translation-block">
-            <small>Translation</small>
-            <p>Привет, мир</p>
-          </div>
-          <div class="popup-actions">
-            <button type="button">Copy</button>
-            <button type="button">Replace</button>
-            <span>Speak</span>
-            <span>History</span>
+          <div class="popup-demo demo-popup" aria-label="JellyTranslate popup preview">
+            <div class="popup-top">
+              <strong>JellyTranslate</strong>
+              <span>MyMemory · Auto → RU</span>
+            </div>
+            <div class="text-block">
+              <small>Original</small>
+              <p>Hello world</p>
+            </div>
+            <div class="translation-block">
+              <small>Translation</small>
+              <p>
+                <span class="demo-translation demo-translation-ru">Привет, мир</span>
+                <span class="demo-translation demo-translation-es">Hola, mundo</span>
+                <span class="demo-translation demo-translation-zh">你好，世界</span>
+              </p>
+            </div>
+            <div class="popup-actions">
+              <button type="button">Copy</button>
+              <button type="button">Replace</button>
+              <span>Speak</span>
+              <span>History</span>
+            </div>
           </div>
         </div>
       </section>
