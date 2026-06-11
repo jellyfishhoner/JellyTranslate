@@ -504,7 +504,7 @@ h1 {
 
 .demo-editor {
   position: absolute;
-  top: 18px;
+  top: 50%;
   left: 50%;
   width: min(82%, 520px);
   padding: 18px 20px 22px;
@@ -512,8 +512,8 @@ h1 {
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 22px;
   box-shadow: 0 24px 70px rgba(0, 0, 0, 0.28);
-  transform: translateX(-50%);
-  animation: editorBreathe 16s ease-in-out infinite;
+  transform: translate(-50%, -50%);
+  animation: editorStage 16s ease-in-out infinite paused;
 }
 
 .demo-window-dots {
@@ -545,7 +545,7 @@ h1 {
   max-width: 11ch;
   overflow: hidden;
   white-space: nowrap;
-  animation: typeSource 16s steps(11, end) infinite;
+  animation: typeSource 16s steps(11, end) infinite paused;
 }
 
 .demo-typed::after {
@@ -556,7 +556,7 @@ h1 {
   margin-left: 3px;
   background: var(--accent);
   vertical-align: -0.12em;
-  animation: caretPulse 900ms steps(1, end) infinite;
+  animation: caretPulse 900ms steps(1, end) infinite paused;
 }
 
 .demo-selection {
@@ -569,7 +569,7 @@ h1 {
   border-radius: 7px;
   box-shadow: 0 0 0 1px rgba(102, 217, 198, 0.2);
   opacity: 0;
-  animation: selectSource 16s ease-in-out infinite;
+  animation: selectSource 16s ease-in-out infinite paused;
 }
 
 .demo-final {
@@ -578,7 +578,7 @@ h1 {
   display: inline-block;
   opacity: 0;
   transform: translateY(8px);
-  animation: finalGerman 16s ease-in-out infinite;
+  animation: finalGerman 16s ease-in-out infinite paused;
 }
 
 .demo-final-ar {
@@ -615,7 +615,7 @@ h1 {
   margin-top: 90px;
   opacity: 0;
   pointer-events: none;
-  animation: popupTranslationCycle 16s ease-in-out infinite;
+  animation: popupTranslationCycle 16s ease-in-out infinite paused;
 }
 
 .popup-demo:hover {
@@ -689,7 +689,17 @@ h1 {
   opacity: 0;
   transform: translateY(12px);
   white-space: nowrap;
-  animation: popupRussian 16s ease-in-out infinite;
+  animation: popupRussian 16s ease-in-out infinite paused;
+}
+
+.translation-demo.is-demo-running .demo-editor,
+.translation-demo.is-demo-running .demo-typed,
+.translation-demo.is-demo-running .demo-typed::after,
+.translation-demo.is-demo-running .demo-selection,
+.translation-demo.is-demo-running .demo-final,
+.translation-demo.is-demo-running .demo-popup,
+.translation-demo.is-demo-running .demo-translation {
+  animation-play-state: running;
 }
 
 .demo-translation-es {
@@ -723,19 +733,28 @@ h1 {
   margin-left: auto;
 }
 
-@keyframes editorBreathe {
+@keyframes editorStage {
   0%,
-  100% {
-    transform: translateX(-50%) translateY(0);
+  20% {
+    top: 50%;
+    transform: translate(-50%, -50%);
     border-color: rgba(255, 255, 255, 0.1);
   }
-  30% {
-    transform: translateX(-50%) translateY(-3px);
+  28% {
+    top: 18px;
+    transform: translate(-50%, 0);
     border-color: rgba(102, 217, 198, 0.28);
   }
+  52%,
   72% {
-    transform: translateX(-50%) translateY(2px);
+    top: 18px;
+    transform: translate(-50%, 2px);
     border-color: rgba(143, 124, 255, 0.24);
+  }
+  100% {
+    top: 50%;
+    transform: translate(-50%, -50%);
+    border-color: rgba(255, 255, 255, 0.1);
   }
 }
 
