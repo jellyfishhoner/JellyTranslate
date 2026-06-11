@@ -1249,9 +1249,9 @@ h1 {
 
 .changelog-content {
   display: grid;
-  grid-template-columns: minmax(220px, 280px) minmax(0, 640px);
+  grid-template-columns: minmax(220px, 300px) minmax(0, 680px);
   justify-content: center;
-  gap: 24px;
+  gap: 36px;
   align-items: start;
   max-width: 1080px;
   margin: 0 auto;
@@ -1263,30 +1263,18 @@ h1 {
   line-height: 1.14;
 }
 
-.changelog-card {
-  padding: 22px;
-  background: rgba(255, 255, 255, 0.055);
-  border: 1px solid var(--line);
-  border-radius: 18px;
-}
-
-.changelog-version {
-  display: flex;
-  align-items: center;
-  padding-bottom: 16px;
-  border-bottom: 1px solid var(--line);
-}
-
-.changelog-version span {
-  color: var(--text);
+.changelog-heading p {
+  margin-top: 12px;
+  color: var(--muted);
   font-size: 14px;
-  font-weight: 820;
+  font-weight: 760;
 }
 
 .changelog-list {
   display: grid;
-  gap: 12px;
-  margin: 18px 0 0;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  margin: 0;
   padding: 0;
   color: var(--muted);
   list-style: none;
@@ -1294,15 +1282,26 @@ h1 {
 
 .changelog-list li {
   position: relative;
-  padding-left: 18px;
-  line-height: 1.55;
+  min-height: 92px;
+  padding: 18px 18px 18px 34px;
+  background: rgba(255, 255, 255, 0.045);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  line-height: 1.45;
+  transition: transform 180ms ease, border-color 180ms ease, background 180ms ease;
+}
+
+.changelog-list li:hover {
+  transform: translateY(-2px);
+  background: rgba(102, 217, 198, 0.06);
+  border-color: rgba(102, 217, 198, 0.18);
 }
 
 .changelog-list li::before {
   content: "";
   position: absolute;
-  top: 0.72em;
-  left: 0;
+  top: 24px;
+  left: 18px;
   width: 6px;
   height: 6px;
   background: var(--accent);
@@ -1367,6 +1366,11 @@ h1 {
   }
 
   .changelog-content {
+    grid-template-columns: 1fr;
+    gap: 22px;
+  }
+
+  .changelog-list {
     grid-template-columns: 1fr;
   }
 
