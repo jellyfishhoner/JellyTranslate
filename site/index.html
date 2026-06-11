@@ -500,6 +500,38 @@
           textEnterObserver.observe(node);
         });
 
+        const startProductDemo = (section, demo) => {
+          const title = section.querySelector(".product-title-text");
+          const fullText = translations[currentLanguage].productTitle;
+          const startAnimations = () => {
+            section.classList.remove("is-demo-typing");
+            window.setTimeout(() => {
+              section.classList.add("is-demo-running");
+              demo.classList.add("is-demo-running");
+            }, 180);
+          };
+
+          if (!title || !fullText) {
+            startAnimations();
+            return;
+          }
+
+          title.textContent = "";
+          section.classList.add("is-demo-typing");
+
+          let index = 0;
+          const typingDelay = Math.max(18, Math.min(30, 1450 / fullText.length));
+          const typingTimer = window.setInterval(() => {
+            index += 1;
+            title.textContent = fullText.slice(0, index);
+
+            if (index >= fullText.length) {
+              window.clearInterval(typingTimer);
+              window.setTimeout(startAnimations, 180);
+            }
+          }, typingDelay);
+        };
+
         const revealObserver = "IntersectionObserver" in window
           ? new IntersectionObserver((entries, observer) => {
             entries.forEach((entry) => {
@@ -510,8 +542,7 @@
               entry.target.classList.add("is-visible");
               entry.target.querySelectorAll(".translation-demo").forEach((demo) => {
                 window.setTimeout(() => {
-                  entry.target.classList.add("is-demo-running");
-                  demo.classList.add("is-demo-running");
+                  startProductDemo(entry.target, demo);
                 }, 300);
               });
               observer.unobserve(entry.target);

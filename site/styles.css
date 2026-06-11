@@ -538,12 +538,25 @@ h1 {
   position: relative;
   display: block;
   max-width: 560px;
+  min-height: 2.25em;
 }
 
 .product-title-text {
   position: relative;
   z-index: 1;
   animation: productTitleBase var(--demo-duration) ease-in-out 1 both paused;
+}
+
+.product-section.is-demo-typing .product-title-text::after {
+  content: "";
+  display: inline-block;
+  width: 2px;
+  height: 0.86em;
+  margin-left: 5px;
+  background: var(--accent);
+  border-radius: 999px;
+  vertical-align: -0.08em;
+  animation: typingCaret 780ms steps(1, end) infinite;
 }
 
 .product-title-translation,
@@ -853,6 +866,17 @@ h1 {
   100% {
     opacity: 0;
     clip-path: inset(0 0 0 0 round 8px);
+  }
+}
+
+@keyframes typingCaret {
+  0%,
+  48% {
+    opacity: 1;
+  }
+  49%,
+  100% {
+    opacity: 0;
   }
 }
 
