@@ -74,6 +74,10 @@
           <form class="signup-form" name="jellytranslate-updates" method="POST" action="/__forms.html" data-netlify="true" netlify-honeypot="bot-field">
             <input type="hidden" name="form-name" value="jellytranslate-updates">
             <input type="hidden" name="subject" value="New JellyTranslate email signup">
+            <input type="hidden" name="source" value="site_signup">
+            <input type="hidden" name="language" value="en" data-signup-language>
+            <input type="hidden" name="version" value="0.1.0 alpha" data-signup-version>
+            <input type="hidden" name="page" value="" data-signup-page>
             <p class="hidden-field">
               <label>Do not fill this out: <input name="bot-field"></label>
             </p>
@@ -485,9 +489,16 @@
       document.querySelectorAll(".signup-form").forEach((form) => {
         const status = form.querySelector("[data-signup-status]");
         const submitButton = form.querySelector("button[type='submit']");
+        const languageInput = form.querySelector("[data-signup-language]");
+        const versionInput = form.querySelector("[data-signup-version]");
+        const pageInput = form.querySelector("[data-signup-page]");
 
         form.addEventListener("submit", async (event) => {
           event.preventDefault();
+
+          languageInput.value = currentLanguage;
+          versionInput.value = releaseVersion;
+          pageInput.value = window.location.href;
 
           const formData = new FormData(form);
           submitButton.disabled = true;
