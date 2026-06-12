@@ -575,6 +575,7 @@ h1 {
 .why-section,
 .product-section,
 .tester-section,
+.faq-section,
 .changelog-section {
   padding: 76px clamp(24px, 7vw, 96px);
 }
@@ -1828,6 +1829,96 @@ h1 {
   color: var(--text);
 }
 
+.faq-section {
+  scroll-margin-top: 88px;
+  padding-top: 64px;
+  padding-bottom: 64px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.faq-content {
+  display: grid;
+  grid-template-columns: minmax(220px, 320px) minmax(0, 760px);
+  justify-content: center;
+  gap: 36px;
+  align-items: start;
+  max-width: 1120px;
+  margin: 0 auto;
+}
+
+.faq-heading {
+  position: sticky;
+  top: 104px;
+}
+
+.faq-heading h2 {
+  margin-bottom: 0;
+  font-size: 34px;
+  line-height: 1.14;
+}
+
+.faq-list {
+  display: grid;
+  gap: 10px;
+}
+
+.faq-list details {
+  position: relative;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.045);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  transition: transform 180ms ease, border-color 180ms ease, background 180ms ease;
+}
+
+.faq-list details:hover,
+.faq-list details[open] {
+  background: rgba(102, 217, 198, 0.055);
+  border-color: rgba(102, 217, 198, 0.18);
+}
+
+.faq-list details:hover {
+  transform: translateY(-2px);
+}
+
+.faq-list summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  min-height: 62px;
+  padding: 18px 20px;
+  color: var(--text);
+  font-weight: 820;
+  cursor: pointer;
+  list-style: none;
+}
+
+.faq-list summary::-webkit-details-marker {
+  display: none;
+}
+
+.faq-list summary::after {
+  content: "+";
+  flex: 0 0 auto;
+  color: rgba(102, 217, 198, 0.74);
+  font-size: 22px;
+  font-weight: 760;
+  line-height: 1;
+  transition: transform 180ms ease;
+}
+
+.faq-list details[open] summary::after {
+  transform: rotate(45deg);
+}
+
+.faq-list details p {
+  margin: -2px 20px 20px;
+  color: var(--muted);
+  font-size: 16px;
+  line-height: 1.62;
+}
+
 .changelog-section {
   scroll-margin-top: 88px;
 }
@@ -2025,6 +2116,15 @@ h1 {
     grid-template-columns: 1fr;
   }
 
+  .faq-content {
+    grid-template-columns: 1fr;
+    gap: 22px;
+  }
+
+  .faq-heading {
+    position: static;
+  }
+
   .changelog-content {
     grid-template-columns: 1fr;
     gap: 22px;
@@ -2040,6 +2140,7 @@ h1 {
 
   .section-copy h2,
   .tester-content h2,
+  .faq-heading h2,
   .changelog-heading h2 {
     font-size: 32px;
   }

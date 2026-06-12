@@ -30,6 +30,7 @@
       <nav class="nav-links" aria-label="Primary navigation">
         <a href="#how" data-i18n="navHow">How it works</a>
         <a href="#testers" data-i18n="navTesters">Testers</a>
+        <a href="#faq" data-i18n="navFaq">FAQ</a>
         <a href="https://github.com/jellyfishhoner/JellyTranslate">GitHub</a>
       </nav>
       <div class="language-toggle" aria-label="Language">
@@ -293,6 +294,37 @@
         </div>
       </section>
 
+      <section class="faq-section reveal-block" id="faq" aria-labelledby="faq-title">
+        <div class="faq-content">
+          <div class="faq-heading">
+            <p class="eyebrow" data-i18n="faqEyebrow">FAQ</p>
+            <h2 id="faq-title" data-i18n="faqTitle">Small answers before you install.</h2>
+          </div>
+          <div class="faq-list">
+            <details>
+              <summary data-i18n="faqEmailQuestion">Why do you ask for email before download?</summary>
+              <p data-i18n="faqEmailAnswer">Only to send useful JellyTranslate updates: new builds, fixes, and tester notes. You can ask to remove it anytime by writing to jtranslate@inbox.ru.</p>
+            </details>
+            <details>
+              <summary data-i18n="faqDamagedQuestion">Why can macOS say the app is damaged?</summary>
+              <p data-i18n="faqDamagedAnswer">The current alpha is not signed yet, so macOS can block the downloaded file. The Terminal command in the tester guide only removes that download safety label from JellyTranslate.</p>
+            </details>
+            <details>
+              <summary data-i18n="faqPermissionQuestion">Why does JellyTranslate need Accessibility?</summary>
+              <p data-i18n="faqPermissionAnswer">JellyTranslate needs macOS permission to read selected text in other apps and replace it when possible. It does not need passwords, private files, or browser history.</p>
+            </details>
+            <details>
+              <summary data-i18n="faqFreeQuestion">Is it free?</summary>
+              <p data-i18n="faqFreeAnswer">Yes. The alpha is free while we test the core workflow and collect feedback from early macOS users.</p>
+            </details>
+            <details>
+              <summary data-i18n="faqFeedbackQuestion">Where should I send bugs or ideas?</summary>
+              <p data-i18n="faqFeedbackAnswer">Send a short message in Telegram or open a GitHub issue. The most useful report says which app you tested in and what happened.</p>
+            </details>
+          </div>
+        </div>
+      </section>
+
       <section class="changelog-section reveal-block" id="changelog" aria-labelledby="changelog-title">
         <div class="changelog-content">
           <div class="changelog-heading">
@@ -337,6 +369,7 @@
         en: {
           navHow: "How it works",
           navTesters: "Testers",
+          navFaq: "FAQ",
           heroEyebrow: "A qTranslate-style translator built natively for macOS",
           heroTitle: "Translate and replace text anywhere on your Mac.",
           heroCopy: "Select text, press a shortcut, then translate, copy, or replace without breaking your flow.",
@@ -406,6 +439,18 @@
           readinessStatusIdle: "Three small checks, then you’re ready.",
           readinessStatusDone: "You’re ready. Open TextEdit and try a short phrase.",
           testerGuide: "Tester guide",
+          faqEyebrow: "FAQ",
+          faqTitle: "Small answers before you install.",
+          faqEmailQuestion: "Why do you ask for email before download?",
+          faqEmailAnswer: "Only to send useful JellyTranslate updates: new builds, fixes, and tester notes. You can ask to remove it anytime by writing to jtranslate@inbox.ru.",
+          faqDamagedQuestion: "Why can macOS say the app is damaged?",
+          faqDamagedAnswer: "The current alpha is not signed yet, so macOS can block the downloaded file. The Terminal command in the tester guide only removes that download safety label from JellyTranslate.",
+          faqPermissionQuestion: "Why does JellyTranslate need Accessibility?",
+          faqPermissionAnswer: "JellyTranslate needs macOS permission to read selected text in other apps and replace it when possible. It does not need passwords, private files, or browser history.",
+          faqFreeQuestion: "Is it free?",
+          faqFreeAnswer: "Yes. The alpha is free while we test the core workflow and collect feedback from early macOS users.",
+          faqFeedbackQuestion: "Where should I send bugs or ideas?",
+          faqFeedbackAnswer: "Send a short message in Telegram or open a GitHub issue. The most useful report says which app you tested in and what happened.",
           changelogTitle: "What’s new in JellyTranslate",
           changelogOne: "Move the translation popup wherever it feels comfortable.",
           changelogTwo: "First launch explains Mac permissions in plain language.",
@@ -422,6 +467,7 @@
         ru: {
           navHow: "Как работает",
           navTesters: "Тестировщикам",
+          navFaq: "FAQ",
           heroEyebrow: "Переводчик в стиле qTranslate, нативно для macOS",
           heroTitle: "Переводите и заменяйте текст на Mac.",
           heroCopy: "Выделите текст, нажмите хоткей, затем переведите, скопируйте или сразу замените без переключения окон.",
@@ -491,6 +537,18 @@
           readinessStatusIdle: "Три маленьких шага, и можно тестировать.",
           readinessStatusDone: "Готово. Откройте TextEdit и попробуйте короткую фразу.",
           testerGuide: "Инструкция",
+          faqEyebrow: "FAQ",
+          faqTitle: "Короткие ответы перед установкой.",
+          faqEmailQuestion: "Зачем нужен email перед скачиванием?",
+          faqEmailAnswer: "Только чтобы присылать полезные обновления JellyTranslate: новые сборки, исправления и заметки для тестировщиков. Удалить email можно в любой момент, написав на jtranslate@inbox.ru.",
+          faqDamagedQuestion: "Почему macOS может писать, что приложение повреждено?",
+          faqDamagedAnswer: "Текущая alpha пока не подписана, поэтому macOS может блокировать скачанный файл. Команда из инструкции только снимает защитную метку скачивания с JellyTranslate.",
+          faqPermissionQuestion: "Зачем JellyTranslate нужен Accessibility?",
+          faqPermissionAnswer: "Это разрешение macOS нужно, чтобы читать выделенный текст в других приложениях и заменять его там, где возможно. Пароли, личные файлы и историю браузера приложение не просит.",
+          faqFreeQuestion: "Это бесплатно?",
+          faqFreeAnswer: "Да. Alpha бесплатная, пока мы проверяем основной сценарий и собираем фидбек от первых пользователей macOS.",
+          faqFeedbackQuestion: "Куда отправлять баги и идеи?",
+          faqFeedbackAnswer: "Можно написать коротко в Telegram или создать issue на GitHub. Самый полезный отчёт: в каком приложении тестировали и что произошло.",
           changelogTitle: "Что нового в JellyTranslate",
           changelogOne: "Окно перевода можно поставить туда, где удобно.",
           changelogTwo: "Первый запуск объясняет разрешения простым языком.",
@@ -867,6 +925,9 @@
           ".setup-steps code",
           ".preview-title",
           ".tester-actions a",
+          ".faq-heading h2",
+          ".faq-list summary",
+          ".faq-list p",
           ".changelog-heading p",
           ".changelog-list li",
           ".site-footer span",
@@ -978,6 +1039,7 @@
           ".update-note",
           ".permission-preview",
           ".reaction-form",
+          ".faq-list details",
           ".changelog-content",
           ".changelog-list li"
         ].join(", ");
