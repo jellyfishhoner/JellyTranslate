@@ -364,7 +364,12 @@ h1 {
 }
 
 .signup-section {
-  padding: 0 clamp(24px, 7vw, 96px) 58px;
+  padding: 58px clamp(24px, 7vw, 96px);
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  background:
+    radial-gradient(circle at 44% 0%, rgba(102, 217, 198, 0.1), transparent 32%),
+    rgba(9, 12, 17, 0.22);
 }
 
 .signup-card {
@@ -373,7 +378,7 @@ h1 {
   gap: 28px;
   align-items: center;
   max-width: 1080px;
-  margin: -18px auto 0;
+  margin: 0 auto;
   padding: 24px;
   background:
     linear-gradient(135deg, rgba(102, 217, 198, 0.09), transparent 46%),
@@ -501,6 +506,10 @@ h1 {
   background:
     radial-gradient(circle at 50% 0%, rgba(102, 217, 198, 0.12), transparent 34%),
     rgba(255, 255, 255, 0.012);
+}
+
+.signup-section + .why-section {
+  border-top: 0;
 }
 
 .why-copy {
