@@ -732,7 +732,22 @@
           revealObserver.observe(block);
         });
 
-        document.querySelectorAll(".flow-step, .popup-demo, .setup-widget").forEach((panel) => {
+        const glowPanelSelector = [
+          ".signup-card",
+          ".why-copy",
+          ".flow-step",
+          ".popup-demo",
+          ".install-note",
+          ".setup-widget",
+          ".setup-steps li",
+          ".update-note",
+          ".permission-preview",
+          ".changelog-content",
+          ".changelog-list li"
+        ].join(", ");
+
+        document.querySelectorAll(glowPanelSelector).forEach((panel) => {
+          panel.classList.add("cursor-glow-panel");
           panel.addEventListener("pointermove", (event) => {
             const rect = panel.getBoundingClientRect();
             const x = ((event.clientX - rect.left) / rect.width) * 100;
