@@ -74,7 +74,7 @@
           <form class="signup-form" name="jellytranslate-updates" method="POST" action="/__forms.html" data-netlify="true" netlify-honeypot="bot-field">
             <input type="hidden" name="form-name" value="jellytranslate-updates">
             <input type="hidden" name="subject" value="New JellyTranslate email signup">
-            <input type="hidden" name="source" value="site_signup">
+            <input type="hidden" name="source" value="site_signup" data-signup-source>
             <input type="hidden" name="language" value="en" data-signup-language>
             <input type="hidden" name="version" value="0.1.0 alpha" data-signup-version>
             <input type="hidden" name="page" value="" data-signup-page>
@@ -299,6 +299,8 @@
           privacyNoteLabel: "Privacy note",
           privacyNoteCopy: "Your email is used only for JellyTranslate updates. You can ask to remove it anytime by writing to jtranslate@inbox.ru.",
           signupSuccess: "Done. I’ll send updates here.",
+          signupDownloadPrompt: "Enter your email to start the download. I’ll also send useful build updates.",
+          signupDownloadSuccess: "Done. Your download is starting now.",
           signupError: "Something didn’t send. Please try again.",
           whyEyebrow: "Why JellyTranslate?",
           whyTitle: "Because translating text on macOS is still slower than it should be.",
@@ -362,6 +364,8 @@
           privacyNoteLabel: "Про приватность",
           privacyNoteCopy: "Email используется только для новостей JellyTranslate. Можно попросить удалить его в любой момент: jtranslate@inbox.ru.",
           signupSuccess: "Готово. Буду присылать обновления сюда.",
+          signupDownloadPrompt: "Оставьте email, и скачивание начнется автоматически. Я также буду присылать полезные обновления сборок.",
+          signupDownloadSuccess: "Готово. Скачивание начинается.",
           signupError: "Не получилось отправить. Попробуйте еще раз.",
           whyEyebrow: "Почему JellyTranslate?",
           whyTitle: "Потому что перевод текста на macOS все еще медленнее, чем должен быть.",
@@ -443,6 +447,53 @@
       applyLanguage(localStorage.getItem("jellytranslate-site-language") || "en");
 
       const firstTranslationGuide = document.querySelector("#first-translation-guide");
+      const signupSection = document.querySelector(".signup-section");
+      const signupCard = document.querySelector(".signup-card");
+      const signupForm = document.querySelector(".signup-form");
+      const signupEmailInput = document.querySelector("#signup-email");
+      let pendingDownloadUrl = "";
+
+      const restartFocusAnimation = (element) => {
+        if (!element) {
+          return;
+        }
+
+        element.classList.remove("is-download-focus");
+        void element.offsetWidth;
+        element.classList.add("is-download-focus");
+      };
+
+      const showFirstTranslationGuide = () => {
+        if (!firstTranslationGuide) {
+          return;
+        }
+
+        firstTranslationGuide.open = true;
+        firstTranslationGuide.scrollIntoView({ behavior: "smooth", block: "center" });
+        restartFocusAnimation(firstTranslationGuide);
+      };
+
+      const focusSignupForDownload = () => {
+        signupSection?.scrollIntoView({ behavior: "smooth", block: "center" });
+        restartFocusAnimation(signupCard);
+        window.setTimeout(() => {
+          signupEmailInput?.focus({ preventScroll: true });
+        }, 520);
+      };
+
+      const startDownload = (url) => {
+        if (!url) {
+          return;
+        }
+
+        const downloadLink = document.createElement("a");
+        downloadLink.href = url;
+        downloadLink.download = "";
+        document.body.appendChild(downloadLink);
+        downloadLink.click();
+        downloadLink.remove();
+      };
+
       const copyToClipboard = async (text) => {
         if (navigator.clipboard && window.isSecureContext) {
           try {
@@ -492,6 +543,7 @@
         const languageInput = form.querySelector("[data-signup-language]");
         const versionInput = form.querySelector("[data-signup-version]");
         const pageInput = form.querySelector("[data-signup-page]");
+        const sourceInput = form.querySelector("[data-signup-source]");
 
         form.addEventListener("submit", async (event) => {
           event.preventDefault();
@@ -499,8 +551,13 @@
           languageInput.value = currentLanguage;
           versionInput.value = releaseVersion;
           pageInput.value = window.location.href;
+          if (sourceInput) {
+            sourceInput.value = pendingDownloadUrl ? "download_gate" : "site_signup";
+          }
 
           const formData = new FormData(form);
+          const downloadUrl = pendingDownloadUrl;
+          const shouldStartDownload = Boolean(downloadUrl);
           submitButton.disabled = true;
           form.classList.remove("is-complete");
           status.textContent = "";
@@ -518,7 +575,15 @@
 
             form.reset();
             form.classList.add("is-complete");
-            status.textContent = translations[currentLanguage].signupSuccess;
+            status.textContent = shouldStartDownload
+              ? translations[currentLanguage].signupDownloadSuccess
+              : translations[currentLanguage].signupSuccess;
+
+            if (shouldStartDownload) {
+              pendingDownloadUrl = "";
+              window.setTimeout(() => startDownload(downloadUrl), 120);
+              window.setTimeout(showFirstTranslationGuide, 360);
+            }
           } catch {
             form.classList.remove("is-complete");
             status.textContent = translations[currentLanguage].signupError;
@@ -529,18 +594,15 @@
       });
 
       document.querySelectorAll("[data-download-link]").forEach((link) => {
-        link.addEventListener("click", () => {
-          window.setTimeout(() => {
-            if (!firstTranslationGuide) {
-              return;
-            }
-
-            firstTranslationGuide.open = true;
-            firstTranslationGuide.scrollIntoView({ behavior: "smooth", block: "center" });
-            firstTranslationGuide.classList.remove("is-download-focus");
-            void firstTranslationGuide.offsetWidth;
-            firstTranslationGuide.classList.add("is-download-focus");
-          }, 80);
+        link.addEventListener("click", (event) => {
+          event.preventDefault();
+          pendingDownloadUrl = link.href;
+          signupForm?.classList.remove("is-complete");
+          const status = signupForm?.querySelector("[data-signup-status]");
+          if (status) {
+            status.textContent = translations[currentLanguage].signupDownloadPrompt;
+          }
+          focusSignupForDownload();
         });
       });
 

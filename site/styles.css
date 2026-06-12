@@ -388,6 +388,10 @@ h1 {
   box-shadow: 0 22px 60px rgba(0, 0, 0, 0.24);
 }
 
+.signup-card.is-download-focus {
+  animation: downloadGuideFocus 1200ms ease both;
+}
+
 .signup-copy h2 {
   margin-bottom: 10px;
   font-size: 30px;
