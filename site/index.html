@@ -71,7 +71,7 @@
             <h2 id="signup-title" data-i18n="signupTitle">Get build updates by email.</h2>
             <p data-i18n="signupCopy">Leave your email and I’ll send only useful JellyTranslate updates: new builds, fixes, and tester notes.</p>
           </div>
-          <form class="signup-form" name="jellytranslate-updates" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+          <form class="signup-form" name="jellytranslate-updates" method="POST" action="/__forms.html" data-netlify="true" netlify-honeypot="bot-field">
             <input type="hidden" name="form-name" value="jellytranslate-updates">
             <input type="hidden" name="subject" value="New JellyTranslate email signup">
             <p class="hidden-field">
@@ -483,7 +483,7 @@
           status.textContent = "";
 
           try {
-            const response = await fetch("/", {
+            const response = await fetch("/__forms.html", {
               method: "POST",
               headers: { "Content-Type": "application/x-www-form-urlencoded" },
               body: new URLSearchParams(formData).toString()
