@@ -144,6 +144,17 @@
           </p>
         </div>
         <div class="translation-demo" aria-label="JellyTranslate animated translation preview">
+          <div class="demo-controls" aria-label="Demo controls">
+            <div class="demo-segment" role="group" aria-label="Demo mode">
+              <button type="button" class="is-active" data-demo-mode="translate" data-i18n="demoModeTranslate">Translate</button>
+              <button type="button" data-demo-mode="replace" data-i18n="demoModeReplace">Replace</button>
+            </div>
+            <div class="demo-language-picks" role="group" aria-label="Translation language">
+              <button type="button" class="is-active" data-demo-language="primary">RU</button>
+              <button type="button" data-demo-language="es">ES</button>
+              <button type="button" data-demo-language="zh">ZH</button>
+            </div>
+          </div>
           <div class="demo-keyboard keyboard-first" aria-hidden="true">
             <span class="key-highlight key-one"></span>
             <span class="key-highlight key-two"></span>
@@ -166,10 +177,10 @@
             <div class="translation-block">
               <small>Translation</small>
               <p>
-                <span class="demo-translation demo-translation-primary" data-i18n="demoTranslationPrimary">Mac-утилита, которая тихо делает одну вещь хорошо.</span>
-                <span class="demo-translation demo-translation-es" data-i18n="demoTranslationSpanish">Una utilidad para Mac que hace una cosa bien.</span>
-                <span class="demo-translation demo-translation-zh" data-i18n="demoTranslationChinese">一个安静做好一件事的 Mac 工具。</span>
-                <span class="demo-translation demo-translation-final" data-i18n="demoTranslationPrimary">Mac-утилита, которая тихо делает одну вещь хорошо.</span>
+                <span class="demo-translation demo-translation-primary is-selected" data-demo-translation="primary" data-i18n="demoTranslationPrimary">Mac-утилита, которая тихо делает одну вещь хорошо.</span>
+                <span class="demo-translation demo-translation-es" data-demo-translation="es" data-i18n="demoTranslationSpanish">Una utilidad para Mac que hace una cosa bien.</span>
+                <span class="demo-translation demo-translation-zh" data-demo-translation="zh" data-i18n="demoTranslationChinese">一个安静做好一件事的 Mac 工具。</span>
+                <span class="demo-translation demo-translation-final" data-demo-translation="final" data-i18n="demoTranslationPrimary">Mac-утилита, которая тихо делает одну вещь хорошо.</span>
               </p>
             </div>
             <div class="popup-actions">
@@ -262,6 +273,18 @@
               </a>
             </div>
           </div>
+          <div class="readiness-card">
+            <div>
+              <strong data-i18n="readinessTitle">Ready to test?</strong>
+              <p data-i18n="readinessCopy">Check these after download. Everything stays only in this browser.</p>
+            </div>
+            <div class="readiness-checklist" data-readiness-checklist>
+              <label><input type="checkbox"> <span data-i18n="readinessOne">Moved to Applications</span></label>
+              <label><input type="checkbox"> <span data-i18n="readinessTwo">Accessibility enabled</span></label>
+              <label><input type="checkbox"> <span data-i18n="readinessThree">Tested in TextEdit</span></label>
+            </div>
+            <p class="readiness-status" data-readiness-status data-i18n="readinessStatusIdle">Three small checks, then you’re ready.</p>
+          </div>
           <div class="tester-actions">
             <a class="secondary-action" href="https://github.com/jellyfishhoner/JellyTranslate/blob/main/README_FOR_TESTERS.md" data-i18n="testerGuide">
               Tester guide
@@ -282,6 +305,25 @@
             <li data-i18n="changelogThree">Check for updates directly from the menu bar.</li>
             <li data-i18n="changelogFour">MyMemory works now. More translation services are queued up.</li>
           </ul>
+          <form class="reaction-form" name="jellytranslate-reactions" method="POST" action="/__forms.html" data-netlify="true">
+            <input type="hidden" name="form-name" value="jellytranslate-reactions">
+            <input type="hidden" name="subject" value="New JellyTranslate site reaction">
+            <input type="hidden" name="source" value="site_reaction">
+            <input type="hidden" name="language" value="en" data-reaction-language>
+            <input type="hidden" name="version" value="0.1.0 alpha" data-reaction-version>
+            <input type="hidden" name="page" value="" data-reaction-page>
+            <input type="hidden" name="reaction" value="" data-reaction-value>
+            <div class="reaction-copy">
+              <strong data-i18n="reactionTitle">Quick signal</strong>
+              <span data-i18n="reactionCopy">What should I prioritize next?</span>
+            </div>
+            <div class="reaction-actions">
+              <button type="submit" value="looks_useful" data-i18n="reactionUseful">Looks useful</button>
+              <button type="submit" value="would_test" data-i18n="reactionTest">I’d test it</button>
+              <button type="submit" value="need_deepl" data-i18n="reactionDeepL">Need DeepL</button>
+            </div>
+            <p class="reaction-status" role="status" aria-live="polite" data-reaction-status></p>
+          </form>
         </div>
       </section>
     </main>
@@ -332,6 +374,8 @@
           demoTranslationPrimary: "Mac-утилита, которая тихо делает одну вещь хорошо.",
           demoTranslationSpanish: "Una utilidad para Mac que hace una cosa bien.",
           demoTranslationChinese: "一个安静做好一件事的 Mac 工具。",
+          demoModeTranslate: "Translate",
+          demoModeReplace: "Replace",
           testersEyebrow: "For early testers",
           testersTitle: "Install, enable permissions, test in TextEdit first.",
           testersCopy: "macOS may ask for Accessibility and Input Monitoring permissions so JellyTranslate can read selected text, use clipboard fallback, and replace text where possible.",
@@ -354,12 +398,26 @@
           feedbackCopy: "Send a quick note in Telegram or open a GitHub issue. Short feedback is perfect.",
           feedbackTelegram: "Telegram",
           feedbackIssues: "GitHub Issues",
+          readinessTitle: "Ready to test?",
+          readinessCopy: "Check these after download. Everything stays only in this browser.",
+          readinessOne: "Moved to Applications",
+          readinessTwo: "Accessibility enabled",
+          readinessThree: "Tested in TextEdit",
+          readinessStatusIdle: "Three small checks, then you’re ready.",
+          readinessStatusDone: "You’re ready. Open TextEdit and try a short phrase.",
           testerGuide: "Tester guide",
           changelogTitle: "What’s new in JellyTranslate",
           changelogOne: "Move the translation popup wherever it feels comfortable.",
           changelogTwo: "First launch explains Mac permissions in plain language.",
           changelogThree: "Check for updates directly from the menu bar.",
-          changelogFour: "MyMemory works now. More translation services are queued up."
+          changelogFour: "MyMemory works now. More translation services are queued up.",
+          reactionTitle: "Quick signal",
+          reactionCopy: "What should I prioritize next?",
+          reactionUseful: "Looks useful",
+          reactionTest: "I’d test it",
+          reactionDeepL: "Need DeepL",
+          reactionThanks: "Thanks. That signal helps.",
+          reactionError: "Didn’t send. Try again."
         },
         ru: {
           navHow: "Как работает",
@@ -401,6 +459,8 @@
           demoTranslationPrimary: "A Mac utility that quietly does one thing well.",
           demoTranslationSpanish: "Una utilidad para Mac que hace una cosa bien.",
           demoTranslationChinese: "一个安静做好一件事的 Mac 工具。",
+          demoModeTranslate: "Перевести",
+          demoModeReplace: "Заменить",
           testersEyebrow: "Для ранних тестировщиков",
           testersTitle: "Установите, выдайте разрешения и сначала проверьте в TextEdit.",
           testersCopy: "macOS может попросить Accessibility и Input Monitoring, чтобы JellyTranslate мог читать выделенный текст, использовать резервный вариант через буфер обмена и заменять текст там, где это возможно.",
@@ -423,12 +483,26 @@
           feedbackCopy: "Напишите коротко в Telegram или создайте issue на GitHub. Даже пару слов уже полезно.",
           feedbackTelegram: "Telegram",
           feedbackIssues: "GitHub Issues",
+          readinessTitle: "Готовы проверить?",
+          readinessCopy: "Отметьте после скачивания. Галочки хранятся только в этом браузере.",
+          readinessOne: "Перенесено в “Программы”",
+          readinessTwo: "Accessibility включен",
+          readinessThree: "Проверено в TextEdit",
+          readinessStatusIdle: "Три маленьких шага, и можно тестировать.",
+          readinessStatusDone: "Готово. Откройте TextEdit и попробуйте короткую фразу.",
           testerGuide: "Инструкция",
           changelogTitle: "Что нового в JellyTranslate",
           changelogOne: "Окно перевода можно поставить туда, где удобно.",
           changelogTwo: "Первый запуск объясняет разрешения простым языком.",
           changelogThree: "Обновления можно проверить прямо из меню.",
-          changelogFour: "MyMemory уже работает. Остальные сервисы на очереди."
+          changelogFour: "MyMemory уже работает. Остальные сервисы на очереди.",
+          reactionTitle: "Быстрый сигнал",
+          reactionCopy: "Что стоит сделать следующим?",
+          reactionUseful: "Выглядит полезно",
+          reactionTest: "Я бы потестил",
+          reactionDeepL: "Нужен DeepL",
+          reactionThanks: "Спасибо. Этот сигнал поможет.",
+          reactionError: "Не отправилось. Попробуйте еще раз."
         }
       };
 
@@ -463,7 +537,11 @@
       };
 
       document.querySelectorAll("[data-lang-option]").forEach((button) => {
-        button.addEventListener("click", () => applyLanguage(button.dataset.langOption));
+        button.addEventListener("click", () => {
+          applyLanguage(button.dataset.langOption);
+          updateDemoPreview();
+          updateReadinessStatus();
+        });
       });
 
       applyLanguage(localStorage.getItem("jellytranslate-site-language") || "en");
@@ -628,6 +706,137 @@
         });
       });
 
+      const demoTranslationKeys = {
+        primary: "demoTranslationPrimary",
+        es: "demoTranslationSpanish",
+        zh: "demoTranslationChinese"
+      };
+      let selectedDemoMode = "translate";
+      let selectedDemoLanguage = "primary";
+      let demoInteracted = false;
+
+      const updateDemoPreview = (manual = false) => {
+        if (manual) {
+          demoInteracted = true;
+        }
+
+        const translationKey = demoTranslationKeys[selectedDemoLanguage] || demoTranslationKeys.primary;
+        const translatedTitle = translations[currentLanguage][translationKey];
+
+        document.querySelectorAll(".translation-demo").forEach((demo) => {
+          demo.classList.toggle("is-manual-mode", demoInteracted);
+          demo.querySelectorAll("[data-demo-language]").forEach((button) => {
+            const active = button.dataset.demoLanguage === selectedDemoLanguage;
+            button.classList.toggle("is-active", active);
+            button.setAttribute("aria-pressed", active ? "true" : "false");
+          });
+          demo.querySelectorAll("[data-demo-translation]").forEach((translation) => {
+            translation.classList.toggle("is-selected", translation.dataset.demoTranslation === selectedDemoLanguage);
+          });
+        });
+
+        document.querySelectorAll("[data-demo-mode]").forEach((button) => {
+          const active = button.dataset.demoMode === selectedDemoMode;
+          button.classList.toggle("is-active", active);
+          button.setAttribute("aria-pressed", active ? "true" : "false");
+        });
+
+        document.querySelectorAll(".product-section").forEach((section) => {
+          if (manual && section.demoTypingTimer) {
+            window.clearInterval(section.demoTypingTimer);
+            section.demoTypingTimer = null;
+            section.classList.remove("is-demo-typing");
+          }
+
+          section.classList.toggle("is-replace-preview", selectedDemoMode === "replace");
+          const title = section.querySelector(".product-title-text");
+          if (title) {
+            title.textContent = selectedDemoMode === "replace"
+              ? translatedTitle
+              : translations[currentLanguage].productTitle;
+          }
+        });
+      };
+
+      document.querySelectorAll("[data-demo-mode]").forEach((button) => {
+        button.addEventListener("click", () => {
+          selectedDemoMode = button.dataset.demoMode || "translate";
+          updateDemoPreview(true);
+        });
+      });
+
+      document.querySelectorAll("[data-demo-language]").forEach((button) => {
+        button.addEventListener("click", () => {
+          selectedDemoLanguage = button.dataset.demoLanguage || "primary";
+          updateDemoPreview(true);
+        });
+      });
+
+      const updateReadinessStatus = () => {
+        document.querySelectorAll("[data-readiness-checklist]").forEach((checklist) => {
+          const checks = [...checklist.querySelectorAll("input[type='checkbox']")];
+          const status = checklist.closest(".readiness-card")?.querySelector("[data-readiness-status]");
+          const ready = checks.length > 0 && checks.every((check) => check.checked);
+          if (status) {
+            status.textContent = ready
+              ? translations[currentLanguage].readinessStatusDone
+              : translations[currentLanguage].readinessStatusIdle;
+          }
+        });
+      };
+
+      document.querySelectorAll("[data-readiness-checklist] input[type='checkbox']").forEach((checkbox) => {
+        checkbox.addEventListener("change", updateReadinessStatus);
+      });
+      updateReadinessStatus();
+
+      document.querySelectorAll(".reaction-form").forEach((form) => {
+        const status = form.querySelector("[data-reaction-status]");
+        const reactionInput = form.querySelector("[data-reaction-value]");
+        const languageInput = form.querySelector("[data-reaction-language]");
+        const versionInput = form.querySelector("[data-reaction-version]");
+        const pageInput = form.querySelector("[data-reaction-page]");
+
+        form.addEventListener("submit", async (event) => {
+          event.preventDefault();
+          const submitter = event.submitter;
+          if (!submitter?.value) {
+            return;
+          }
+
+          reactionInput.value = submitter.value;
+          languageInput.value = currentLanguage;
+          versionInput.value = releaseVersion;
+          pageInput.value = window.location.href;
+          status.textContent = "";
+          form.querySelectorAll("button").forEach((button) => {
+            button.disabled = true;
+            button.classList.toggle("is-selected", button === submitter);
+          });
+
+          try {
+            const response = await fetch("/__forms.html", {
+              method: "POST",
+              headers: { "Content-Type": "application/x-www-form-urlencoded" },
+              body: new URLSearchParams(new FormData(form)).toString()
+            });
+
+            if (!response.ok) {
+              throw new Error("Reaction failed");
+            }
+
+            status.textContent = translations[currentLanguage].reactionThanks;
+          } catch {
+            status.textContent = translations[currentLanguage].reactionError;
+            form.querySelectorAll("button").forEach((button) => {
+              button.disabled = false;
+            });
+          }
+        });
+      });
+
+      updateDemoPreview();
+
       const canUsePointerGlow = !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
       document.documentElement.classList.add("has-reveal");
       if (canUsePointerGlow) {
@@ -722,9 +931,11 @@
 
             if (index >= fullText.length) {
               window.clearInterval(typingTimer);
+              section.demoTypingTimer = null;
               window.setTimeout(startAnimations, 180);
             }
           }, typingDelay);
+          section.demoTypingTimer = typingTimer;
         };
 
         const revealObserver = "IntersectionObserver" in window
@@ -762,9 +973,11 @@
           ".install-note",
           ".setup-widget",
           ".feedback-card",
+          ".readiness-card",
           ".setup-steps li",
           ".update-note",
           ".permission-preview",
+          ".reaction-form",
           ".changelog-content",
           ".changelog-list li"
         ].join(", ");

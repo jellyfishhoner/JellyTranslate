@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <title>JellyTranslate Forms</title>
-    <meta name="netlify-form-registry" content="jellytranslate-updates">
+    <meta name="netlify-form-registry" content="jellytranslate-updates jellytranslate-reactions">
   </head>
   <body>
     <form name="jellytranslate-updates" method="POST" data-netlify="true" netlify-honeypot="bot-field" hidden>
@@ -15,6 +15,15 @@
       <input type="hidden" name="page" value="">
       <input type="email" name="email">
       <input name="bot-field">
+    </form>
+    <form name="jellytranslate-reactions" method="POST" data-netlify="true" hidden>
+      <input type="hidden" name="form-name" value="jellytranslate-reactions">
+      <input type="hidden" name="subject" value="New JellyTranslate site reaction">
+      <input type="hidden" name="source" value="site_reaction">
+      <input type="hidden" name="language" value="en">
+      <input type="hidden" name="version" value="0.1.0 alpha">
+      <input type="hidden" name="page" value="">
+      <input type="hidden" name="reaction" value="">
     </form>
   </body>
 </html>
