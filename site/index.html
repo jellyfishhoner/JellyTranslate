@@ -82,7 +82,15 @@
               <input id="signup-email" type="email" name="email" autocomplete="email" data-i18n-placeholder="signupPlaceholder" placeholder="you@example.com" required>
               <button type="submit" data-i18n="signupButton">Join updates</button>
             </div>
-            <p class="signup-note" data-i18n="signupNote">No spam. Just product updates while JellyTranslate grows.</p>
+            <p class="signup-note">
+              <span data-i18n="signupNote">No spam. Just product updates while JellyTranslate grows.</span>
+              <span class="privacy-hint">
+                <button type="button" class="privacy-hint-trigger" aria-describedby="signup-privacy-tooltip" data-i18n="privacyNoteLabel">Privacy note</button>
+                <span class="privacy-tooltip" id="signup-privacy-tooltip" role="tooltip" data-i18n="privacyNoteCopy">
+                  Your email is used only for JellyTranslate updates. You can ask to remove it anytime by writing to jtranslate@inbox.ru.
+                </span>
+              </span>
+            </p>
             <p class="signup-status" role="status" aria-live="polite" data-signup-status></p>
           </form>
         </div>
@@ -284,6 +292,8 @@
           signupPlaceholder: "you@example.com",
           signupButton: "Join updates",
           signupNote: "No spam. Just product updates while JellyTranslate grows.",
+          privacyNoteLabel: "Privacy note",
+          privacyNoteCopy: "Your email is used only for JellyTranslate updates. You can ask to remove it anytime by writing to jtranslate@inbox.ru.",
           signupSuccess: "Done. I’ll send updates here.",
           signupError: "Something didn’t send. Please try again.",
           whyEyebrow: "Why JellyTranslate?",
@@ -345,6 +355,8 @@
           signupPlaceholder: "you@example.com",
           signupButton: "Получать новости",
           signupNote: "Без спама. Только обновления продукта, пока JellyTranslate растет.",
+          privacyNoteLabel: "Про приватность",
+          privacyNoteCopy: "Email используется только для новостей JellyTranslate. Можно попросить удалить его в любой момент: jtranslate@inbox.ru.",
           signupSuccess: "Готово. Буду присылать обновления сюда.",
           signupError: "Не получилось отправить. Попробуйте еще раз.",
           whyEyebrow: "Почему JellyTranslate?",
@@ -536,6 +548,7 @@
           ".signup-copy h2",
           ".signup-form label",
           ".signup-form button",
+          ".privacy-hint-trigger",
           ".signup-note",
           ".step-number",
           ".popup-top strong",
