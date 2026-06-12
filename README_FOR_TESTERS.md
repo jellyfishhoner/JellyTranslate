@@ -5,8 +5,8 @@ Thank you for testing JellyTranslate.
 JellyTranslate is a small macOS menu bar utility:
 
 1. Select text anywhere on your Mac.
-2. Press the shortcut.
-3. Get an instant translation.
+2. Press a shortcut.
+3. Translate, copy, or replace the selected text.
 
 This is an early test version, so a few macOS permission steps are expected.
 
@@ -14,9 +14,19 @@ The current public test version is not signed yet. This means macOS may block th
 
 If you received a future signed and notarized release, you should not need Terminal commands. Download, unzip, drag the app into Applications, and open it.
 
+## 1 Minute To First Translation
+
+Use the website first:
+
+1. Open `https://jellytranslate.netlify.app`.
+2. Click `Download alpha for macOS`.
+3. Enter your email. It is used only for JellyTranslate build updates and tester notes.
+4. The download starts automatically.
+5. The website scrolls to the short install guide. Keep that page open while installing.
+
 ## Quick Start
 
-1. Download the latest `JellyTranslate` file from the GitHub Release.
+1. Download the latest `JellyTranslate` file from the website.
 2. Open your `Downloads` folder.
 3. If the file is a `.zip`, double-click it to unzip it.
 4. Drag `JellyTranslate.app` into the `Applications` folder.
@@ -44,8 +54,9 @@ For testing:
 
 ```sh
 xattr -dr com.apple.quarantine /Applications/JellyTranslate.app
-open /Applications/JellyTranslate.app
 ```
+
+Then open `JellyTranslate.app` again from `Applications`.
 
 This warning appears on test versions that are not signed and notarized yet. A future signed version should not need this step.
 
@@ -64,6 +75,12 @@ JellyTranslate may need:
 
 - Accessibility: to read selected text and replace text when possible.
 - Input Monitoring: to use the clipboard fallback and simulated paste more reliably.
+
+Why this is needed:
+
+- JellyTranslate works with text selected inside other Mac apps.
+- macOS protects that access, so you need to allow JellyTranslate in privacy settings.
+- The app does not need your passwords, private files, or browser history for this.
 
 To enable permissions:
 
@@ -119,7 +136,7 @@ For the first test, use `MyMemory`.
 - It is free for first tests.
 - It may have daily limits and variable translation quality.
 
-OpenAI and Custom Provider are optional for testers who already have their own API keys.
+DeepL, Yandex Translate, Google Translate, and OpenAI are planned for later versions.
 
 ## Settings
 
@@ -162,7 +179,7 @@ Please do not send:
 - Some apps block selected-text capture.
 - Clipboard fallback can fail in some apps.
 - Direct replacement can fail if the active app changes or blocks paste.
-- DeepL, OCR, subscriptions, billing, and cloud sync are not implemented.
+- Extra translation services, OCR, subscriptions, billing, and cloud sync are not implemented.
 
 ## Short Message For Testers
 
@@ -172,7 +189,9 @@ You can send this message with the download link:
 Hey! Please test JellyTranslate for macOS.
 
 Download:
-https://github.com/jellyfishhoner/JellyTranslate/releases/latest
+https://jellytranslate.netlify.app
+
+Click Download alpha for macOS, enter your email, and the download will start.
 
 Important: this test version is not signed yet. If macOS says the app is damaged, drag JellyTranslate.app into Applications / Программы, then run this once in Terminal:
 
