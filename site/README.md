@@ -1,6 +1,10 @@
 # JellyTranslate Site
 
-Static landing page for JellyTranslate.
+Static landing pages for JellyTranslate.
+
+- `/` chooses Mac or Windows.
+- `/mac` opens the Mac landing page.
+- `/windows` opens the Windows landing page.
 
 ## Local Preview
 
@@ -31,7 +35,7 @@ When connecting the GitHub repository to Netlify, Netlify can use this config au
 
 ## Download Link
 
-The `Download on Mac` button points to the current public test version:
+The Mac download button points to the current public build:
 
 ```text
 https://github.com/jellyfishhoner/JellyTranslate/releases/download/v0.1.0-alpha/JellyTranslate-0.1.0-alpha-mac.zip
@@ -39,8 +43,8 @@ https://github.com/jellyfishhoner/JellyTranslate/releases/download/v0.1.0-alpha/
 
 When publishing a new release, update:
 
-- the download URL in `index.html`
-- the `releaseVersion` constant in `index.html`
+- the download URL in `mac.html`
+- the `releaseVersion` constant in `mac.html`
 - this note
 
 The easiest way to update those together:
