@@ -10,8 +10,34 @@ internal static class Program
     [STAThread]
     private static void Main()
     {
-        ApplicationConfiguration.Initialize();
-        Application.Run(new JellyTranslateAppContext());
+        try
+        {
+            ApplicationConfiguration.Initialize();
+            Application.ThreadException += (_, eventArgs) => ShowFatalError(eventArgs.Exception);
+            AppDomain.CurrentDomain.UnhandledException += (_, eventArgs) =>
+            {
+                if (eventArgs.ExceptionObject is Exception exception)
+                {
+                    ShowFatalError(exception);
+                }
+            };
+
+            Application.Run(new JellyTranslateAppContext());
+        }
+        catch (Exception exception)
+        {
+            ShowFatalError(exception);
+        }
+    }
+
+    private static void ShowFatalError(Exception exception)
+    {
+        MessageBox.Show(
+            exception.Message,
+            "JellyTranslate could not start",
+            MessageBoxButtons.OK,
+            MessageBoxIcon.Error
+        );
     }
 }
 
@@ -32,21 +58,48 @@ internal sealed class JellyTranslateAppContext : ApplicationContext
             Visible = true,
             ContextMenuStrip = BuildTrayMenu()
         };
+        notifyIcon.DoubleClick += (_, _) => ShowTestPopup();
 
         hotKeyWindow = new HotKeyWindow();
         hotKeyWindow.ShowTranslateRequested += async (_, _) => await TranslateSelectionAsync(replace: false);
         hotKeyWindow.ReplaceRequested += async (_, _) => await TranslateSelectionAsync(replace: true);
-        hotKeyWindow.RegisterHotKeys();
+
+        try
+        {
+            hotKeyWindow.RegisterHotKeys();
+            notifyIcon.ShowBalloonTip(
+                3200,
+                "JellyTranslate is running",
+                "Select text and press Ctrl+Alt+T. Double-click this tray icon to test the popup.",
+                ToolTipIcon.Info
+            );
+        }
+        catch (Exception exception)
+        {
+            MessageBox.Show(
+                $"{exception.Message}\n\nJellyTranslate is still running in the tray. You can use the tray menu while we fix the hotkey conflict.",
+                "JellyTranslate hotkeys are not available",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Warning
+            );
+        }
     }
 
     private ContextMenuStrip BuildTrayMenu()
     {
         var menu = new ContextMenuStrip();
+        menu.Items.Add("Show test popup", null, (_, _) => ShowTestPopup());
+        menu.Items.Add(new ToolStripSeparator());
         menu.Items.Add("Show translation  Ctrl+Alt+T", null, async (_, _) => await TranslateSelectionAsync(replace: false));
         menu.Items.Add("Translate and replace  Ctrl+Alt+R", null, async (_, _) => await TranslateSelectionAsync(replace: true));
         menu.Items.Add(new ToolStripSeparator());
         menu.Items.Add("Exit", null, (_, _) => ExitThread());
         return menu;
+    }
+
+    private void ShowTestPopup()
+    {
+        ShowPopup("Hello world", "Привет, мир", "ru");
     }
 
     private async Task TranslateSelectionAsync(bool replace)
