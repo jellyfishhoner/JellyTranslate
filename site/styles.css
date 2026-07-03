@@ -2526,6 +2526,11 @@ h1 {
   padding: 32px;
 }
 
+.windows-download-card.is-download-focus,
+.windows-setup-section .setup-widget.is-download-focus {
+  animation: downloadFocusPulse 1100ms ease;
+}
+
 .windows-download-card h2 {
   margin-bottom: 12px;
   font-size: clamp(30px, 4vw, 44px);
@@ -2552,6 +2557,48 @@ h1 {
   justify-self: end;
 }
 
+.windows-setup-section {
+  border-top: 1px solid var(--line);
+}
+
+.windows-setup-panel {
+  grid-template-columns: minmax(0, 1fr) minmax(260px, 390px);
+}
+
+.windows-shortcuts-preview {
+  display: grid;
+  align-content: start;
+  gap: 14px;
+}
+
+.shortcut-row {
+  display: grid;
+  grid-template-columns: repeat(3, 42px) minmax(0, 1fr);
+  gap: 8px;
+  align-items: center;
+  padding: 12px;
+  background: rgba(255, 255, 255, 0.055);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+}
+
+.shortcut-row span {
+  display: grid;
+  place-items: center;
+  min-height: 32px;
+  color: #07110f;
+  background: var(--accent);
+  border-radius: 10px;
+  font-size: 12px;
+  font-weight: 860;
+}
+
+.shortcut-row strong {
+  color: var(--text);
+  font-size: 14px;
+  line-height: 1.2;
+}
+
 @media (max-width: 840px) {
   .platform-detail-page main {
     padding-top: 0;
@@ -2574,5 +2621,9 @@ h1 {
   .windows-preview-form {
     justify-self: stretch;
     max-width: none;
+  }
+
+  .windows-setup-panel {
+    grid-template-columns: 1fr;
   }
 }

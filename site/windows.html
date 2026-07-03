@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="color-scheme" content="dark">
     <meta name="theme-color" content="#0e1016">
-    <meta name="description" content="JellyTranslate for Windows preview.">
+    <meta name="description" content="JellyTranslate for Windows. Translate and replace selected text with a hotkey.">
     <meta property="og:title" content="JellyTranslate for Windows">
-    <meta property="og:description" content="Early Windows preview of a qTranslate-style selected text translator.">
+    <meta property="og:description" content="A qTranslate-style translator for Windows. Select text, press a hotkey, translate or replace.">
     <meta property="og:type" content="website">
     <meta property="og:image" content="/assets/jellytranslate-icon.webp">
     <title>JellyTranslate for Windows</title>
@@ -30,7 +30,7 @@
       <nav class="nav-links" aria-label="Windows navigation">
         <a href="/mac.html">Mac</a>
         <a href="#how" data-i18n="navHow">How it works</a>
-        <a href="#download" data-i18n="navDownload">Preview build</a>
+        <a href="#download" data-i18n="navDownload">Download</a>
         <a href="https://github.com/jellyfishhoner/JellyTranslate">GitHub</a>
       </nav>
       <div class="language-toggle" aria-label="Language">
@@ -42,19 +42,19 @@
     <main>
       <section class="windows-hero" aria-labelledby="windows-title">
         <div>
-          <p class="eyebrow" data-i18n="heroEyebrow">Windows preview</p>
-          <h1 id="windows-title" data-i18n="heroTitle">JellyTranslate for Windows is starting here.</h1>
+          <p class="eyebrow" data-i18n="heroEyebrow">qTranslate-style translator for Windows</p>
+          <h1 id="windows-title" data-i18n="heroTitle">Translate and replace text on Windows.</h1>
           <p class="hero-copy" data-i18n="heroCopy">
             A small qTranslate-style tray app for Windows: select text, press a hotkey,
             translate in a popup, or replace the selected text directly.
           </p>
           <div class="hero-actions">
-            <a class="primary-action" href="#download" data-i18n="primaryAction">Join Windows preview</a>
+            <a class="primary-action" href="#download" data-download-link data-i18n="primaryAction">Download for Windows</a>
             <a class="secondary-action" href="/" data-i18n="secondaryAction">Choose another platform</a>
           </div>
-          <p class="tester-callout" data-i18n="testerCallout">Early MVP. Not signed, no installer yet.</p>
+          <p class="tester-callout" data-i18n="testerCallout">Built as a separate Windows version, with the same JellyTranslate workflow.</p>
         </div>
-        <div class="windows-preview-card cursor-glow-panel" aria-label="Windows popup preview">
+        <div class="windows-preview-card cursor-glow-panel" aria-label="Windows popup demo">
           <div class="windows-popup-header">
             JellyTranslate <span>MyMemory · Auto → RU</span>
           </div>
@@ -94,7 +94,7 @@
           <div class="flow-step">
             <span class="step-number">3</span>
             <h2 data-i18n="flowThreeTitle">Translate or replace</h2>
-            <p data-i18n="flowThreeCopy">The first MVP uses MyMemory and a clipboard fallback, just like qTranslate-style tools.</p>
+            <p data-i18n="flowThreeCopy">JellyTranslate uses MyMemory and a clipboard fallback, just like qTranslate-style tools.</p>
           </div>
         </div>
       </section>
@@ -102,18 +102,18 @@
       <section class="windows-download reveal-block" id="download">
         <div class="windows-download-card cursor-glow-panel">
           <div>
-            <p class="eyebrow" data-i18n="downloadEyebrow">Preview build</p>
-            <h2 data-i18n="downloadTitle">Join the Windows preview list.</h2>
+            <p class="eyebrow" data-i18n="downloadEyebrow">Download for Windows</p>
+            <h2 data-i18n="downloadTitle">Get the Windows build by email.</h2>
             <p data-i18n="downloadCopy">
-              Leave your email and I’ll send the Windows build when the preview is ready for testing.
+              Leave your email and I’ll send the Windows version when it is ready to install.
             </p>
           </div>
           <form class="signup-form windows-preview-form" name="jellytranslate-updates" method="POST" action="/__forms.html" data-netlify="true" netlify-honeypot="bot-field">
             <input type="hidden" name="form-name" value="jellytranslate-updates">
-            <input type="hidden" name="subject" value="New JellyTranslate Windows preview signup">
-            <input type="hidden" name="source" value="windows_preview" data-signup-source>
+            <input type="hidden" name="subject" value="New JellyTranslate Windows download signup">
+            <input type="hidden" name="source" value="windows_download" data-signup-source>
             <input type="hidden" name="language" value="en" data-signup-language>
-            <input type="hidden" name="version" value="windows-preview" data-signup-version>
+            <input type="hidden" name="version" value="windows" data-signup-version>
             <input type="hidden" name="page" value="" data-signup-page>
             <p class="hidden-field">
               <label>Do not fill this out: <input name="bot-field"></label>
@@ -121,11 +121,61 @@
             <label class="signup-label" for="windows-preview-email" data-i18n="signupLabel">Email address</label>
             <div class="signup-row">
               <input id="windows-preview-email" type="email" name="email" autocomplete="email" data-i18n-placeholder="signupPlaceholder" placeholder="you@example.com" required>
-              <button type="submit" data-i18n="signupButton">Join Windows preview</button>
+              <button type="submit" data-i18n="signupButton">Get Windows build</button>
             </div>
             <p class="signup-note" data-i18n="signupNote">No spam. Only JellyTranslate Windows build updates.</p>
             <p class="signup-status" role="status" aria-live="polite" data-signup-status></p>
           </form>
+        </div>
+      </section>
+
+      <section class="tester-section reveal-block windows-setup-section" id="setup">
+        <div class="tester-content">
+          <p class="eyebrow" data-i18n="setupEyebrow">After download</p>
+          <h2 data-i18n="setupHeading">Install, open, translate your first text.</h2>
+          <p data-i18n="setupIntro">
+            The Windows version follows the same core flow: install the app, keep it in the tray, select text, press a hotkey.
+          </p>
+          <details class="setup-widget" id="windows-setup-guide">
+            <summary>
+              <span class="setup-icon">1</span>
+              <span>
+                <strong data-i18n="setupTitle">1 minute to first translation</strong>
+                <small data-i18n="setupSubtitle">Unzip the app, open JellyTranslate, test in Notepad.</small>
+              </span>
+              <span class="setup-chevron" aria-hidden="true">⌄</span>
+            </summary>
+            <div class="setup-panel windows-setup-panel">
+              <ol class="setup-steps">
+                <li>
+                  <strong data-i18n="setupStepOneTitle">Unzip the download</strong>
+                  <p data-i18n="setupStepOneCopy">Extract JellyTranslate to a normal folder, for example Downloads or Documents.</p>
+                </li>
+                <li>
+                  <strong data-i18n="setupStepTwoTitle">Open JellyTranslate</strong>
+                  <p data-i18n="setupStepTwoCopy">Run JellyTranslate.exe. Windows may ask you to confirm opening a new app.</p>
+                </li>
+                <li>
+                  <strong data-i18n="setupStepThreeTitle">Try it in Notepad</strong>
+                  <p>
+                    <span data-i18n="setupStepThreeCopy">Select “Hello world”, then press</span>
+                    <code>Ctrl+Alt+T</code>.
+                  </p>
+                </li>
+              </ol>
+              <div class="permission-preview windows-shortcuts-preview" aria-label="Windows shortcuts">
+                <div class="preview-title" data-i18n="shortcutPreviewTitle">Windows shortcuts</div>
+                <div class="shortcut-row">
+                  <span>Ctrl</span><span>Alt</span><span>T</span>
+                  <strong data-i18n="shortcutTranslate">Popup translation</strong>
+                </div>
+                <div class="shortcut-row">
+                  <span>Ctrl</span><span>Alt</span><span>R</span>
+                  <strong data-i18n="shortcutReplace">Translate and replace</strong>
+                </div>
+              </div>
+            </div>
+          </details>
         </div>
       </section>
     </main>
@@ -140,13 +190,13 @@
       const translations = {
         en: {
           navHow: "How it works",
-          navDownload: "Preview build",
-          heroEyebrow: "Windows preview",
-          heroTitle: "JellyTranslate for Windows is starting here.",
+          navDownload: "Download",
+          heroEyebrow: "qTranslate-style translator for Windows",
+          heroTitle: "Translate and replace text on Windows.",
           heroCopy: "A small qTranslate-style tray app for Windows: select text, press a hotkey, translate in a popup, or replace the selected text directly.",
-          primaryAction: "Get preview build",
+          primaryAction: "Download for Windows",
           secondaryAction: "Choose another platform",
-          testerCallout: "Early MVP. Not signed, no installer yet.",
+          testerCallout: "Built as a separate Windows version, with the same JellyTranslate workflow.",
           popupOriginal: "Hello world",
           popupTranslation: "Привет, мир",
           flowOneTitle: "Select text",
@@ -156,27 +206,43 @@
           flowTwoMiddle: "for popup translation or",
           flowTwoSuffix: "to replace selected text.",
           flowThreeTitle: "Translate or replace",
-          flowThreeCopy: "The first MVP uses MyMemory and a clipboard fallback, just like qTranslate-style tools.",
-          downloadEyebrow: "Preview build",
-          downloadTitle: "Join the Windows preview list.",
-          downloadCopy: "Leave your email and I’ll send the Windows build when the preview is ready for testing.",
+          flowThreeCopy: "JellyTranslate uses MyMemory and a clipboard fallback, just like qTranslate-style tools.",
+          downloadEyebrow: "Download for Windows",
+          downloadTitle: "Get the Windows build by email.",
+          downloadCopy: "Leave your email and I’ll send the Windows version when it is ready to install.",
           signupLabel: "Email address",
           signupPlaceholder: "you@example.com",
-          signupButton: "Join Windows preview",
+          signupButton: "Get Windows build",
           signupNote: "No spam. Only JellyTranslate Windows build updates.",
-          signupSuccess: "Done. I’ll send the Windows preview here.",
+          signupDownloadPrompt: "Enter your email to get the Windows build. I’ll also send useful build updates.",
+          signupSuccess: "Done. I’ll send the Windows build here.",
+          signupDownloadSuccess: "Done. I’ll send the Windows build here.",
           signupError: "Something didn’t send. Please try again.",
+          setupEyebrow: "After download",
+          setupHeading: "Install, open, translate your first text.",
+          setupIntro: "The Windows version follows the same core flow: install the app, keep it in the tray, select text, press a hotkey.",
+          setupTitle: "1 minute to first translation",
+          setupSubtitle: "Unzip the app, open JellyTranslate, test in Notepad.",
+          setupStepOneTitle: "Unzip the download",
+          setupStepOneCopy: "Extract JellyTranslate to a normal folder, for example Downloads or Documents.",
+          setupStepTwoTitle: "Open JellyTranslate",
+          setupStepTwoCopy: "Run JellyTranslate.exe. Windows may ask you to confirm opening a new app.",
+          setupStepThreeTitle: "Try it in Notepad",
+          setupStepThreeCopy: "Select “Hello world”, then press",
+          shortcutPreviewTitle: "Windows shortcuts",
+          shortcutTranslate: "Popup translation",
+          shortcutReplace: "Translate and replace",
           footerMac: "Mac version"
         },
         ru: {
           navHow: "Как работает",
-          navDownload: "Preview-сборка",
-          heroEyebrow: "Windows preview",
-          heroTitle: "JellyTranslate для Windows начинается здесь.",
+          navDownload: "Скачать",
+          heroEyebrow: "Переводчик в стиле qTranslate для Windows",
+          heroTitle: "Переводите и заменяйте текст на Windows.",
           heroCopy: "Небольшое приложение в стиле qTranslate для Windows: выделите текст, нажмите хоткей, переведите в попапе или сразу замените выделенный текст.",
-          primaryAction: "Записаться на Windows preview",
+          primaryAction: "Скачать для Windows",
           secondaryAction: "Выбрать другую платформу",
-          testerCallout: "Ранний MVP. Пока без подписи и установщика.",
+          testerCallout: "Отдельная Windows-версия с тем же рабочим сценарием JellyTranslate.",
           popupOriginal: "Hello world",
           popupTranslation: "Привет, мир",
           flowOneTitle: "Выделите текст",
@@ -186,16 +252,32 @@
           flowTwoMiddle: "для попапа с переводом или",
           flowTwoSuffix: "чтобы заменить выделенный текст.",
           flowThreeTitle: "Переведите или замените",
-          flowThreeCopy: "Первый MVP использует MyMemory и резервный сценарий через буфер обмена, как qTranslate-style инструменты.",
-          downloadEyebrow: "Preview-сборка",
-          downloadTitle: "Запишитесь в список Windows preview.",
-          downloadCopy: "Оставьте email, и я пришлю Windows-сборку, когда preview будет готов к тестированию.",
+          flowThreeCopy: "JellyTranslate использует MyMemory и резервный сценарий через буфер обмена, как qTranslate-style инструменты.",
+          downloadEyebrow: "Скачать для Windows",
+          downloadTitle: "Получите Windows-сборку на email.",
+          downloadCopy: "Оставьте email, и я пришлю Windows-версию, когда ее можно будет установить.",
           signupLabel: "Email",
           signupPlaceholder: "you@example.com",
-          signupButton: "Получить Windows preview",
+          signupButton: "Получить Windows-сборку",
           signupNote: "Без спама. Только обновления Windows-версии JellyTranslate.",
-          signupSuccess: "Готово. Пришлю Windows preview сюда.",
+          signupDownloadPrompt: "Оставьте email, чтобы получить Windows-сборку. Я также буду присылать полезные обновления.",
+          signupSuccess: "Готово. Пришлю Windows-сборку сюда.",
+          signupDownloadSuccess: "Готово. Пришлю Windows-сборку сюда.",
           signupError: "Не получилось отправить. Попробуйте еще раз.",
+          setupEyebrow: "После скачивания",
+          setupHeading: "Установите, откройте и переведите первый текст.",
+          setupIntro: "Windows-версия работает по тому же сценарию: установите приложение, оставьте его в трее, выделите текст и нажмите хоткей.",
+          setupTitle: "1 минута до первого перевода",
+          setupSubtitle: "Распакуйте приложение, откройте JellyTranslate и проверьте в Notepad.",
+          setupStepOneTitle: "Распакуйте скачанный файл",
+          setupStepOneCopy: "Извлеките JellyTranslate в обычную папку, например Downloads или Documents.",
+          setupStepTwoTitle: "Откройте JellyTranslate",
+          setupStepTwoCopy: "Запустите JellyTranslate.exe. Windows может попросить подтвердить открытие нового приложения.",
+          setupStepThreeTitle: "Проверьте в Notepad",
+          setupStepThreeCopy: "Выделите “Hello world”, затем нажмите",
+          shortcutPreviewTitle: "Хоткеи Windows",
+          shortcutTranslate: "Попап с переводом",
+          shortcutReplace: "Перевести и заменить",
           footerMac: "Версия для Mac"
         }
       };
@@ -232,6 +314,54 @@
 
       applyLanguage(localStorage.getItem("jellytranslate-site-language") || "en");
 
+      const windowsSetupGuide = document.querySelector("#windows-setup-guide");
+      const downloadSection = document.querySelector("#download");
+      const downloadCard = document.querySelector(".windows-download-card");
+      const windowsForm = document.querySelector(".windows-preview-form");
+      const windowsEmailInput = document.querySelector("#windows-preview-email");
+
+      const currentLanguage = () => localStorage.getItem("jellytranslate-site-language") || "en";
+
+      const restartFocusAnimation = (element) => {
+        if (!element) {
+          return;
+        }
+
+        element.classList.remove("is-download-focus");
+        void element.offsetWidth;
+        element.classList.add("is-download-focus");
+      };
+
+      const showSetupGuide = () => {
+        if (!windowsSetupGuide) {
+          return;
+        }
+
+        windowsSetupGuide.open = true;
+        windowsSetupGuide.scrollIntoView({ behavior: "smooth", block: "center" });
+        restartFocusAnimation(windowsSetupGuide);
+      };
+
+      const focusDownloadForm = () => {
+        downloadSection?.scrollIntoView({ behavior: "smooth", block: "center" });
+        restartFocusAnimation(downloadCard);
+        window.setTimeout(() => {
+          windowsEmailInput?.focus({ preventScroll: true });
+        }, 520);
+      };
+
+      document.querySelectorAll("[data-download-link]").forEach((link) => {
+        link.addEventListener("click", (event) => {
+          event.preventDefault();
+          windowsForm?.classList.remove("is-complete");
+          const status = windowsForm?.querySelector("[data-signup-status]");
+          if (status) {
+            status.textContent = translations[currentLanguage()].signupDownloadPrompt;
+          }
+          focusDownloadForm();
+        });
+      });
+
       document.querySelectorAll(".windows-preview-form").forEach((form) => {
         const status = form.querySelector("[data-signup-status]");
         const languageInput = form.querySelector("[data-signup-language]");
@@ -240,7 +370,7 @@
 
         form.addEventListener("submit", async (event) => {
           event.preventDefault();
-          const language = localStorage.getItem("jellytranslate-site-language") || "en";
+          const language = currentLanguage();
           languageInput.value = language;
           pageInput.value = window.location.href;
           status.textContent = "";
@@ -258,8 +388,9 @@
             }
 
             form.classList.add("is-complete");
-            status.textContent = translations[language].signupSuccess;
+            status.textContent = translations[language].signupDownloadSuccess;
             form.reset();
+            window.setTimeout(showSetupGuide, 360);
           } catch {
             status.textContent = translations[language].signupError;
           } finally {
@@ -268,9 +399,89 @@
         });
       });
 
+      const canUseMotion = !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
       document.documentElement.classList.add("has-reveal");
-      document.querySelectorAll(".reveal-block").forEach((block) => {
-        block.classList.add("is-visible");
+      if (canUseMotion) {
+        const textEnterSelectors = [
+          ".brand span",
+          ".nav-links a",
+          ".eyebrow",
+          "h1",
+          "h2",
+          "p",
+          ".hero-actions a",
+          ".windows-popup-header",
+          ".windows-text-panel small",
+          ".windows-text-panel p",
+          ".windows-text-panel strong",
+          ".windows-actions span",
+          ".signup-form label",
+          ".signup-form button",
+          ".setup-widget summary strong",
+          ".setup-widget summary small",
+          ".setup-steps strong",
+          ".setup-steps code",
+          ".preview-title",
+          ".shortcut-row strong",
+          ".site-footer span",
+          ".site-footer a"
+        ];
+
+        const textEnterItems = Array.from(document.querySelectorAll(textEnterSelectors.join(",")))
+          .filter((node) => node.textContent.trim().length > 0);
+
+        document.documentElement.classList.add("has-text-enter");
+        textEnterItems.forEach((node, index) => {
+          node.classList.add("text-enter");
+          node.style.setProperty("--text-delay", `${Math.min(index * 28, 420)}ms`);
+        });
+
+        const textEnterObserver = "IntersectionObserver" in window
+          ? new IntersectionObserver((entries, observer) => {
+            entries.forEach((entry) => {
+              if (!entry.isIntersecting) {
+                return;
+              }
+
+              entry.target.classList.add("is-text-visible");
+              observer.unobserve(entry.target);
+            });
+          }, { rootMargin: "0px 0px -6% 0px", threshold: 0.08 })
+          : null;
+
+        textEnterItems.forEach((node) => {
+          if (!textEnterObserver) {
+            node.classList.add("is-text-visible");
+            return;
+          }
+
+          textEnterObserver.observe(node);
+        });
+      }
+
+      if (canUseMotion && "IntersectionObserver" in window) {
+        const revealObserver = new IntersectionObserver((entries, observer) => {
+          entries.forEach((entry) => {
+            if (!entry.isIntersecting) {
+              return;
+            }
+
+            entry.target.classList.add("is-visible");
+            observer.unobserve(entry.target);
+          });
+        }, { rootMargin: "0px 0px -14% 0px", threshold: 0.16 });
+
+        document.querySelectorAll(".reveal-block").forEach((block) => {
+          revealObserver.observe(block);
+        });
+      } else {
+        document.querySelectorAll(".reveal-block").forEach((block) => {
+          block.classList.add("is-visible");
+        });
+      }
+
+      document.querySelectorAll(".flow-step, .windows-preview-card, .windows-download-card, .setup-widget, .setup-steps li, .windows-shortcuts-preview, .shortcut-row").forEach((panel) => {
+        panel.classList.add("cursor-glow-panel");
       });
 
       document.querySelectorAll(".cursor-glow-panel").forEach((panel) => {
