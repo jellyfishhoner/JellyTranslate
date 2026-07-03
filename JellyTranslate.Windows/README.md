@@ -23,7 +23,8 @@ Goal: a small qTranslate-style tray app for Windows:
 ## Requirements
 
 - Windows 10 or newer.
-- .NET 8 SDK.
+- For the CI build: no .NET install should be needed.
+- For running from source: .NET 8 SDK.
 
 ## Run
 
@@ -37,11 +38,13 @@ GitHub Actions publishes a Windows MVP artifact on each change to this folder:
 
 1. Open the `Windows MVP Build` workflow in GitHub Actions.
 2. Open the latest successful run.
-3. Download the `JellyTranslate-Windows-MVP` artifact.
+3. Download the right artifact:
+   - `JellyTranslate-Windows-MVP-win-x64` for most Intel/AMD Windows PCs.
+   - `JellyTranslate-Windows-MVP-win-arm64` for Windows 11 ARM in Parallels on Apple Silicon.
 4. Unzip it on Windows.
 5. Run `JellyTranslate.exe`.
 
-This CI build is not signed and does not include an installer yet.
+This CI build is self-contained, but it is not signed and does not include an installer yet.
 
 ## Notes
 
