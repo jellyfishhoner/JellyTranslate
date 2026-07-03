@@ -7,7 +7,7 @@
     <meta name="theme-color" content="#0e1016">
     <meta name="description" content="JellyTranslate for Windows. Translate and replace selected text with a hotkey.">
     <meta property="og:title" content="JellyTranslate for Windows">
-    <meta property="og:description" content="A qTranslate-style translator for Windows. Select text, press a hotkey, translate or replace.">
+    <meta property="og:description" content="A faster Windows translator for selected text. Press a hotkey, translate or replace.">
     <meta property="og:type" content="website">
     <meta property="og:image" content="/assets/jellytranslate-icon.webp">
     <title>JellyTranslate for Windows</title>
@@ -43,11 +43,10 @@
     <main>
       <section class="windows-hero" aria-labelledby="windows-title">
         <div>
-          <p class="eyebrow" data-i18n="heroEyebrow">qTranslate-style translator for Windows</p>
+          <p class="eyebrow" data-i18n="heroEyebrow">Fast selected-text translator for Windows</p>
           <h1 id="windows-title" data-i18n="heroTitle">Translate and replace text on Windows.</h1>
           <p class="hero-copy" data-i18n="heroCopy">
-            A small qTranslate-style tray app for Windows: select text, press a hotkey,
-            translate in a popup, or replace the selected text directly.
+            Select text, press a hotkey, translate in a focused popup, or replace the selected text directly.
           </p>
           <div class="hero-actions">
             <a class="primary-action" href="#download" data-download-link data-i18n="primaryAction">Download for Windows</a>
@@ -104,9 +103,9 @@
         <div class="windows-download-card cursor-glow-panel">
           <div>
             <p class="eyebrow" data-i18n="downloadEyebrow">Download for Windows</p>
-            <h2 data-i18n="downloadTitle">Get the Windows build by email.</h2>
+            <h2 data-i18n="downloadTitle">Start with email, then install cleanly.</h2>
             <p data-i18n="downloadCopy">
-              Leave your email and I’ll send the Windows version when it is ready to install.
+              Leave your email to get the Windows version and useful JellyTranslate updates. After that, the setup guide opens automatically.
             </p>
           </div>
           <form class="signup-form windows-preview-form" name="jellytranslate-updates" method="POST" action="/__forms.html" data-netlify="true" netlify-honeypot="bot-field">
@@ -122,7 +121,7 @@
             <label class="signup-label" for="windows-preview-email" data-i18n="signupLabel">Email address</label>
             <div class="signup-row">
               <input id="windows-preview-email" type="email" name="email" autocomplete="email" data-i18n-placeholder="signupPlaceholder" placeholder="you@example.com" required>
-              <button type="submit" data-i18n="signupButton">Get Windows build</button>
+              <button type="submit" data-i18n="signupButton">Continue</button>
             </div>
             <p class="signup-note" data-i18n="signupNote">No spam. Only JellyTranslate Windows build updates.</p>
             <p class="signup-status" role="status" aria-live="polite" data-signup-status></p>
@@ -192,12 +191,12 @@
               <p data-i18n="faqPlatformAnswer">The interface is adapted for Windows, but the main idea stays the same: select text, press a hotkey, translate or replace without opening a browser.</p>
             </details>
             <details>
-              <summary data-i18n="faqQTranslateQuestion">Is this a qTranslate replacement?</summary>
-              <p data-i18n="faqQTranslateAnswer">The goal is the same fast workflow: select text, press a hotkey, translate or replace. JellyTranslate is being built as a cleaner modern alternative.</p>
+              <summary data-i18n="faqBetterQuestion">How is JellyTranslate better than old translator tools?</summary>
+              <p data-i18n="faqBetterAnswer">JellyTranslate focuses on one clean workflow: select text, press a hotkey, translate or replace. No browser tab, no manual copy-paste loop, no heavy interface.</p>
             </details>
             <details>
               <summary data-i18n="faqInstallQuestion">Will it need an installer?</summary>
-              <p data-i18n="faqInstallAnswer">The first Windows build should be simple to unpack and run. A proper installer can come later if users need it.</p>
+              <p data-i18n="faqInstallAnswer">The Windows package is designed to be simple: download, unpack, run JellyTranslate, then keep it in the tray.</p>
             </details>
             <details>
               <summary data-i18n="faqFreeQuestion">Is it free?</summary>
@@ -220,9 +219,9 @@
           navHow: "How it works",
           navDownload: "Download",
           navFaq: "FAQ",
-          heroEyebrow: "qTranslate-style translator for Windows",
+          heroEyebrow: "Fast selected-text translator for Windows",
           heroTitle: "Translate and replace text on Windows.",
-          heroCopy: "A small qTranslate-style tray app for Windows: select text, press a hotkey, translate in a popup, or replace the selected text directly.",
+          heroCopy: "Select text, press a hotkey, translate in a focused popup, or replace the selected text directly.",
           primaryAction: "Download for Windows",
           secondaryAction: "Choose another platform",
           testerCallout: "Built as a separate Windows version, with the same JellyTranslate workflow.",
@@ -238,15 +237,15 @@
           flowThreeTitle: "Translate or replace",
           flowThreeCopy: "Use a compact popup for translation, or replace the selected text without switching windows.",
           downloadEyebrow: "Download for Windows",
-          downloadTitle: "Get the Windows build by email.",
-          downloadCopy: "Leave your email and I’ll send the Windows version when it is ready to install.",
+          downloadTitle: "Start with email, then install cleanly.",
+          downloadCopy: "Leave your email to get the Windows version and useful JellyTranslate updates. After that, the setup guide opens automatically.",
           signupLabel: "Email address",
           signupPlaceholder: "you@example.com",
-          signupButton: "Get Windows build",
+          signupButton: "Continue",
           signupNote: "No spam. Only JellyTranslate Windows build updates.",
-          signupDownloadPrompt: "Enter your email to get the Windows build. I’ll also send useful build updates.",
-          signupSuccess: "Done. I’ll send the Windows build here.",
-          signupDownloadSuccess: "Done. I’ll send the Windows build here.",
+          signupDownloadPrompt: "Enter your email to continue. The setup guide will open right after this.",
+          signupSuccess: "Done. The setup guide is opening now.",
+          signupDownloadSuccess: "Done. The setup guide is opening now.",
           signupError: "Something didn’t send. Please try again.",
           setupEyebrow: "After download",
           setupHeading: "Install, open, translate your first text.",
@@ -266,10 +265,10 @@
           faqTitle: "Short answers before you install.",
           faqPlatformQuestion: "How is the Windows version different from Mac?",
           faqPlatformAnswer: "The interface is adapted for Windows, but the main idea stays the same: select text, press a hotkey, translate or replace without opening a browser.",
-          faqQTranslateQuestion: "Is this a qTranslate replacement?",
-          faqQTranslateAnswer: "The goal is the same fast workflow: select text, press a hotkey, translate or replace. JellyTranslate is being built as a cleaner modern alternative.",
+          faqBetterQuestion: "How is JellyTranslate better than old translator tools?",
+          faqBetterAnswer: "JellyTranslate focuses on one clean workflow: select text, press a hotkey, translate or replace. No browser tab, no manual copy-paste loop, no heavy interface.",
           faqInstallQuestion: "Will it need an installer?",
-          faqInstallAnswer: "The first Windows build should be simple to unpack and run. A proper installer can come later if users need it.",
+          faqInstallAnswer: "The Windows package is designed to be simple: download, unpack, run JellyTranslate, then keep it in the tray.",
           faqFreeQuestion: "Is it free?",
           faqFreeAnswer: "Yes. JellyTranslate is free while the product grows and the core workflow improves.",
           footerMac: "Mac version"
@@ -278,9 +277,9 @@
           navHow: "Как работает",
           navDownload: "Скачать",
           navFaq: "FAQ",
-          heroEyebrow: "Переводчик в стиле qTranslate для Windows",
+          heroEyebrow: "Быстрый перевод выделенного текста для Windows",
           heroTitle: "Переводите и заменяйте текст на Windows.",
-          heroCopy: "Небольшое приложение в стиле qTranslate для Windows: выделите текст, нажмите хоткей, переведите в попапе или сразу замените выделенный текст.",
+          heroCopy: "Выделите текст, нажмите хоткей, переведите в аккуратном попапе или сразу замените выделенный текст.",
           primaryAction: "Скачать для Windows",
           secondaryAction: "Выбрать другую платформу",
           testerCallout: "Отдельная Windows-версия с тем же рабочим сценарием JellyTranslate.",
@@ -296,15 +295,15 @@
           flowThreeTitle: "Переведите или замените",
           flowThreeCopy: "Используйте компактный попап для перевода или заменяйте выделенный текст без переключения между окнами.",
           downloadEyebrow: "Скачать для Windows",
-          downloadTitle: "Получите Windows-сборку на email.",
-          downloadCopy: "Оставьте email, и я пришлю Windows-версию, когда ее можно будет установить.",
+          downloadTitle: "Начните с email, затем установите без лишних шагов.",
+          downloadCopy: "Оставьте email, чтобы получить Windows-версию и полезные обновления JellyTranslate. После этого инструкция откроется автоматически.",
           signupLabel: "Email",
           signupPlaceholder: "you@example.com",
-          signupButton: "Получить Windows-сборку",
+          signupButton: "Продолжить",
           signupNote: "Без спама. Только обновления Windows-версии JellyTranslate.",
-          signupDownloadPrompt: "Оставьте email, чтобы получить Windows-сборку. Я также буду присылать полезные обновления.",
-          signupSuccess: "Готово. Пришлю Windows-сборку сюда.",
-          signupDownloadSuccess: "Готово. Пришлю Windows-сборку сюда.",
+          signupDownloadPrompt: "Оставьте email, чтобы продолжить. Инструкция откроется сразу после этого.",
+          signupSuccess: "Готово. Сейчас откроется инструкция.",
+          signupDownloadSuccess: "Готово. Сейчас откроется инструкция.",
           signupError: "Не получилось отправить. Попробуйте еще раз.",
           setupEyebrow: "После скачивания",
           setupHeading: "Установите, откройте и переведите первый текст.",
@@ -324,10 +323,10 @@
           faqTitle: "Короткие ответы перед установкой.",
           faqPlatformQuestion: "Чем Windows-версия отличается от Mac?",
           faqPlatformAnswer: "Интерфейс адаптирован под Windows, но главная идея та же: выделить текст, нажать хоткей, перевести или заменить без открытия браузера.",
-          faqQTranslateQuestion: "Это замена qTranslate?",
-          faqQTranslateAnswer: "Цель похожая: выделить текст, нажать хоткей, перевести или заменить. JellyTranslate делается как более чистая современная альтернатива.",
+          faqBetterQuestion: "Чем JellyTranslate лучше старых переводчиков?",
+          faqBetterAnswer: "JellyTranslate держится за один чистый сценарий: выделить текст, нажать хоткей, перевести или заменить. Без вкладки браузера, ручного копировать-вставить и тяжелого интерфейса.",
           faqInstallQuestion: "Нужен будет установщик?",
-          faqInstallAnswer: "Первую Windows-сборку планируем сделать простой: распаковать и запустить. Полноценный установщик можно добавить позже, если он будет нужен.",
+          faqInstallAnswer: "Windows-пакет задуман простым: скачать, распаковать, запустить JellyTranslate и оставить приложение в трее.",
           faqFreeQuestion: "Это бесплатно?",
           faqFreeAnswer: "Да. JellyTranslate бесплатный, пока продукт развивается и основной сценарий улучшается.",
           footerMac: "Версия для Mac"
