@@ -2281,6 +2281,13 @@ h1 {
   text-align: center;
 }
 
+.platform-language {
+  position: fixed;
+  z-index: 12;
+  top: 24px;
+  right: clamp(18px, 4vw, 42px);
+}
+
 .gateway-brand {
   display: inline-flex;
   align-items: center;
@@ -2381,6 +2388,11 @@ h1 {
 }
 
 @media (max-width: 520px) {
+  .platform-language {
+    top: 18px;
+    right: 18px;
+  }
+
   .platform-options {
     grid-template-columns: 1fr;
   }
