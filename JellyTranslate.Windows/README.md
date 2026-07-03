@@ -32,19 +32,16 @@ Goal: a small qTranslate-style tray app for Windows:
 dotnet run --project JellyTranslate.Windows
 ```
 
-## Download CI Build
+## Download Build
 
-GitHub Actions publishes a Windows MVP artifact on each change to this folder:
+GitHub Actions builds two Windows packages and publishes them to the `v0.1.0-alpha` GitHub Release:
 
-1. Open the `Windows MVP Build` workflow in GitHub Actions.
-2. Open the latest successful run.
-3. Download the right artifact:
-   - `JellyTranslate-Windows-MVP-win-x64` for most Intel/AMD Windows PCs.
-   - `JellyTranslate-Windows-MVP-win-arm64` for Windows on ARM devices.
-4. Unzip it on Windows.
-5. Run `JellyTranslate.exe`.
+- `JellyTranslate-0.1.0-alpha-windows-x64.zip` for most Intel/AMD Windows PCs.
+- `JellyTranslate-0.1.0-alpha-windows-arm64.zip` for Windows on ARM devices.
 
-This CI build is self-contained, but it is not signed and does not include an installer yet.
+The website downloads the right package after email signup, then opens the setup guide.
+
+The build is self-contained, but it is not signed and does not include an installer yet.
 
 ## Notes
 
