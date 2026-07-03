@@ -2424,64 +2424,91 @@ h1 {
 }
 
 .windows-preview-card {
-  padding: 22px;
-}
-
-.windows-titlebar {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  color: rgba(245, 247, 251, 0.72);
-  font-weight: 780;
-}
-
-.windows-titlebar span {
-  width: 10px;
-  height: 10px;
-  background: rgba(245, 247, 251, 0.34);
-  border-radius: 999px;
-}
-
-.windows-titlebar strong {
-  margin-left: 8px;
-}
-
-.windows-popup-body {
   display: grid;
   gap: 10px;
-  margin-top: 22px;
-  padding: 22px;
-  background: rgba(0, 0, 0, 0.2);
-  border-radius: 20px;
+  width: min(100%, 460px);
+  min-height: 280px;
+  padding: 18px;
+  background: linear-gradient(145deg, rgba(18, 21, 29, 0.98), rgba(22, 27, 36, 0.94));
+  border-color: rgba(255, 255, 255, 0.16);
+  border-radius: 18px;
+  box-shadow: 0 30px 90px rgba(0, 0, 0, 0.34), inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  font-family: "Segoe UI", Inter, ui-sans-serif, system-ui, sans-serif;
 }
 
-.windows-popup-body small {
-  color: var(--muted);
+.windows-popup-header {
+  min-height: 34px;
+  color: #aab2c2;
+  font-size: 14px;
+  font-weight: 800;
+  letter-spacing: 0;
+}
+
+.windows-popup-header span {
+  margin-left: 14px;
+  color: rgba(170, 178, 194, 0.72);
+  font-weight: 760;
+}
+
+.windows-text-panel {
+  display: grid;
+  align-content: start;
+  gap: 4px;
+  padding: 10px 14px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.055);
+  border-radius: 14px;
+}
+
+.windows-original-panel {
+  min-height: 72px;
+  background: rgba(23, 27, 36, 0.86);
+}
+
+.windows-translation-panel {
+  min-height: 94px;
+  background: linear-gradient(145deg, rgba(42, 48, 62, 0.96), rgba(35, 42, 55, 0.9));
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+.windows-text-panel small {
+  color: #aab2c2;
+  font-size: 13px;
   font-weight: 800;
 }
 
-.windows-popup-body p {
-  margin: 0 0 8px;
-  color: var(--text);
-  font-size: 18px;
+.windows-text-panel p {
+  margin: 0;
+  color: white;
+  font-size: 15px;
+  line-height: 1.35;
 }
 
-.windows-popup-body strong {
-  font-size: 30px;
-  line-height: 1.15;
+.windows-text-panel strong {
+  color: white;
+  font-size: 28px;
+  line-height: 1.2;
+  font-weight: 800;
 }
 
 .windows-actions {
   display: flex;
   gap: 10px;
-  margin-top: 16px;
+  align-items: center;
+  min-height: 46px;
 }
 
 .windows-actions span {
-  padding: 10px 14px;
-  color: rgba(245, 247, 251, 0.86);
-  background: rgba(255, 255, 255, 0.12);
-  border-radius: 12px;
+  display: inline-grid;
+  place-items: center;
+  width: 86px;
+  height: 34px;
+  color: #07110f;
+  background: #66d9c6;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 10px;
+  box-shadow: 0 10px 22px rgba(102, 217, 198, 0.12);
+  font-size: 13px;
   font-weight: 800;
 }
 
