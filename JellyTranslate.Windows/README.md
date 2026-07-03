@@ -31,6 +31,18 @@ Goal: a small qTranslate-style tray app for Windows:
 dotnet run --project JellyTranslate.Windows
 ```
 
+## Download CI Build
+
+GitHub Actions publishes a Windows MVP artifact on each change to this folder:
+
+1. Open the `Windows MVP Build` workflow in GitHub Actions.
+2. Open the latest successful run.
+3. Download the `JellyTranslate-Windows-MVP` artifact.
+4. Unzip it on Windows.
+5. Run `JellyTranslate.exe`.
+
+This CI build is not signed and does not include an installer yet.
+
 ## Notes
 
 This is intentionally separate from the macOS Swift app. The first Windows milestone is to validate the core workflow before adding settings, history, installer, signing, and a polished UI.
