@@ -1,0 +1,32 @@
+name: Windows MVP Build
+
+on:
+  push:
+    paths:
+      - "JellyTranslate.Windows/**"
+      - ".github/workflows/windows-mvp.yml"
+  pull_request:
+    paths:
+      - "JellyTranslate.Windows/**"
+      - ".github/workflows/windows-mvp.yml"
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: Build Windows MVP
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: "8.0.x"
+
+      - name: Restore
+        run: dotnet restore JellyTranslate.Windows/JellyTranslate.Windows.csproj
+
+      - name: Build
+        run: dotnet build JellyTranslate.Windows/JellyTranslate.Windows.csproj --configuration Release --no-restore
