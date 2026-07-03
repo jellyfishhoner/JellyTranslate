@@ -29,7 +29,7 @@
       </a>
       <nav class="nav-links" aria-label="Primary navigation">
         <a href="#how" data-i18n="navHow">How it works</a>
-        <a href="#testers" data-i18n="navTesters">Testers</a>
+        <a href="#testers" data-i18n="navTesters">Download</a>
         <a href="#faq" data-i18n="navFaq">FAQ</a>
         <a href="https://github.com/jellyfishhoner/JellyTranslate">GitHub</a>
       </nav>
@@ -51,13 +51,13 @@
           </p>
           <div class="hero-actions">
             <a class="primary-action" href="https://github.com/jellyfishhoner/JellyTranslate/releases/download/v0.1.0-alpha/JellyTranslate-0.1.0-alpha-mac.zip" data-download-link data-i18n="download">
-              Download alpha for macOS
+              Download for Mac
             </a>
             <a class="secondary-action" href="https://github.com/jellyfishhoner/JellyTranslate" data-i18n="source">
               View source
             </a>
           </div>
-          <p class="tester-callout" data-i18n="testerCallout">Looking for early testers. Free while in alpha.</p>
+          <p class="tester-callout" data-i18n="testerCallout">Free while JellyTranslate grows.</p>
           <p class="version-line">
             <span class="version-chip" data-release-version-label>Version 0.1.0 alpha</span>
             <a class="changelog-link" href="#changelog" data-i18n="changelogLink">What’s new</a>
@@ -68,9 +68,9 @@
       <section class="signup-section reveal-block" aria-labelledby="signup-title">
         <div class="signup-card">
           <div class="signup-copy">
-            <p class="eyebrow" data-i18n="signupEyebrow">Early access list</p>
+            <p class="eyebrow" data-i18n="signupEyebrow">Product updates</p>
             <h2 id="signup-title" data-i18n="signupTitle">Get build updates by email.</h2>
-            <p data-i18n="signupCopy">Leave your email and I’ll send only useful JellyTranslate updates: new builds, fixes, and tester notes.</p>
+            <p data-i18n="signupCopy">Leave your email and I’ll send only useful JellyTranslate updates: new builds, fixes, and release notes.</p>
           </div>
           <form class="signup-form" name="jellytranslate-updates" method="POST" action="/__forms.html" data-netlify="true" netlify-honeypot="bot-field">
             <input type="hidden" name="form-name" value="jellytranslate-updates">
@@ -196,14 +196,14 @@
 
       <section class="tester-section reveal-block" id="testers">
         <div class="tester-content">
-          <p class="eyebrow" data-i18n="testersEyebrow">For early testers</p>
+          <p class="eyebrow" data-i18n="testersEyebrow">After download</p>
           <h2 data-i18n="testersTitle">Install, enable permissions, test in TextEdit first.</h2>
           <p data-i18n="testersCopy">
             macOS may ask for Accessibility and Input Monitoring permissions so JellyTranslate can read selected text,
             use clipboard fallback, and replace text where possible.
           </p>
           <p class="install-note" data-i18n="installNote">
-            This test version is not signed yet. If macOS says the app is damaged, macOS is blocking the downloaded file,
+            This build is not signed yet. If macOS says the app is damaged, macOS is blocking the downloaded file,
             not reporting a broken app.
           </p>
           <details class="setup-widget" id="first-translation-guide">
@@ -211,7 +211,7 @@
               <span class="setup-icon">1</span>
               <span>
                 <strong data-i18n="setupTitle">1 minute to first translation</strong>
-                <small data-i18n="setupSubtitle">Open the test version safely, grant permission, test in TextEdit.</small>
+                <small data-i18n="setupSubtitle">Open JellyTranslate safely, grant permission, test in TextEdit.</small>
               </span>
               <span class="setup-chevron" aria-hidden="true">⌄</span>
             </summary>
@@ -288,7 +288,7 @@
           </div>
           <div class="tester-actions">
             <a class="secondary-action" href="https://github.com/jellyfishhoner/JellyTranslate/blob/main/README_FOR_TESTERS.md" data-i18n="testerGuide">
-              Tester guide
+              Install guide
             </a>
           </div>
         </div>
@@ -303,11 +303,11 @@
           <div class="faq-list">
             <details>
               <summary data-i18n="faqEmailQuestion">Why do you ask for email before download?</summary>
-              <p data-i18n="faqEmailAnswer">Only to send useful JellyTranslate updates: new builds, fixes, and tester notes. You can ask to remove it anytime by writing to jtranslate@inbox.ru.</p>
+              <p data-i18n="faqEmailAnswer">Only to send useful JellyTranslate updates: new builds, fixes, and release notes. You can ask to remove it anytime by writing to jtranslate@inbox.ru.</p>
             </details>
             <details>
               <summary data-i18n="faqDamagedQuestion">Why can macOS say the app is damaged?</summary>
-              <p data-i18n="faqDamagedAnswer">The current alpha is not signed yet, so macOS can block the downloaded file. The Terminal command in the tester guide only removes that download safety label from JellyTranslate.</p>
+              <p data-i18n="faqDamagedAnswer">The current build is not signed yet, so macOS can block the downloaded file. The Terminal command in the install guide only removes that download safety label from JellyTranslate.</p>
             </details>
             <details>
               <summary data-i18n="faqPermissionQuestion">Why does JellyTranslate need Accessibility?</summary>
@@ -315,7 +315,7 @@
             </details>
             <details>
               <summary data-i18n="faqFreeQuestion">Is it free?</summary>
-              <p data-i18n="faqFreeAnswer">Yes. The alpha is free while we test the core workflow and collect feedback from early macOS users.</p>
+              <p data-i18n="faqFreeAnswer">Yes. JellyTranslate is free while the product grows and the core workflow improves.</p>
             </details>
             <details>
               <summary data-i18n="faqFeedbackQuestion">Where should I send bugs or ideas?</summary>
@@ -368,19 +368,19 @@
       const translations = {
         en: {
           navHow: "How it works",
-          navTesters: "Testers",
+          navTesters: "Download",
           navFaq: "FAQ",
           heroEyebrow: "A qTranslate-style translator built natively for macOS",
           heroTitle: "Translate and replace text anywhere on your Mac.",
           heroCopy: "Select text, press a shortcut, then translate, copy, or replace without breaking your flow.",
-          download: "Download alpha for macOS",
+          download: "Download for Mac",
           source: "View source",
-          testerCallout: "Looking for early testers. Free while in alpha.",
+          testerCallout: "Free while JellyTranslate grows.",
           releaseVersion: "Version {version}",
           changelogLink: "What’s new",
-          signupEyebrow: "Early access list",
+          signupEyebrow: "Product updates",
           signupTitle: "Get build updates by email.",
-          signupCopy: "Leave your email and I’ll send only useful JellyTranslate updates: new builds, fixes, and tester notes.",
+          signupCopy: "Leave your email and I’ll send only useful JellyTranslate updates: new builds, fixes, and release notes.",
           signupLabel: "Email address",
           signupPlaceholder: "you@example.com",
           signupButton: "Join updates",
@@ -409,12 +409,12 @@
           demoTranslationChinese: "一个安静做好一件事的 Mac 工具。",
           demoModeTranslate: "Translate",
           demoModeReplace: "Replace",
-          testersEyebrow: "For early testers",
+          testersEyebrow: "After download",
           testersTitle: "Install, enable permissions, test in TextEdit first.",
           testersCopy: "macOS may ask for Accessibility and Input Monitoring permissions so JellyTranslate can read selected text, use clipboard fallback, and replace text where possible.",
-          installNote: "This test version is not signed yet. If macOS says the app is damaged, macOS is blocking the downloaded file, not reporting a broken app.",
+          installNote: "This build is not signed yet. If macOS says the app is damaged, macOS is blocking the downloaded file, not reporting a broken app.",
           setupTitle: "1 minute to first translation",
-          setupSubtitle: "Open the test version safely, grant permission, test in TextEdit.",
+          setupSubtitle: "Open JellyTranslate safely, grant permission, test in TextEdit.",
           setupStepOneTitle: "Drag to Applications",
           setupStepOneCopy: "Open the ZIP, then drag JellyTranslate.app into the Applications folder.",
           setupStepTwoTitle: "If macOS blocks it",
@@ -438,17 +438,17 @@
           readinessThree: "Tested in TextEdit",
           readinessStatusIdle: "Three small checks, then you’re ready.",
           readinessStatusDone: "You’re ready. Open TextEdit and try a short phrase.",
-          testerGuide: "Tester guide",
+          testerGuide: "Install guide",
           faqEyebrow: "FAQ",
           faqTitle: "Small answers before you install.",
           faqEmailQuestion: "Why do you ask for email before download?",
-          faqEmailAnswer: "Only to send useful JellyTranslate updates: new builds, fixes, and tester notes. You can ask to remove it anytime by writing to jtranslate@inbox.ru.",
+          faqEmailAnswer: "Only to send useful JellyTranslate updates: new builds, fixes, and release notes. You can ask to remove it anytime by writing to jtranslate@inbox.ru.",
           faqDamagedQuestion: "Why can macOS say the app is damaged?",
-          faqDamagedAnswer: "The current alpha is not signed yet, so macOS can block the downloaded file. The Terminal command in the tester guide only removes that download safety label from JellyTranslate.",
+          faqDamagedAnswer: "The current build is not signed yet, so macOS can block the downloaded file. The Terminal command in the install guide only removes that download safety label from JellyTranslate.",
           faqPermissionQuestion: "Why does JellyTranslate need Accessibility?",
           faqPermissionAnswer: "JellyTranslate needs macOS permission to read selected text in other apps and replace it when possible. It does not need passwords, private files, or browser history.",
           faqFreeQuestion: "Is it free?",
-          faqFreeAnswer: "Yes. The alpha is free while we test the core workflow and collect feedback from early macOS users.",
+          faqFreeAnswer: "Yes. JellyTranslate is free while the product grows and the core workflow improves.",
           faqFeedbackQuestion: "Where should I send bugs or ideas?",
           faqFeedbackAnswer: "Send a short message in Telegram or open a GitHub issue. The most useful report says which app you tested in and what happened.",
           changelogTitle: "What’s new in JellyTranslate",
@@ -459,26 +459,26 @@
           reactionTitle: "Quick signal",
           reactionCopy: "What should I prioritize next?",
           reactionUseful: "Looks useful",
-          reactionTest: "I’d test it",
+          reactionTest: "I’d use it",
           reactionDeepL: "Need DeepL",
           reactionThanks: "Thanks. That signal helps.",
           reactionError: "Didn’t send. Try again."
         },
         ru: {
           navHow: "Как работает",
-          navTesters: "Тестировщикам",
+          navTesters: "Скачать",
           navFaq: "FAQ",
           heroEyebrow: "Переводчик в стиле qTranslate, нативно для macOS",
           heroTitle: "Переводите и заменяйте текст на Mac.",
           heroCopy: "Выделите текст, нажмите хоткей, затем переведите, скопируйте или сразу замените без переключения окон.",
-          download: "Скачать alpha для macOS",
+          download: "Скачать для Mac",
           source: "Исходный код",
-          testerCallout: "Ищем ранних тестировщиков. Бесплатно на этапе alpha.",
+          testerCallout: "Бесплатно, пока JellyTranslate развивается.",
           releaseVersion: "Версия {version}",
           changelogLink: "Что нового",
-          signupEyebrow: "Список раннего доступа",
+          signupEyebrow: "Обновления продукта",
           signupTitle: "Получайте обновления на почту.",
-          signupCopy: "Оставьте email, и я буду присылать только полезные новости JellyTranslate: новые сборки, исправления и заметки для тестировщиков.",
+          signupCopy: "Оставьте email, и я буду присылать только полезные новости JellyTranslate: новые сборки, исправления и заметки релиза.",
           signupLabel: "Email",
           signupPlaceholder: "you@example.com",
           signupButton: "Получать новости",
@@ -507,12 +507,12 @@
           demoTranslationChinese: "一个安静做好一件事的 Mac 工具。",
           demoModeTranslate: "Перевести",
           demoModeReplace: "Заменить",
-          testersEyebrow: "Для ранних тестировщиков",
+          testersEyebrow: "После скачивания",
           testersTitle: "Установите, выдайте разрешения и сначала проверьте в TextEdit.",
           testersCopy: "macOS может попросить Accessibility и Input Monitoring, чтобы JellyTranslate мог читать выделенный текст, использовать резервный вариант через буфер обмена и заменять текст там, где это возможно.",
-          installNote: "Эта тестовая версия пока не подписана. Если macOS пишет, что приложение повреждено, macOS блокирует скачанный файл, а не сообщает, что приложение сломано.",
+          installNote: "Эта сборка пока не подписана. Если macOS пишет, что приложение повреждено, macOS блокирует скачанный файл, а не сообщает, что приложение сломано.",
           setupTitle: "1 минута до первого перевода",
-          setupSubtitle: "Откройте тестовую версию, выдайте разрешение и проверьте в TextEdit.",
+          setupSubtitle: "Откройте JellyTranslate, выдайте разрешение и проверьте в TextEdit.",
           setupStepOneTitle: "Перетащите в “Программы”",
           setupStepOneCopy: "Откройте ZIP и перетащите JellyTranslate.app в папку Applications / “Программы”.",
           setupStepTwoTitle: "Если macOS блокирует",
@@ -540,13 +540,13 @@
           faqEyebrow: "FAQ",
           faqTitle: "Короткие ответы перед установкой.",
           faqEmailQuestion: "Зачем нужен email перед скачиванием?",
-          faqEmailAnswer: "Только чтобы присылать полезные обновления JellyTranslate: новые сборки, исправления и заметки для тестировщиков. Удалить email можно в любой момент, написав на jtranslate@inbox.ru.",
+          faqEmailAnswer: "Только чтобы присылать полезные обновления JellyTranslate: новые сборки, исправления и заметки релиза. Удалить email можно в любой момент, написав на jtranslate@inbox.ru.",
           faqDamagedQuestion: "Почему macOS может писать, что приложение повреждено?",
-          faqDamagedAnswer: "Текущая alpha пока не подписана, поэтому macOS может блокировать скачанный файл. Команда из инструкции только снимает защитную метку скачивания с JellyTranslate.",
+          faqDamagedAnswer: "Текущая сборка пока не подписана, поэтому macOS может блокировать скачанный файл. Команда из инструкции только снимает защитную метку скачивания с JellyTranslate.",
           faqPermissionQuestion: "Зачем JellyTranslate нужен Accessibility?",
           faqPermissionAnswer: "Это разрешение macOS нужно, чтобы читать выделенный текст в других приложениях и заменять его там, где возможно. Пароли, личные файлы и историю браузера приложение не просит.",
           faqFreeQuestion: "Это бесплатно?",
-          faqFreeAnswer: "Да. Alpha бесплатная, пока мы проверяем основной сценарий и собираем фидбек от первых пользователей macOS.",
+          faqFreeAnswer: "Да. JellyTranslate бесплатный, пока продукт развивается и основной сценарий улучшается.",
           faqFeedbackQuestion: "Куда отправлять баги и идеи?",
           faqFeedbackAnswer: "Можно написать коротко в Telegram или создать issue на GitHub. Самый полезный отчёт: в каком приложении тестировали и что произошло.",
           changelogTitle: "Что нового в JellyTranslate",
@@ -557,7 +557,7 @@
           reactionTitle: "Быстрый сигнал",
           reactionCopy: "Что стоит сделать следующим?",
           reactionUseful: "Выглядит полезно",
-          reactionTest: "Я бы потестил",
+          reactionTest: "Я бы пользовался",
           reactionDeepL: "Нужен DeepL",
           reactionThanks: "Спасибо. Этот сигнал поможет.",
           reactionError: "Не отправилось. Попробуйте еще раз."
