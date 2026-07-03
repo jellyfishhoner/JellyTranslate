@@ -29,26 +29,30 @@
       </a>
       <nav class="nav-links" aria-label="Windows navigation">
         <a href="/mac.html">Mac</a>
-        <a href="#how">How it works</a>
-        <a href="#download">Preview build</a>
+        <a href="#how" data-i18n="navHow">How it works</a>
+        <a href="#download" data-i18n="navDownload">Preview build</a>
         <a href="https://github.com/jellyfishhoner/JellyTranslate">GitHub</a>
       </nav>
+      <div class="language-toggle" aria-label="Language">
+        <button type="button" class="language-option is-active" data-lang-option="en">EN</button>
+        <button type="button" class="language-option" data-lang-option="ru">RU</button>
+      </div>
     </header>
 
     <main>
       <section class="windows-hero" aria-labelledby="windows-title">
         <div>
-          <p class="eyebrow">Windows preview</p>
-          <h1 id="windows-title">JellyTranslate for Windows is starting here.</h1>
-          <p class="hero-copy">
+          <p class="eyebrow" data-i18n="heroEyebrow">Windows preview</p>
+          <h1 id="windows-title" data-i18n="heroTitle">JellyTranslate for Windows is starting here.</h1>
+          <p class="hero-copy" data-i18n="heroCopy">
             A small qTranslate-style tray app for Windows: select text, press a hotkey,
             translate in a popup, or replace the selected text directly.
           </p>
           <div class="hero-actions">
-            <a class="primary-action" href="#download">Get preview build</a>
-            <a class="secondary-action" href="/">Choose another platform</a>
+            <a class="primary-action" href="#download" data-i18n="primaryAction">Get preview build</a>
+            <a class="secondary-action" href="/" data-i18n="secondaryAction">Choose another platform</a>
           </div>
-          <p class="tester-callout">Early MVP. Not signed, no installer yet.</p>
+          <p class="tester-callout" data-i18n="testerCallout">Early MVP. Not signed, no installer yet.</p>
         </div>
         <div class="windows-preview-card cursor-glow-panel" aria-label="Windows popup preview">
           <div class="windows-popup-header">
@@ -56,11 +60,11 @@
           </div>
           <div class="windows-text-panel windows-original-panel">
             <small>Original</small>
-            <p>Hello world</p>
+            <p data-i18n="popupOriginal">Hello world</p>
           </div>
           <div class="windows-text-panel windows-translation-panel">
             <small>Translation</small>
-            <strong>Привет, мир</strong>
+            <strong data-i18n="popupTranslation">Привет, мир</strong>
           </div>
           <div class="windows-actions">
             <span>Copy</span>
@@ -73,18 +77,24 @@
         <div class="flow">
           <div class="flow-step">
             <span class="step-number">1</span>
-            <h2>Select text</h2>
-            <p>Highlight text in Notepad, browser fields, Telegram, Discord, Notion, or another Windows app.</p>
+            <h2 data-i18n="flowOneTitle">Select text</h2>
+            <p data-i18n="flowOneCopy">Highlight text in Notepad, browser fields, Telegram, Discord, Notion, or another Windows app.</p>
           </div>
           <div class="flow-step">
             <span class="step-number">2</span>
-            <h2>Press hotkey</h2>
-            <p>Use <code>Ctrl+Alt+T</code> for popup translation or <code>Ctrl+Alt+R</code> to replace selected text.</p>
+            <h2 data-i18n="flowTwoTitle">Press hotkey</h2>
+            <p>
+              <span data-i18n="flowTwoPrefix">Use</span>
+              <code>Ctrl+Alt+T</code>
+              <span data-i18n="flowTwoMiddle">for popup translation or</span>
+              <code>Ctrl+Alt+R</code>
+              <span data-i18n="flowTwoSuffix">to replace selected text.</span>
+            </p>
           </div>
           <div class="flow-step">
             <span class="step-number">3</span>
-            <h2>Translate or replace</h2>
-            <p>The first MVP uses MyMemory and a clipboard fallback, just like qTranslate-style tools.</p>
+            <h2 data-i18n="flowThreeTitle">Translate or replace</h2>
+            <p data-i18n="flowThreeCopy">The first MVP uses MyMemory and a clipboard fallback, just like qTranslate-style tools.</p>
           </div>
         </div>
       </section>
@@ -92,18 +102,18 @@
       <section class="windows-download reveal-block" id="download">
         <div class="windows-download-card cursor-glow-panel">
           <div>
-            <p class="eyebrow">Preview build</p>
-            <h2>Download from GitHub Actions.</h2>
-            <p>
+            <p class="eyebrow" data-i18n="downloadEyebrow">Preview build</p>
+            <h2 data-i18n="downloadTitle">Download from GitHub Actions.</h2>
+            <p data-i18n="downloadCopy">
               For Parallels on Apple Silicon, use the ARM64 artifact.
               For a normal Windows PC, use the x64 artifact.
             </p>
           </div>
           <div class="windows-artifacts">
-            <a class="primary-action" href="https://github.com/jellyfishhoner/JellyTranslate/actions/runs/28632162392">
+            <a class="primary-action" href="https://github.com/jellyfishhoner/JellyTranslate/actions/runs/28632162392" data-i18n="buildLink">
               Open latest Windows build
             </a>
-            <a class="secondary-action" href="https://github.com/jellyfishhoner/JellyTranslate/blob/main/JellyTranslate.Windows/README.md">
+            <a class="secondary-action" href="https://github.com/jellyfishhoner/JellyTranslate/blob/main/JellyTranslate.Windows/README.md" data-i18n="notesLink">
               Read setup notes
             </a>
           </div>
@@ -113,11 +123,92 @@
 
     <footer class="site-footer">
       <span>JellyTranslate</span>
-      <a href="/mac.html">Mac version</a>
+      <a href="/mac.html" data-i18n="footerMac">Mac version</a>
       <a href="https://github.com/jellyfishhoner/JellyTranslate">GitHub</a>
     </footer>
 
     <script>
+      const translations = {
+        en: {
+          navHow: "How it works",
+          navDownload: "Preview build",
+          heroEyebrow: "Windows preview",
+          heroTitle: "JellyTranslate for Windows is starting here.",
+          heroCopy: "A small qTranslate-style tray app for Windows: select text, press a hotkey, translate in a popup, or replace the selected text directly.",
+          primaryAction: "Get preview build",
+          secondaryAction: "Choose another platform",
+          testerCallout: "Early MVP. Not signed, no installer yet.",
+          popupOriginal: "Hello world",
+          popupTranslation: "Привет, мир",
+          flowOneTitle: "Select text",
+          flowOneCopy: "Highlight text in Notepad, browser fields, Telegram, Discord, Notion, or another Windows app.",
+          flowTwoTitle: "Press hotkey",
+          flowTwoPrefix: "Use",
+          flowTwoMiddle: "for popup translation or",
+          flowTwoSuffix: "to replace selected text.",
+          flowThreeTitle: "Translate or replace",
+          flowThreeCopy: "The first MVP uses MyMemory and a clipboard fallback, just like qTranslate-style tools.",
+          downloadEyebrow: "Preview build",
+          downloadTitle: "Download from GitHub Actions.",
+          downloadCopy: "For Parallels on Apple Silicon, use the ARM64 artifact. For a normal Windows PC, use the x64 artifact.",
+          buildLink: "Open latest Windows build",
+          notesLink: "Read setup notes",
+          footerMac: "Mac version"
+        },
+        ru: {
+          navHow: "Как работает",
+          navDownload: "Preview-сборка",
+          heroEyebrow: "Windows preview",
+          heroTitle: "JellyTranslate для Windows начинается здесь.",
+          heroCopy: "Небольшое приложение в стиле qTranslate для Windows: выделите текст, нажмите хоткей, переведите в попапе или сразу замените выделенный текст.",
+          primaryAction: "Получить preview-сборку",
+          secondaryAction: "Выбрать другую платформу",
+          testerCallout: "Ранний MVP. Пока без подписи и установщика.",
+          popupOriginal: "Hello world",
+          popupTranslation: "Привет, мир",
+          flowOneTitle: "Выделите текст",
+          flowOneCopy: "Выделите текст в Notepad, полях браузера, Telegram, Discord, Notion или другом приложении Windows.",
+          flowTwoTitle: "Нажмите хоткей",
+          flowTwoPrefix: "Используйте",
+          flowTwoMiddle: "для попапа с переводом или",
+          flowTwoSuffix: "чтобы заменить выделенный текст.",
+          flowThreeTitle: "Переведите или замените",
+          flowThreeCopy: "Первый MVP использует MyMemory и резервный сценарий через буфер обмена, как qTranslate-style инструменты.",
+          downloadEyebrow: "Preview-сборка",
+          downloadTitle: "Скачать через GitHub Actions.",
+          downloadCopy: "Для Parallels на Apple Silicon берите ARM64-артефакт. Для обычного Windows PC берите x64-артефакт.",
+          buildLink: "Открыть последнюю Windows-сборку",
+          notesLink: "Открыть инструкцию",
+          footerMac: "Версия для Mac"
+        }
+      };
+
+      const applyLanguage = (selected) => {
+        const language = translations[selected] ? selected : "en";
+        document.documentElement.lang = language;
+        document.querySelectorAll("[data-i18n]").forEach((node) => {
+          const key = node.dataset.i18n;
+          if (translations[language][key]) {
+            node.textContent = translations[language][key];
+          }
+        });
+        document.querySelectorAll("[data-lang-option]").forEach((button) => {
+          const isActive = button.dataset.langOption === language;
+          button.classList.toggle("is-active", isActive);
+          button.setAttribute("aria-pressed", String(isActive));
+        });
+        document.querySelector(".language-toggle")?.setAttribute("data-active-lang", language);
+        localStorage.setItem("jellytranslate-site-language", language);
+      };
+
+      document.querySelectorAll("[data-lang-option]").forEach((button) => {
+        button.addEventListener("click", () => {
+          applyLanguage(button.dataset.langOption);
+        });
+      });
+
+      applyLanguage(localStorage.getItem("jellytranslate-site-language") || "en");
+
       document.documentElement.classList.add("has-reveal");
       document.querySelectorAll(".reveal-block").forEach((block) => {
         block.classList.add("is-visible");
