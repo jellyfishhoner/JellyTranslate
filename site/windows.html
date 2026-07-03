@@ -49,7 +49,7 @@
             translate in a popup, or replace the selected text directly.
           </p>
           <div class="hero-actions">
-            <a class="primary-action" href="#download" data-i18n="primaryAction">Get preview build</a>
+            <a class="primary-action" href="#download" data-i18n="primaryAction">Join Windows preview</a>
             <a class="secondary-action" href="/" data-i18n="secondaryAction">Choose another platform</a>
           </div>
           <p class="tester-callout" data-i18n="testerCallout">Early MVP. Not signed, no installer yet.</p>
@@ -103,19 +103,29 @@
         <div class="windows-download-card cursor-glow-panel">
           <div>
             <p class="eyebrow" data-i18n="downloadEyebrow">Preview build</p>
-            <h2 data-i18n="downloadTitle">Download from GitHub Actions.</h2>
+            <h2 data-i18n="downloadTitle">Join the Windows preview list.</h2>
             <p data-i18n="downloadCopy">
-              Choose the build for your Windows device: x64 for most PCs, ARM64 for Windows on ARM.
+              Leave your email and I’ll send the Windows build when the preview is ready for testing.
             </p>
           </div>
-          <div class="windows-artifacts">
-            <a class="primary-action" href="https://github.com/jellyfishhoner/JellyTranslate/actions/runs/28632162392" data-i18n="buildLink">
-              Open latest Windows build
-            </a>
-            <a class="secondary-action" href="https://github.com/jellyfishhoner/JellyTranslate/blob/main/JellyTranslate.Windows/README.md" data-i18n="notesLink">
-              Read setup notes
-            </a>
-          </div>
+          <form class="signup-form windows-preview-form" name="jellytranslate-updates" method="POST" action="/__forms.html" data-netlify="true" netlify-honeypot="bot-field">
+            <input type="hidden" name="form-name" value="jellytranslate-updates">
+            <input type="hidden" name="subject" value="New JellyTranslate Windows preview signup">
+            <input type="hidden" name="source" value="windows_preview" data-signup-source>
+            <input type="hidden" name="language" value="en" data-signup-language>
+            <input type="hidden" name="version" value="windows-preview" data-signup-version>
+            <input type="hidden" name="page" value="" data-signup-page>
+            <p class="hidden-field">
+              <label>Do not fill this out: <input name="bot-field"></label>
+            </p>
+            <label class="signup-label" for="windows-preview-email" data-i18n="signupLabel">Email address</label>
+            <div class="signup-row">
+              <input id="windows-preview-email" type="email" name="email" autocomplete="email" data-i18n-placeholder="signupPlaceholder" placeholder="you@example.com" required>
+              <button type="submit" data-i18n="signupButton">Join Windows preview</button>
+            </div>
+            <p class="signup-note" data-i18n="signupNote">No spam. Only JellyTranslate Windows build updates.</p>
+            <p class="signup-status" role="status" aria-live="polite" data-signup-status></p>
+          </form>
         </div>
       </section>
     </main>
@@ -148,10 +158,14 @@
           flowThreeTitle: "Translate or replace",
           flowThreeCopy: "The first MVP uses MyMemory and a clipboard fallback, just like qTranslate-style tools.",
           downloadEyebrow: "Preview build",
-          downloadTitle: "Download from GitHub Actions.",
-          downloadCopy: "Choose the build for your Windows device: x64 for most PCs, ARM64 for Windows on ARM.",
-          buildLink: "Open latest Windows build",
-          notesLink: "Read setup notes",
+          downloadTitle: "Join the Windows preview list.",
+          downloadCopy: "Leave your email and I’ll send the Windows build when the preview is ready for testing.",
+          signupLabel: "Email address",
+          signupPlaceholder: "you@example.com",
+          signupButton: "Join Windows preview",
+          signupNote: "No spam. Only JellyTranslate Windows build updates.",
+          signupSuccess: "Done. I’ll send the Windows preview here.",
+          signupError: "Something didn’t send. Please try again.",
           footerMac: "Mac version"
         },
         ru: {
@@ -160,7 +174,7 @@
           heroEyebrow: "Windows preview",
           heroTitle: "JellyTranslate для Windows начинается здесь.",
           heroCopy: "Небольшое приложение в стиле qTranslate для Windows: выделите текст, нажмите хоткей, переведите в попапе или сразу замените выделенный текст.",
-          primaryAction: "Получить preview-сборку",
+          primaryAction: "Записаться на Windows preview",
           secondaryAction: "Выбрать другую платформу",
           testerCallout: "Ранний MVP. Пока без подписи и установщика.",
           popupOriginal: "Hello world",
@@ -174,10 +188,14 @@
           flowThreeTitle: "Переведите или замените",
           flowThreeCopy: "Первый MVP использует MyMemory и резервный сценарий через буфер обмена, как qTranslate-style инструменты.",
           downloadEyebrow: "Preview-сборка",
-          downloadTitle: "Скачать через GitHub Actions.",
-          downloadCopy: "Выберите сборку под ваше Windows-устройство: x64 для большинства PC, ARM64 для Windows on ARM.",
-          buildLink: "Открыть последнюю Windows-сборку",
-          notesLink: "Открыть инструкцию",
+          downloadTitle: "Запишитесь в список Windows preview.",
+          downloadCopy: "Оставьте email, и я пришлю Windows-сборку, когда preview будет готов к тестированию.",
+          signupLabel: "Email",
+          signupPlaceholder: "you@example.com",
+          signupButton: "Получить Windows preview",
+          signupNote: "Без спама. Только обновления Windows-версии JellyTranslate.",
+          signupSuccess: "Готово. Пришлю Windows preview сюда.",
+          signupError: "Не получилось отправить. Попробуйте еще раз.",
           footerMac: "Версия для Mac"
         }
       };
@@ -189,6 +207,12 @@
           const key = node.dataset.i18n;
           if (translations[language][key]) {
             node.textContent = translations[language][key];
+          }
+        });
+        document.querySelectorAll("[data-i18n-placeholder]").forEach((node) => {
+          const key = node.dataset.i18nPlaceholder;
+          if (translations[language][key]) {
+            node.placeholder = translations[language][key];
           }
         });
         document.querySelectorAll("[data-lang-option]").forEach((button) => {
@@ -207,6 +231,42 @@
       });
 
       applyLanguage(localStorage.getItem("jellytranslate-site-language") || "en");
+
+      document.querySelectorAll(".windows-preview-form").forEach((form) => {
+        const status = form.querySelector("[data-signup-status]");
+        const languageInput = form.querySelector("[data-signup-language]");
+        const pageInput = form.querySelector("[data-signup-page]");
+        const submitButton = form.querySelector("button[type='submit']");
+
+        form.addEventListener("submit", async (event) => {
+          event.preventDefault();
+          const language = localStorage.getItem("jellytranslate-site-language") || "en";
+          languageInput.value = language;
+          pageInput.value = window.location.href;
+          status.textContent = "";
+          submitButton.disabled = true;
+
+          try {
+            const response = await fetch("/__forms.html", {
+              method: "POST",
+              headers: { "Content-Type": "application/x-www-form-urlencoded" },
+              body: new URLSearchParams(new FormData(form)).toString()
+            });
+
+            if (!response.ok) {
+              throw new Error("Signup failed");
+            }
+
+            form.classList.add("is-complete");
+            status.textContent = translations[language].signupSuccess;
+            form.reset();
+          } catch {
+            status.textContent = translations[language].signupError;
+          } finally {
+            submitButton.disabled = false;
+          }
+        });
+      });
 
       document.documentElement.classList.add("has-reveal");
       document.querySelectorAll(".reveal-block").forEach((block) => {

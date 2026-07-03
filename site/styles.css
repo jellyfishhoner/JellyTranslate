@@ -2518,7 +2518,7 @@ h1 {
 
 .windows-download-card {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-columns: minmax(0, 1fr) minmax(320px, 480px);
   gap: 28px;
   align-items: center;
   max-width: 980px;
@@ -2546,6 +2546,12 @@ h1 {
   justify-content: flex-end;
 }
 
+.windows-preview-form {
+  width: 100%;
+  max-width: 480px;
+  justify-self: end;
+}
+
 @media (max-width: 840px) {
   .platform-detail-page main {
     padding-top: 0;
@@ -2563,5 +2569,10 @@ h1 {
 
   .windows-artifacts {
     justify-content: flex-start;
+  }
+
+  .windows-preview-form {
+    justify-self: stretch;
+    max-width: none;
   }
 }
