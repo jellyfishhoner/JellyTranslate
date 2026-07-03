@@ -11,6 +11,9 @@ xcuserdata/
 .releaseDerivedData/
 DerivedData/
 build/
+bin/
+obj/
+.vs/
 
 # Swift Package Manager
 .swiftpm/

@@ -39,6 +39,12 @@ For sharing a test version with other people, follow [DISTRIBUTION.md](DISTRIBUT
 
 The Netlify-ready landing page lives in [site](site). Netlify uses [netlify.toml](netlify.toml) to publish that folder.
 
+## Windows MVP
+
+An early Windows proof of concept lives in [JellyTranslate.Windows](JellyTranslate.Windows).
+
+The Windows plan is tracked in [WINDOWS_MVP.md](WINDOWS_MVP.md). It is intentionally separate from the macOS Swift app until the core Windows selected-text flow is proven.
+
 ## Permissions
 
 For real use, grant these in System Settings > Privacy & Security:
