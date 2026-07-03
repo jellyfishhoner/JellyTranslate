@@ -2264,3 +2264,277 @@ h1 {
     flex-direction: column;
   }
 }
+
+.platform-page {
+  min-height: 100vh;
+  background: radial-gradient(circle at 50% 16%, rgba(102, 217, 198, 0.12), transparent 28%),
+    linear-gradient(180deg, #10131a 0%, #0b0d12 100%);
+}
+
+.platform-gateway {
+  min-height: 100vh;
+  display: grid;
+  align-content: center;
+  justify-items: center;
+  gap: 34px;
+  padding: 48px 22px;
+  text-align: center;
+}
+
+.gateway-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--text);
+  font-size: 22px;
+  font-weight: 820;
+}
+
+.gateway-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 13px;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.34);
+}
+
+.gateway-hero {
+  display: grid;
+  gap: 10px;
+  max-width: 620px;
+}
+
+.gateway-hero h1 {
+  margin: 0;
+  font-size: clamp(36px, 6vw, 62px);
+  line-height: 1;
+}
+
+.gateway-hero p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 18px;
+  line-height: 1.5;
+}
+
+.platform-options {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 210px));
+  gap: 14px;
+  width: min(100%, 450px);
+}
+
+.platform-choice {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  display: grid;
+  justify-items: center;
+  gap: 13px;
+  min-height: 138px;
+  padding: 26px 20px;
+  color: rgba(245, 247, 251, 0.82);
+  background: rgba(255, 255, 255, 0.055);
+  border: 1px solid rgba(255, 255, 255, 0.13);
+  border-radius: 24px;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.24);
+  font-size: 18px;
+  font-weight: 820;
+  transition: transform 180ms ease, border-color 180ms ease, background 180ms ease, color 180ms ease;
+}
+
+.platform-choice::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: radial-gradient(circle at var(--glow-x, 50%) var(--glow-y, 50%), rgba(102, 217, 198, 0.18), transparent 34%);
+  opacity: 0;
+  transition: opacity 180ms ease;
+}
+
+.platform-choice:hover {
+  color: var(--text);
+  background: rgba(255, 255, 255, 0.075);
+  border-color: rgba(102, 217, 198, 0.36);
+  transform: translateY(-3px);
+}
+
+.platform-choice:hover::before {
+  opacity: 1;
+}
+
+.platform-logo {
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  color: rgba(245, 247, 251, 0.82);
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+}
+
+.platform-logo svg {
+  width: 26px;
+  height: 26px;
+  fill: currentColor;
+}
+
+@media (max-width: 520px) {
+  .platform-options {
+    grid-template-columns: 1fr;
+  }
+
+  .platform-choice {
+    min-height: 112px;
+  }
+}
+
+.platform-detail-page main {
+  padding-top: 72px;
+}
+
+.windows-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(320px, 460px);
+  align-items: center;
+  gap: clamp(34px, 6vw, 76px);
+  min-height: 78vh;
+  padding: 112px clamp(24px, 7vw, 96px) 72px;
+}
+
+.windows-preview-card,
+.windows-download-card {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.045));
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 28px;
+  box-shadow: 0 28px 70px rgba(0, 0, 0, 0.28);
+}
+
+.windows-preview-card::before,
+.windows-download-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: radial-gradient(circle at var(--glow-x, 50%) var(--glow-y, 50%), rgba(102, 217, 198, 0.16), transparent 36%);
+}
+
+.windows-preview-card {
+  padding: 22px;
+}
+
+.windows-titlebar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: rgba(245, 247, 251, 0.72);
+  font-weight: 780;
+}
+
+.windows-titlebar span {
+  width: 10px;
+  height: 10px;
+  background: rgba(245, 247, 251, 0.34);
+  border-radius: 999px;
+}
+
+.windows-titlebar strong {
+  margin-left: 8px;
+}
+
+.windows-popup-body {
+  display: grid;
+  gap: 10px;
+  margin-top: 22px;
+  padding: 22px;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 20px;
+}
+
+.windows-popup-body small {
+  color: var(--muted);
+  font-weight: 800;
+}
+
+.windows-popup-body p {
+  margin: 0 0 8px;
+  color: var(--text);
+  font-size: 18px;
+}
+
+.windows-popup-body strong {
+  font-size: 30px;
+  line-height: 1.15;
+}
+
+.windows-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.windows-actions span {
+  padding: 10px 14px;
+  color: rgba(245, 247, 251, 0.86);
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 12px;
+  font-weight: 800;
+}
+
+.windows-download {
+  padding: 72px clamp(24px, 7vw, 96px) 120px;
+}
+
+.windows-download-card {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 28px;
+  align-items: center;
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 32px;
+}
+
+.windows-download-card h2 {
+  margin-bottom: 12px;
+  font-size: clamp(30px, 4vw, 44px);
+  line-height: 1.08;
+}
+
+.windows-download-card p {
+  margin-bottom: 0;
+  color: var(--muted);
+  font-size: 17px;
+  line-height: 1.55;
+}
+
+.windows-artifacts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: flex-end;
+}
+
+@media (max-width: 840px) {
+  .platform-detail-page main {
+    padding-top: 0;
+  }
+
+  .windows-hero {
+    grid-template-columns: 1fr;
+    min-height: auto;
+    padding-top: 78px;
+  }
+
+  .windows-download-card {
+    grid-template-columns: 1fr;
+  }
+
+  .windows-artifacts {
+    justify-content: flex-start;
+  }
+}

@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="color-scheme" content="dark">
+    <meta name="theme-color" content="#0e1016">
+    <meta name="description" content="JellyTranslate for Windows preview.">
+    <meta property="og:title" content="JellyTranslate for Windows">
+    <meta property="og:description" content="Early Windows preview of a qTranslate-style selected text translator.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="/assets/jellytranslate-icon.webp">
+    <title>JellyTranslate for Windows</title>
+    <link rel="icon" href="/assets/jellytranslate-icon.webp">
+    <link rel="stylesheet" href="/styles.css">
+  </head>
+  <body class="platform-detail-page">
+    <a class="maker-badge" href="https://t.me/jjellyfishhoner" target="_blank" rel="noopener noreferrer" aria-label="Open JellyfishHoner on Telegram">
+      <svg class="telegram-icon" viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M21.6 4.2 18.4 19c-.2 1-.8 1.2-1.6.8l-4.9-3.6-2.4 2.3c-.3.3-.5.5-1 .5l.4-5 9.1-8.2c.4-.4-.1-.6-.6-.3L6.1 12.6 1.3 11.1c-1-.3-1-1 .2-1.5L20.1 2.4c.9-.3 1.7.2 1.5 1.8Z"/>
+      </svg>
+      <span>by JellyfishHoner</span>
+    </a>
+
+    <header class="site-header">
+      <a class="brand" href="/" aria-label="JellyTranslate platform choice">
+        <img src="/assets/jellytranslate-icon.webp" alt="" class="brand-icon">
+        <span>JellyTranslate</span>
+      </a>
+      <nav class="nav-links" aria-label="Windows navigation">
+        <a href="/mac.html">Mac</a>
+        <a href="#how">How it works</a>
+        <a href="#download">Preview build</a>
+        <a href="https://github.com/jellyfishhoner/JellyTranslate">GitHub</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="windows-hero" aria-labelledby="windows-title">
+        <div>
+          <p class="eyebrow">Windows preview</p>
+          <h1 id="windows-title">JellyTranslate for Windows is starting here.</h1>
+          <p class="hero-copy">
+            A small qTranslate-style tray app for Windows: select text, press a hotkey,
+            translate in a popup, or replace the selected text directly.
+          </p>
+          <div class="hero-actions">
+            <a class="primary-action" href="#download">Get preview build</a>
+            <a class="secondary-action" href="/">Choose another platform</a>
+          </div>
+          <p class="tester-callout">Early MVP. Not signed, no installer yet.</p>
+        </div>
+        <div class="windows-preview-card cursor-glow-panel" aria-label="Windows popup preview">
+          <div class="windows-titlebar">
+            <span></span>
+            <span></span>
+            <span></span>
+            <strong>JellyTranslate</strong>
+          </div>
+          <div class="windows-popup-body">
+            <small>Original</small>
+            <p>Hello world</p>
+            <small>Translation</small>
+            <strong>Привет, мир</strong>
+          </div>
+          <div class="windows-actions">
+            <span>Copy</span>
+            <span>Replace</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="flow-band reveal-block" id="how" aria-label="Windows flow">
+        <div class="flow">
+          <div class="flow-step">
+            <span class="step-number">1</span>
+            <h2>Select text</h2>
+            <p>Highlight text in Notepad, browser fields, Telegram, Discord, Notion, or another Windows app.</p>
+          </div>
+          <div class="flow-step">
+            <span class="step-number">2</span>
+            <h2>Press hotkey</h2>
+            <p>Use <code>Ctrl+Alt+T</code> for popup translation or <code>Ctrl+Alt+R</code> to replace selected text.</p>
+          </div>
+          <div class="flow-step">
+            <span class="step-number">3</span>
+            <h2>Translate or replace</h2>
+            <p>The first MVP uses MyMemory and a clipboard fallback, just like qTranslate-style tools.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="windows-download reveal-block" id="download">
+        <div class="windows-download-card cursor-glow-panel">
+          <div>
+            <p class="eyebrow">Preview build</p>
+            <h2>Download from GitHub Actions.</h2>
+            <p>
+              For Parallels on Apple Silicon, use the ARM64 artifact.
+              For a normal Windows PC, use the x64 artifact.
+            </p>
+          </div>
+          <div class="windows-artifacts">
+            <a class="primary-action" href="https://github.com/jellyfishhoner/JellyTranslate/actions/runs/28632162392">
+              Open latest Windows build
+            </a>
+            <a class="secondary-action" href="https://github.com/jellyfishhoner/JellyTranslate/blob/main/JellyTranslate.Windows/README.md">
+              Read setup notes
+            </a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <span>JellyTranslate</span>
+      <a href="/mac.html">Mac version</a>
+      <a href="https://github.com/jellyfishhoner/JellyTranslate">GitHub</a>
+    </footer>
+
+    <script>
+      document.documentElement.classList.add("has-reveal");
+      document.querySelectorAll(".reveal-block").forEach((block) => {
+        block.classList.add("is-visible");
+      });
+
+      document.querySelectorAll(".cursor-glow-panel").forEach((panel) => {
+        panel.addEventListener("pointermove", (event) => {
+          const rect = panel.getBoundingClientRect();
+          const x = ((event.clientX - rect.left) / rect.width) * 100;
+          const y = ((event.clientY - rect.top) / rect.height) * 100;
+          panel.style.setProperty("--glow-x", `${x}%`);
+          panel.style.setProperty("--glow-y", `${y}%`);
+        });
+      });
+    </script>
+  </body>
+</html>
