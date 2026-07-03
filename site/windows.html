@@ -52,7 +52,7 @@
             <a class="primary-action" href="#download" data-download-link data-i18n="primaryAction">Download for Windows</a>
             <a class="secondary-action" href="/" data-i18n="secondaryAction">Choose another platform</a>
           </div>
-          <p class="tester-callout" data-i18n="testerCallout">Built as a separate Windows version, with the same JellyTranslate workflow.</p>
+          <p class="tester-callout" data-i18n="testerCallout">Download starts after email. The page chooses the right Windows build automatically.</p>
         </div>
         <div class="windows-preview-card cursor-glow-panel" aria-label="Windows popup demo">
           <div class="windows-popup-header">
@@ -105,7 +105,7 @@
             <p class="eyebrow" data-i18n="downloadEyebrow">Download for Windows</p>
             <h2 data-i18n="downloadTitle">Start with email, then install cleanly.</h2>
             <p data-i18n="downloadCopy">
-              Leave your email to get the Windows version and useful JellyTranslate updates. After that, the setup guide opens automatically.
+              Leave your email to get useful JellyTranslate updates. After that, the Windows download starts and the setup guide opens automatically.
             </p>
           </div>
           <form class="signup-form windows-preview-form" name="jellytranslate-updates" method="POST" action="/__forms.html" data-netlify="true" netlify-honeypot="bot-field">
@@ -114,6 +114,8 @@
             <input type="hidden" name="source" value="windows_download" data-signup-source>
             <input type="hidden" name="language" value="en" data-signup-language>
             <input type="hidden" name="version" value="windows" data-signup-version>
+            <input type="hidden" name="platform" value="windows" data-signup-platform>
+            <input type="hidden" name="architecture" value="" data-signup-architecture>
             <input type="hidden" name="page" value="" data-signup-page>
             <p class="hidden-field">
               <label>Do not fill this out: <input name="bot-field"></label>
@@ -224,7 +226,7 @@
           heroCopy: "Select text, press a hotkey, translate in a focused popup, or replace the selected text directly.",
           primaryAction: "Download for Windows",
           secondaryAction: "Choose another platform",
-          testerCallout: "Built as a separate Windows version, with the same JellyTranslate workflow.",
+          testerCallout: "Download starts after email. The page chooses the right Windows build automatically.",
           popupTarget: "Auto → RU",
           popupOriginal: "Hello world",
           popupTranslation: "Привет, мир",
@@ -238,14 +240,14 @@
           flowThreeCopy: "Use a compact popup for translation, or replace the selected text without switching windows.",
           downloadEyebrow: "Download for Windows",
           downloadTitle: "Start with email, then install cleanly.",
-          downloadCopy: "Leave your email to get the Windows version and useful JellyTranslate updates. After that, the setup guide opens automatically.",
+          downloadCopy: "Leave your email to get useful JellyTranslate updates. After that, the Windows download starts and the setup guide opens automatically.",
           signupLabel: "Email address",
           signupPlaceholder: "you@example.com",
           signupButton: "Continue",
           signupNote: "No spam. Only JellyTranslate Windows build updates.",
-          signupDownloadPrompt: "Enter your email to continue. The setup guide will open right after this.",
-          signupSuccess: "Done. The setup guide is opening now.",
-          signupDownloadSuccess: "Done. The setup guide is opening now.",
+          signupDownloadPrompt: "Enter your email to start the Windows download. The setup guide will open right after this.",
+          signupSuccess: "Done. Your download is starting now.",
+          signupDownloadSuccess: "Done. Your download is starting now.",
           signupError: "Something didn’t send. Please try again.",
           setupEyebrow: "After download",
           setupHeading: "Install, open, translate your first text.",
@@ -282,7 +284,7 @@
           heroCopy: "Выделите текст, нажмите хоткей, переведите в аккуратном попапе или сразу замените выделенный текст.",
           primaryAction: "Скачать для Windows",
           secondaryAction: "Выбрать другую платформу",
-          testerCallout: "Отдельная Windows-версия с тем же рабочим сценарием JellyTranslate.",
+          testerCallout: "Скачивание начнется после email. Сайт сам выберет нужную Windows-сборку.",
           popupTarget: "Auto → RU",
           popupOriginal: "Hello world",
           popupTranslation: "Привет, мир",
@@ -296,14 +298,14 @@
           flowThreeCopy: "Используйте компактный попап для перевода или заменяйте выделенный текст без переключения между окнами.",
           downloadEyebrow: "Скачать для Windows",
           downloadTitle: "Начните с email, затем установите без лишних шагов.",
-          downloadCopy: "Оставьте email, чтобы получить Windows-версию и полезные обновления JellyTranslate. После этого инструкция откроется автоматически.",
+          downloadCopy: "Оставьте email, чтобы получать полезные обновления JellyTranslate. После этого начнется скачивание Windows-версии и откроется инструкция.",
           signupLabel: "Email",
           signupPlaceholder: "you@example.com",
           signupButton: "Продолжить",
           signupNote: "Без спама. Только обновления Windows-версии JellyTranslate.",
-          signupDownloadPrompt: "Оставьте email, чтобы продолжить. Инструкция откроется сразу после этого.",
-          signupSuccess: "Готово. Сейчас откроется инструкция.",
-          signupDownloadSuccess: "Готово. Сейчас откроется инструкция.",
+          signupDownloadPrompt: "Оставьте email, чтобы начать скачивание Windows-версии. Инструкция откроется сразу после этого.",
+          signupSuccess: "Готово. Скачивание начинается.",
+          signupDownloadSuccess: "Готово. Скачивание начинается.",
           signupError: "Не получилось отправить. Попробуйте еще раз.",
           setupEyebrow: "После скачивания",
           setupHeading: "Установите, откройте и переведите первый текст.",
@@ -370,8 +372,44 @@
       const downloadCard = document.querySelector(".windows-download-card");
       const windowsForm = document.querySelector(".windows-preview-form");
       const windowsEmailInput = document.querySelector("#windows-preview-email");
+      const windowsDownloadUrls = {
+        x64: "https://github.com/jellyfishhoner/JellyTranslate/releases/download/v0.1.0-alpha/JellyTranslate-0.1.0-alpha-windows-x64.zip",
+        arm64: "https://github.com/jellyfishhoner/JellyTranslate/releases/download/v0.1.0-alpha/JellyTranslate-0.1.0-alpha-windows-arm64.zip"
+      };
+      let detectedWindowsArchitecture = "x64";
 
       const currentLanguage = () => localStorage.getItem("jellytranslate-site-language") || "en";
+
+      const detectWindowsArchitecture = async () => {
+        const userAgentData = navigator.userAgentData;
+        if (!userAgentData?.getHighEntropyValues) {
+          return "x64";
+        }
+
+        try {
+          const { architecture } = await userAgentData.getHighEntropyValues(["architecture"]);
+          return /arm|aarch64/i.test(architecture) ? "arm64" : "x64";
+        } catch {
+          return "x64";
+        }
+      };
+
+      const startDownload = (url) => {
+        if (!url) {
+          return;
+        }
+
+        const downloadLink = document.createElement("a");
+        downloadLink.href = url;
+        downloadLink.download = "";
+        document.body.appendChild(downloadLink);
+        downloadLink.click();
+        downloadLink.remove();
+      };
+
+      detectWindowsArchitecture().then((architecture) => {
+        detectedWindowsArchitecture = architecture;
+      });
 
       const restartFocusAnimation = (element) => {
         if (!element) {
@@ -417,6 +455,7 @@
         const status = form.querySelector("[data-signup-status]");
         const languageInput = form.querySelector("[data-signup-language]");
         const pageInput = form.querySelector("[data-signup-page]");
+        const architectureInput = form.querySelector("[data-signup-architecture]");
         const submitButton = form.querySelector("button[type='submit']");
 
         form.addEventListener("submit", async (event) => {
@@ -424,8 +463,10 @@
           const language = currentLanguage();
           languageInput.value = language;
           pageInput.value = window.location.href;
+          architectureInput.value = detectedWindowsArchitecture;
           status.textContent = "";
           submitButton.disabled = true;
+          const downloadUrl = windowsDownloadUrls[detectedWindowsArchitecture] || windowsDownloadUrls.x64;
 
           try {
             const response = await fetch("/__forms.html", {
@@ -441,6 +482,7 @@
             form.classList.add("is-complete");
             status.textContent = translations[language].signupDownloadSuccess;
             form.reset();
+            window.setTimeout(() => startDownload(downloadUrl), 120);
             window.setTimeout(showSetupGuide, 360);
           } catch {
             status.textContent = translations[language].signupError;
