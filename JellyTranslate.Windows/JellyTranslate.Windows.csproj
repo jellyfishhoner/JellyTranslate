@@ -9,5 +9,6 @@
     <AssemblyName>JellyTranslate</AssemblyName>
     <RootNamespace>JellyTranslate.Windows</RootNamespace>
     <ApplicationManifest>app.manifest</ApplicationManifest>
+    <ApplicationIcon>Assets\JellyTranslate.ico</ApplicationIcon>
   </PropertyGroup>
 </Project>

@@ -43,6 +43,7 @@ internal static class Program
 
 internal sealed class JellyTranslateAppContext : ApplicationContext
 {
+    private readonly Icon appIcon = Icon.ExtractAssociatedIcon(Application.ExecutablePath) ?? (Icon)SystemIcons.Application.Clone();
     private readonly NotifyIcon notifyIcon;
     private readonly HotKeyWindow hotKeyWindow;
     private readonly ClipboardSelectionService selectionService = new();
@@ -53,7 +54,7 @@ internal sealed class JellyTranslateAppContext : ApplicationContext
     {
         notifyIcon = new NotifyIcon
         {
-            Icon = SystemIcons.Application,
+            Icon = appIcon,
             Text = "JellyTranslate",
             Visible = true,
             ContextMenuStrip = BuildTrayMenu()
@@ -158,6 +159,7 @@ internal sealed class JellyTranslateAppContext : ApplicationContext
         hotKeyWindow.Dispose();
         notifyIcon.Visible = false;
         notifyIcon.Dispose();
+        appIcon.Dispose();
         popup?.Dispose();
         base.ExitThreadCore();
     }

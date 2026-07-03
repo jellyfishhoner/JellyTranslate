@@ -23,6 +23,9 @@ obj/
 *.dmg
 *.zip
 
+# Generated Windows icon intermediates
+JellyTranslate.Windows/Assets/icon-*.png
+
 # Secrets
 *.env
 *.key
