@@ -31,6 +31,7 @@
         <a href="/mac">Mac</a>
         <a href="#how" data-i18n="navHow">How it works</a>
         <a href="#download" data-i18n="navDownload">Download</a>
+        <a href="#faq" data-i18n="navFaq">FAQ</a>
         <a href="https://github.com/jellyfishhoner/JellyTranslate">GitHub</a>
       </nav>
       <div class="language-toggle" aria-label="Language">
@@ -56,7 +57,7 @@
         </div>
         <div class="windows-preview-card cursor-glow-panel" aria-label="Windows popup demo">
           <div class="windows-popup-header">
-            JellyTranslate <span>MyMemory · Auto → RU</span>
+            JellyTranslate <span data-i18n="popupTarget">Auto → RU</span>
           </div>
           <div class="windows-text-panel windows-original-panel">
             <small>Original</small>
@@ -94,7 +95,7 @@
           <div class="flow-step">
             <span class="step-number">3</span>
             <h2 data-i18n="flowThreeTitle">Translate or replace</h2>
-            <p data-i18n="flowThreeCopy">JellyTranslate uses MyMemory and a clipboard fallback, just like qTranslate-style tools.</p>
+            <p data-i18n="flowThreeCopy">Use a compact popup for translation, or replace the selected text without switching windows.</p>
           </div>
         </div>
       </section>
@@ -178,6 +179,33 @@
           </details>
         </div>
       </section>
+
+      <section class="faq-section reveal-block" id="faq" aria-labelledby="windows-faq-title">
+        <div class="faq-content">
+          <div class="faq-heading">
+            <p class="eyebrow" data-i18n="faqEyebrow">FAQ</p>
+            <h2 id="windows-faq-title" data-i18n="faqTitle">Short answers before you install.</h2>
+          </div>
+          <div class="faq-list">
+            <details>
+              <summary data-i18n="faqAvailabilityQuestion">Is the Windows version available?</summary>
+              <p data-i18n="faqAvailabilityAnswer">It is being prepared as a separate Windows version. Leave your email and I’ll send the first installable build when it is ready.</p>
+            </details>
+            <details>
+              <summary data-i18n="faqQTranslateQuestion">Is this a qTranslate replacement?</summary>
+              <p data-i18n="faqQTranslateAnswer">The goal is the same fast workflow: select text, press a hotkey, translate or replace. JellyTranslate is being built as a cleaner modern alternative.</p>
+            </details>
+            <details>
+              <summary data-i18n="faqInstallQuestion">Will it need an installer?</summary>
+              <p data-i18n="faqInstallAnswer">The first Windows build should be simple to unpack and run. A proper installer can come later if users need it.</p>
+            </details>
+            <details>
+              <summary data-i18n="faqFreeQuestion">Is it free?</summary>
+              <p data-i18n="faqFreeAnswer">Yes. JellyTranslate is free while the product grows and the core workflow improves.</p>
+            </details>
+          </div>
+        </div>
+      </section>
     </main>
 
     <footer class="site-footer">
@@ -191,12 +219,14 @@
         en: {
           navHow: "How it works",
           navDownload: "Download",
+          navFaq: "FAQ",
           heroEyebrow: "qTranslate-style translator for Windows",
           heroTitle: "Translate and replace text on Windows.",
           heroCopy: "A small qTranslate-style tray app for Windows: select text, press a hotkey, translate in a popup, or replace the selected text directly.",
           primaryAction: "Download for Windows",
           secondaryAction: "Choose another platform",
           testerCallout: "Built as a separate Windows version, with the same JellyTranslate workflow.",
+          popupTarget: "Auto → RU",
           popupOriginal: "Hello world",
           popupTranslation: "Привет, мир",
           flowOneTitle: "Select text",
@@ -206,7 +236,7 @@
           flowTwoMiddle: "for popup translation or",
           flowTwoSuffix: "to replace selected text.",
           flowThreeTitle: "Translate or replace",
-          flowThreeCopy: "JellyTranslate uses MyMemory and a clipboard fallback, just like qTranslate-style tools.",
+          flowThreeCopy: "Use a compact popup for translation, or replace the selected text without switching windows.",
           downloadEyebrow: "Download for Windows",
           downloadTitle: "Get the Windows build by email.",
           downloadCopy: "Leave your email and I’ll send the Windows version when it is ready to install.",
@@ -232,17 +262,29 @@
           shortcutPreviewTitle: "Windows shortcuts",
           shortcutTranslate: "Popup translation",
           shortcutReplace: "Translate and replace",
+          faqEyebrow: "FAQ",
+          faqTitle: "Short answers before you install.",
+          faqAvailabilityQuestion: "Is the Windows version available?",
+          faqAvailabilityAnswer: "It is being prepared as a separate Windows version. Leave your email and I’ll send the first installable build when it is ready.",
+          faqQTranslateQuestion: "Is this a qTranslate replacement?",
+          faqQTranslateAnswer: "The goal is the same fast workflow: select text, press a hotkey, translate or replace. JellyTranslate is being built as a cleaner modern alternative.",
+          faqInstallQuestion: "Will it need an installer?",
+          faqInstallAnswer: "The first Windows build should be simple to unpack and run. A proper installer can come later if users need it.",
+          faqFreeQuestion: "Is it free?",
+          faqFreeAnswer: "Yes. JellyTranslate is free while the product grows and the core workflow improves.",
           footerMac: "Mac version"
         },
         ru: {
           navHow: "Как работает",
           navDownload: "Скачать",
+          navFaq: "FAQ",
           heroEyebrow: "Переводчик в стиле qTranslate для Windows",
           heroTitle: "Переводите и заменяйте текст на Windows.",
           heroCopy: "Небольшое приложение в стиле qTranslate для Windows: выделите текст, нажмите хоткей, переведите в попапе или сразу замените выделенный текст.",
           primaryAction: "Скачать для Windows",
           secondaryAction: "Выбрать другую платформу",
           testerCallout: "Отдельная Windows-версия с тем же рабочим сценарием JellyTranslate.",
+          popupTarget: "Auto → RU",
           popupOriginal: "Hello world",
           popupTranslation: "Привет, мир",
           flowOneTitle: "Выделите текст",
@@ -252,7 +294,7 @@
           flowTwoMiddle: "для попапа с переводом или",
           flowTwoSuffix: "чтобы заменить выделенный текст.",
           flowThreeTitle: "Переведите или замените",
-          flowThreeCopy: "JellyTranslate использует MyMemory и резервный сценарий через буфер обмена, как qTranslate-style инструменты.",
+          flowThreeCopy: "Используйте компактный попап для перевода или заменяйте выделенный текст без переключения между окнами.",
           downloadEyebrow: "Скачать для Windows",
           downloadTitle: "Получите Windows-сборку на email.",
           downloadCopy: "Оставьте email, и я пришлю Windows-версию, когда ее можно будет установить.",
@@ -278,6 +320,16 @@
           shortcutPreviewTitle: "Хоткеи Windows",
           shortcutTranslate: "Попап с переводом",
           shortcutReplace: "Перевести и заменить",
+          faqEyebrow: "FAQ",
+          faqTitle: "Короткие ответы перед установкой.",
+          faqAvailabilityQuestion: "Windows-версия уже доступна?",
+          faqAvailabilityAnswer: "Она готовится как отдельная Windows-версия. Оставьте email, и я пришлю первую сборку, которую можно будет установить.",
+          faqQTranslateQuestion: "Это замена qTranslate?",
+          faqQTranslateAnswer: "Цель похожая: выделить текст, нажать хоткей, перевести или заменить. JellyTranslate делается как более чистая современная альтернатива.",
+          faqInstallQuestion: "Нужен будет установщик?",
+          faqInstallAnswer: "Первую Windows-сборку планируем сделать простой: распаковать и запустить. Полноценный установщик можно добавить позже, если он будет нужен.",
+          faqFreeQuestion: "Это бесплатно?",
+          faqFreeAnswer: "Да. JellyTranslate бесплатный, пока продукт развивается и основной сценарий улучшается.",
           footerMac: "Версия для Mac"
         }
       };
@@ -423,6 +475,9 @@
           ".setup-steps code",
           ".preview-title",
           ".shortcut-row strong",
+          ".faq-heading h2",
+          ".faq-list summary",
+          ".faq-list p",
           ".site-footer span",
           ".site-footer a"
         ];
@@ -480,7 +535,7 @@
         });
       }
 
-      document.querySelectorAll(".flow-step, .windows-preview-card, .windows-download-card, .setup-widget, .setup-steps li, .windows-shortcuts-preview, .shortcut-row").forEach((panel) => {
+      document.querySelectorAll(".flow-step, .windows-preview-card, .windows-download-card, .setup-widget, .setup-steps li, .windows-shortcuts-preview, .shortcut-row, .faq-list details").forEach((panel) => {
         panel.classList.add("cursor-glow-panel");
       });
 
