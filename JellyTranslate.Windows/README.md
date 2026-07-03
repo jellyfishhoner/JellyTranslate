@@ -40,7 +40,7 @@ GitHub Actions publishes a Windows MVP artifact on each change to this folder:
 2. Open the latest successful run.
 3. Download the right artifact:
    - `JellyTranslate-Windows-MVP-win-x64` for most Intel/AMD Windows PCs.
-   - `JellyTranslate-Windows-MVP-win-arm64` for Windows 11 ARM in Parallels on Apple Silicon.
+   - `JellyTranslate-Windows-MVP-win-arm64` for Windows on ARM devices.
 4. Unzip it on Windows.
 5. Run `JellyTranslate.exe`.
 
